@@ -2,28 +2,32 @@ import React from "react";
 import './home.css'
 import { getProducts } from '../../queries/getHomeData';
 import { Product } from '../Product/Products'
+import { checkSessionData } from '../../utils/sessionStorage'
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: [],
-            products: [],
+            products: []
         }
     }
 
-    async componentDidMount() {
-        await getProducts()
-            .then(res => {
-                this.setState({
-                    products: res.categories
+    componentDidMount() {
+        {
+            (JSON.parse(sessionStorage.getItem('products')) ? checkSessionData('products') : getProducts())
+                .then(res => {
+                    this.setState({
+                        products: res.categories
+                    });
                 })
-            })
+                .catch(error => {
+                    console.error('An error has ocurred: ', error);
+                })
+        }
     }
 
     render() {
-        const { categories, products } = this.state;
-        console.log(products)
+        const { products } = this.state;
         return (
             <main>
                 <section>

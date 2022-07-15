@@ -2,6 +2,7 @@ import React from "react";
 import './nav.css'
 import { Link } from 'react-router-dom';
 import { getCategoriesName } from '../../queries/getHomeData';
+import { checkSessionData } from '../../utils/sessionStorage'
 
 class Nav extends React.Component {
     constructor(props) {
@@ -12,12 +13,17 @@ class Nav extends React.Component {
     }
 
     componentDidMount() {
-        getCategoriesName()
-            .then((res) => {
-                this.setState({
-                    categories: res.categories
+        {
+            (JSON.parse(sessionStorage.getItem('name')) ? checkSessionData('name') : getCategoriesName())
+                .then(res => {
+                    this.setState({
+                        categories: res.categories
+                    })
                 })
-            })
+                .catch(error => {
+                    console.error('An error has ocurred: ', error)
+                })
+        }
     }
 
     render() {

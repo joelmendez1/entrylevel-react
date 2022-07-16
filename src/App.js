@@ -12,9 +12,18 @@ class App extends React.Component {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path='/home' element={<Home />}></Route>
+        <Route path="/" element={<Home to="/home" />} />
+        <Route path='/home' element={<Home to="/"/>}></Route>
         <Route path='/clothes' element={<Clothes />}></Route>
         <Route path='/tech' element={<Tech />}></Route>
+        <Route
+            path="*"
+            element={
+              <div>
+                <h2>404 Page not found</h2>
+              </div>
+            }
+          />
       </Routes>
     </BrowserRouter>
     )

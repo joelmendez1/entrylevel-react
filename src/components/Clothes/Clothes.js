@@ -28,16 +28,17 @@ class Clothes extends React.Component {
     render() {
         const { products } = this.state;
         return (
-            <div>
+            <section>
                 {products.map(element => {
                     return element.products.map((product, index) => (
-                        <Product key={index}
+                        <Product
+                        key={index}
                         name={product.name}
                         img={product.gallery[0]}
                         stock={product.inStock}/>
                     ))
                 })}
-            </div>
+            </section>
         )
     };
 }

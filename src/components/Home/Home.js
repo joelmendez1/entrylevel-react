@@ -1,8 +1,8 @@
 import React from "react";
-import './home.css'
+import './home.css';
 import { getProducts } from '../../queries/getHomeData';
-import { Product } from '../Product/Products'
-import { checkSessionData } from '../../utils/sessionStorage'
+import { Product } from '../Product/Products';
+import { checkSessionData } from '../../utils/sessionStorage';
 
 class Home extends React.Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class Home extends React.Component {
         this.state = {
             products: []
         }
-    }
+    };
 
     componentDidMount() {
         {
@@ -32,13 +32,13 @@ class Home extends React.Component {
             <main>
                 <section>
                     {products.map(element => {
-                            return element.products.map((product, index) => (
-                                <Product key={index} 
-                                name={product.name} 
-                                img={product.gallery[0]}
-                                stock={product.inStock}/>
-                            ))
-                        })}
+                        return element.products.map((product, index) => (
+                            <Product key={index}
+                            name={product.name}
+                            img={product.gallery[0]}
+                            stock={product.inStock}/>
+                        ))
+                    })}
                 </section>
             </main>
         )

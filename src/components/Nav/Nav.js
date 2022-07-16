@@ -1,5 +1,5 @@
 import React from "react";
-import './nav.css'
+import './nav.css';
 import { Link } from 'react-router-dom';
 import { getCategoriesName } from '../../queries/getHomeData';
 import { checkSessionData } from '../../utils/sessionStorage'
@@ -10,7 +10,7 @@ class Nav extends React.Component {
         this.state = {
             categories: []
         }
-    }
+    };
 
     componentDidMount() {
         {
@@ -21,7 +21,7 @@ class Nav extends React.Component {
                     })
                 })
                 .catch(error => {
-                    console.error('An error has ocurred: ', error)
+                    console.error('An error has ocurred: ', error);
                 })
         }
     }
@@ -43,7 +43,7 @@ class Nav extends React.Component {
                 </ul>
             </nav>
         )
-    }
+    };
 }
 
 export { Nav }

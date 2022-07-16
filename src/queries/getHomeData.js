@@ -28,4 +28,17 @@ const getProducts = async () => {
     return response;
 }
 
-export { getCategoriesName, getProducts }
+const getAll = async () => {
+    const field = 'all'
+
+    const queryAll = new Query("categories", true)
+    .addField('name', true)
+    .addField(new Field('products', true).addFieldList(['id', 'name', 'inStock', 'gallery', 'description', 'category', 'attributes{id, name, type, items{displayValue, value, id}}', 'prices{currency{label, symbol}, amount}']));
+    const response = await client.post(queryAll)
+
+    saveData(field, response);
+
+    return response
+}
+
+export { getCategoriesName, getProducts, getAll }

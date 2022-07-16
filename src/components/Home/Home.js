@@ -16,6 +16,7 @@ class Home extends React.Component {
         {
             (JSON.parse(sessionStorage.getItem('products')) ? checkSessionData('products') : getProducts())
                 .then(res => {
+                    console.log(res)
                     this.setState({
                         products: res.categories
                     });
@@ -33,7 +34,8 @@ class Home extends React.Component {
                 <section>
                     {products.map(element => {
                         return element.products.map((product, index) => (
-                            <Product key={index}
+                            <Product
+                            key={index}
                             name={product.name}
                             img={product.gallery[0]}
                             stock={product.inStock}/>

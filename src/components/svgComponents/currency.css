@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    position: relative;
+    width: 25px;
+}
+
+.caret {
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+}
+
+.caret-activated {
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+    transform: rotate(180deg);
+}

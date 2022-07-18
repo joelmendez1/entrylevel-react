@@ -41,12 +41,8 @@ nav ul li, a {
     text-transform: uppercase;
 }
 
-.hovered {
+.hovered > a {
     border-bottom: 2px solid var(--link-color);
-    /* color: var(--link-color); */
-}
-
-.hovered a {
     color: var(--link-color);
 }
 
@@ -54,5 +50,5 @@ nav ul li, a {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 10rem;
+    width: 8rem;
 }

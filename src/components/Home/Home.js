@@ -16,7 +16,6 @@ class Home extends React.Component {
         {
             (JSON.parse(sessionStorage.getItem('products')) ? checkSessionData('products') : getProducts())
                 .then(res => {
-                    console.log(res)
                     this.setState({
                         products: res.categories
                     });

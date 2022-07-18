@@ -10,7 +10,21 @@ class Nav extends React.Component {
         this.state = {
             categories: []
         }
+
+        this.selectedItem = this.selectedItem.bind(this);
     };
+
+    selectedItem = (e, categoryName) => {
+        const allItems = e.target.parentNode.parentNode.childNodes;
+
+        allItems.forEach(li => {
+            if(li.textContent !== categoryName) {
+                li.classList.remove('hovered')
+            } else {
+                li.classList.add('hovered')
+            }
+        })
+    }
 
     componentDidMount() {
         {
@@ -28,7 +42,6 @@ class Nav extends React.Component {
 
     render() {
         const { categories } = this.state;
-
         return (
             <nav>
                 <ul>
@@ -36,7 +49,7 @@ class Nav extends React.Component {
                         const categoryName = category.name !== 'all' ? category.name : 'home';
                         return (
                             <li key={index}>
-                                <Link to={categoryName}>{categoryName}</Link>
+                                <Link to={categoryName} onClick={(e) => this.selectedItem(e, categoryName)}>{categoryName}</Link>
                             </li>
                         )                        
                     })}

@@ -1,7 +1,7 @@
 import React from "react";
 import './nav.css';
 import { Link } from 'react-router-dom';
-import { getCategoriesName } from '../../queries/getHomeData';
+import { get } from '../../queries/getHomeData';
 import { checkSessionData } from '../../utils/sessionStorage';
 import Brand from '../../assets/Group.svg';
 import { Currency } from '../svgComponents/Currency';
@@ -31,7 +31,7 @@ class Nav extends React.Component {
 
     componentDidMount() {
         {
-            (JSON.parse(sessionStorage.getItem('name')) ? checkSessionData('name') : getCategoriesName())
+            (JSON.parse(sessionStorage.getItem('name')) ? checkSessionData('name') : get('name'))
                 .then(res => {
                     this.setState({
                         categories: res.categories

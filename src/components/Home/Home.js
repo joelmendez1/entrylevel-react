@@ -1,6 +1,6 @@
 import React from "react";
 import './home.css';
-import { getProducts } from '../../queries/getHomeData';
+import { get } from '../../queries/getHomeData';
 import { Product } from '../Product/Products';
 import { checkSessionData } from '../../utils/sessionStorage';
 
@@ -13,23 +13,25 @@ class Home extends React.Component {
     };
 
     componentDidMount() {
-        {
-            (JSON.parse(sessionStorage.getItem('products')) ? checkSessionData('products') : getProducts())
-                .then(res => {
-                    this.setState({
-                        products: res.categories
-                    });
-                })
-                .catch(error => {
-                    console.error('An error has ocurred: ', error);
-                })
-        }
+        (JSON.parse(sessionStorage.getItem('all')) ? checkSessionData('all') : get('all'))
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    products: res.categories
+                });
+            })
+            .catch(error => {
+                console.error('An error has ocurred: ', error);
+            })
     }
 
     render() {
         const { products } = this.state;
         return (
             <main>
+                 <div className="category">
+                        CATEGORY NAME
+                </div>
                 <section>
                     {products.map(element => {
                         return element.products.map((product, index) => (

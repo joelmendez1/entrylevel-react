@@ -1,7 +1,7 @@
 import React from "react";
 import { Product } from '../Product/Products';
 import { checkSessionData } from '../../utils/sessionStorage';
-import { getAll } from '../../queries/getHomeData';
+import { get } from '../../queries/getHomeData';
 class Clothes extends React.Component {
     constructor(props) {
         super(props);
@@ -12,7 +12,7 @@ class Clothes extends React.Component {
 
     componentDidMount() {
         {
-            (JSON.parse(sessionStorage.getItem('all')) ? checkSessionData('all') : getAll())
+            (JSON.parse(sessionStorage.getItem('all')) ? checkSessionData('all') : get('all'))
                 .then(res => {
                     const clothes = res.categories.filter(category => category.name === 'clothes');
                     this.setState({

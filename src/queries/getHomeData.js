@@ -3,42 +3,42 @@ import { saveData } from '../utils/sessionStorage'
 
 client.setEndpoint("http://localhost:4000/graphql"); 
 
+const get = async (field) => {
+    let query = new Query("categories", true);
 
-const getCategoriesName = async () => { 
-    const field = 'name';
-
-    const queryCategoriesName = new Query("categories", true)
-    .addField(field, true);
-    const response  = await client.post(queryCategoriesName);
+    switch (field) {
+        case "name":
+            query = createGetCategoriesNameQuery(query, field);
+            break;
+        case "products":
+            query = createGetProductsQuery(query, field);
+            break;
+        case "all":
+            query = createGetAllQuery(query);
+            break;
+        default:
+            break
+    }
+    const response  = await client.post(query);
 
     saveData(field, response);
 
     return response;
 }
 
-const getProducts = async () => {
-    const field = 'products';
+const createGetCategoriesNameQuery = (query, field) => {
+    return query.addField(field, true);
+}
 
-    const queryProducts = new Query("categories", true)
+const createGetProductsQuery = (query, field) => {
+    return query
         .addField(new Field(field, true).addFieldList(['id', 'name', 'inStock', 'gallery', 'description', 'category', 'attributes{id, name, type, items{displayValue, value, id}}', 'prices{currency{label, symbol}, amount}']));
-    const response  = await client.post(queryProducts);
-
-    saveData(field, response);
-
-    return response;
 }
 
-const getAll = async () => {
-    const field = 'all'
-
-    const queryAll = new Query("categories", true)
-    .addField('name', true)
-    .addField(new Field('products', true).addFieldList(['id', 'name', 'inStock', 'gallery', 'description', 'category', 'attributes{id, name, type, items{displayValue, value, id}}', 'prices{currency{label, symbol}, amount}']));
-    const response = await client.post(queryAll)
-
-    saveData(field, response);
-
-    return response
+const createGetAllQuery = (query) => {
+    return query
+        .addField('name', true)
+        .addField(new Field('products', true).addFieldList(['id', 'name', 'inStock', 'gallery', 'description', 'category', 'attributes{id, name, type, items{displayValue, value, id}}', 'prices{currency{label, symbol}, amount}']));
 }
 
-export { getCategoriesName, getProducts, getAll }
+export { get }

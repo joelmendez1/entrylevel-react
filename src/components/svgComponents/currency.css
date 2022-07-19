@@ -4,6 +4,27 @@
     width: 25px;
 }
 
+.currency-container {
+    display: none;
+}
+
+.currency-container-activated {
+    width: 80px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+    position: absolute;
+    line-height: 30px;
+    top: 25px;
+    left: 0;
+}
+
+.currency-container-activated li:hover{
+    background-color: #1D1F22 0.9;
+}
+
 .caret {
     position: absolute;
     bottom: 5px;

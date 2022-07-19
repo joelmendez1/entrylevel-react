@@ -52,3 +52,7 @@ nav ul li, a {
     align-items: center;
     width: 8rem;
 }
+
+.actions * {
+    cursor: pointer;
+}

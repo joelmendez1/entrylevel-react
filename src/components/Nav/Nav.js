@@ -3,9 +3,10 @@ import './nav.css';
 import { Link } from 'react-router-dom';
 import { getCategoriesName } from '../../queries/getHomeData';
 import { checkSessionData } from '../../utils/sessionStorage';
-import Brand from '../../assets/Group.svg'
-import { Currency } from '../svgComponents/Currency'
-import { Cart } from '../svgComponents/Cart'
+import Brand from '../../assets/Group.svg';
+import { Currency } from '../svgComponents/Currency';
+import { Cart } from '../svgComponents/Cart';
+
 class Nav extends React.Component {
     constructor(props) {
         super(props);

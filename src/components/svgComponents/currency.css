@@ -1,7 +1,8 @@
 .container {
     display: flex;
     position: relative;
-    width: 25px;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .currency-container {
@@ -9,6 +10,7 @@
 }
 
 .currency-container-activated {
+    border: 1px solid black;
     width: 80px;
     height: auto;
     display: flex;
@@ -21,19 +23,19 @@
     left: 0;
 }
 
-.currency-container-activated li:hover{
-    background-color: #1D1F22 0.9;
+.currency-container-activated li {
+    width: 100%;
 }
 
 .caret {
     position: absolute;
-    bottom: 5px;
+    bottom: 0.5rem;
     right: 0;
 }
 
 .caret-activated {
     position: absolute;
-    bottom: 5px;
+    bottom: 0.5rem;
     right: 0;
     transform: rotate(180deg);
 }

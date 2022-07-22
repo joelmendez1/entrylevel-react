@@ -11,6 +11,7 @@ class Nav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            pathName: 'home',
             categories: []
         }
 
@@ -27,6 +28,7 @@ class Nav extends React.Component {
                 li.classList.add('hovered');
             }
         })
+
     }
 
     componentDidMount() {
@@ -44,7 +46,8 @@ class Nav extends React.Component {
     }
 
     render() {
-        const { categories } = this.state;
+        const { categories, pathName } = this.state;
+        console.log(pathName)
         return (
             <nav>
                 <ul className="navigator">
@@ -52,7 +55,12 @@ class Nav extends React.Component {
                         const categoryName = category.name !== 'all' ? category.name : 'home';
                         return (
                             <li key={index}>
-                                <Link to={categoryName} onClick={(e) => this.selectedItem(e, categoryName)}>{categoryName}</Link>
+                                <Link to={categoryName} onClick={(e) => {
+                                    this.selectedItem(e, categoryName)
+                                    this.setState({
+                                        pathName: categoryName
+                                    })
+                                }}>{categoryName}</Link>
                             </li>
                         )                        
                     })}

@@ -1,8 +1,8 @@
 import React from "react";
 import './app.css';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
-import { Home } from './components/Home/Home';
-import { Nav } from './components/Nav/Nav'
+import  Home  from './components/Home/Home';
+import Nav from './components/Nav/Nav'
 
 class App extends React.Component {
   render() {

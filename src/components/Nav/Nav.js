@@ -6,8 +6,8 @@ import { checkSessionData } from '../../utils/sessionStorage';
 import Brand from '../../assets/Group.svg';
 import { Currency } from '../svgComponents/Currency';
 import { Cart } from '../svgComponents/Cart';
-import { connect } from 'react-redux'
-import { setURL } from '../../redux/nav/navActions'
+import { connect } from 'react-redux';
+import { setURL } from '../../redux/nav/navActions';
 
 class Nav extends React.Component {
     constructor(props) {

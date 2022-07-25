@@ -1,6 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { navReducer } from './nav/navReducer'
+import { navReducer } from './nav/navReducer';
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-const store = configureStore({ reducer: navReducer })
+const persistConfig = {
+    key: 'persist-key',
+    storage
+};
+const navPersistReducer = persistReducer(persistConfig, navReducer);
+const store = configureStore({ reducer: navPersistReducer });
+const persistor = persistStore(store);
 
-export { store }
+export { store, persistor }

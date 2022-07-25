@@ -6,6 +6,8 @@ import { checkSessionData } from '../../utils/sessionStorage';
 import Brand from '../../assets/Group.svg';
 import { Currency } from '../svgComponents/Currency';
 import { Cart } from '../svgComponents/Cart';
+import { connect } from 'react-redux'
+import { setURL } from '../../redux/nav/navActions'
 
 class Nav extends React.Component {
     constructor(props) {
@@ -27,34 +29,41 @@ class Nav extends React.Component {
                 li.classList.add('hovered');
             }
         })
+
     }
 
     componentDidMount() {
-        {
-            (JSON.parse(sessionStorage.getItem('name')) ? checkSessionData('name') : get('name'))
-                .then(res => {
-                    this.setState({
-                        categories: res.categories
-                    })
-                })
-                .catch(error => {
-                    console.error('An error has ocurred: ', error);
-                })
-        }
+        (JSON.parse(sessionStorage.getItem('name')) ? checkSessionData('name') : get('name'))
+        .then(res => {
+            this.setState({
+                categories: res.categories
+            })
+        })
+        .catch(error => {
+            console.error('An error has ocurred: ', error);
+        })
     }
 
     render() {
         const { categories } = this.state;
+        const { setURL } = this.props
         return (
             <nav>
                 <ul className="navigator">
-                    {categories.map((category, index) => {
-                        const categoryName = category.name !== 'all' ? category.name : 'home';
-                        return (
-                            <li key={index}>
-                                <Link to={categoryName} onClick={(e) => this.selectedItem(e, categoryName)}>{categoryName}</Link>
-                            </li>
-                        )                        
+                    {
+                        categories.map((category, index) => {
+                            const categoryName = category.name !== 'all' ? category.name : 'home';
+                            return (
+                                <li key={index}>
+                                    <Link to={categoryName} onClick={(e) => {
+                                        setURL(categoryName)
+                                        this.selectedItem(e, categoryName)
+                                        this.setState({
+                                            pathName: categoryName
+                                        })
+                                    }}>{categoryName}</Link>
+                                </li>
+                            )
                     })}
                 </ul>
                 <img src={Brand} alt="logo" />
@@ -67,4 +76,16 @@ class Nav extends React.Component {
     };
 }
 
-export { Nav }
+const mapStateToProps = (state) => {
+    return {
+        currentURL: state.currentURL
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setURL: (url) => dispatch(setURL(url)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)

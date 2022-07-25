@@ -13,7 +13,7 @@ const get = async (field) => {
         case "products":
             query = createGetProductsQuery(query, field);
             break;
-        case "all":
+        case "home":
             query = createGetAllQuery(query);
             break;
         default:

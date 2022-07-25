@@ -25,7 +25,7 @@ class Product extends React.Component {
             className="product-container"
             onMouseEnter = {this.showCircleIcon}
             onMouseLeave = {this.showCircleIcon}>
-                <img className={`product-${stock}`} src={img}/>
+                <img className={`product-${stock}`} src={img} alt={name}/>
                 <div className="text">
                 {showCircleIcon && <CircleIcon className="circle-icon" />}
                     <h3>{name}</h3>

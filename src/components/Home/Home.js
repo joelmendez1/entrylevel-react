@@ -56,8 +56,9 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    const { navPersistReducer } = state
     return {
-        currentURL: state.currentURL
+        currentURL: navPersistReducer.currentURL
     }
 }
 

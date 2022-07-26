@@ -4,6 +4,8 @@ import {ReactComponent as CurrencySign} from '../../assets/$.svg'
 import {ReactComponent as Caret} from '../../assets/vector2.svg'
 import { checkSessionData } from "../../utils/sessionStorage";
 import { getCurrenciesData } from '../../queries/getCurrenciesData'
+import { connect } from 'react-redux';
+import { setCurrency } from '../../redux/currency/currencyActions'
 
 
 class Currency extends React.Component {
@@ -11,8 +13,7 @@ class Currency extends React.Component {
         super(props);
         this.state = {
             caretActivated: false,
-            currencies: [],
-            currentCurrency: 'USD'
+            currencies: []
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -47,7 +48,8 @@ class Currency extends React.Component {
     }
 
     render() {
-        const { caretActivated, currencies, currentCurrency } = this.state;
+        const { caretActivated, currencies } = this.state;
+        const { setCurrency, currentCurrency } = this.props;
 
         return (
             <div className="container" onClick={this.handleClick}>
@@ -59,7 +61,9 @@ class Currency extends React.Component {
                     {currencies.map((currency, index) => (
                         <li
                         key={index}
-                        onClick={() => this.setState({currentCurrency: currency.label})}
+                        onClick={() => {
+                            setCurrency(currency.label)
+                        }}
                         style={currentCurrency === currency.label ? {'background': 'rgba(29, 31, 34, .5)'} : null}>
                             {`${currency.symbol} ${currency.label}`}
                         </li>
@@ -70,4 +74,17 @@ class Currency extends React.Component {
     }
 }
 
-export { Currency }
+const mapStateToProps = (state) => {
+    const { currencyPersistReducer } = state
+    return {
+        currentCurrency: currencyPersistReducer.currentCurrency
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurrency: (currency) => dispatch(setCurrency(currency)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Currency)

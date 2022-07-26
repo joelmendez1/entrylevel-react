@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { get } from '../../queries/getHomeData';
 import { checkSessionData } from '../../utils/sessionStorage';
 import Brand from '../../assets/Group.svg';
-import { Currency } from '../svgComponents/Currency';
+import  Currency  from '../svgComponents/Currency';
 import { Cart } from '../svgComponents/Cart';
 import { connect } from 'react-redux';
 import { setURL } from '../../redux/nav/navActions';
@@ -47,6 +47,7 @@ class Nav extends React.Component {
     render() {
         const { categories } = this.state;
         const { setURL } = this.props
+
         return (
             <nav>
                 <ul className="navigator">
@@ -77,8 +78,9 @@ class Nav extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    const { navPersistReducer } = state
     return {
-        currentURL: state.currentURL
+        currentURL: navPersistReducer.currentURL
     }
 }
 

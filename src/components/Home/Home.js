@@ -1,7 +1,7 @@
 import React from "react";
 import './home.css';
 import { get } from '../../queries/getHomeData';
-import { Product } from '../Product/Products';
+import  Product  from '../Product/Product';
 import { checkSessionData } from '../../utils/sessionStorage';
 import { connect } from 'react-redux';
 
@@ -56,8 +56,10 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    const { navPersistReducer, currencyPersistReducer } = state;
     return {
-        currentURL: state.currentURL
+        currentURL: navPersistReducer.currentURL,
+        currentCurrency: currencyPersistReducer.currentCurrency
     }
 }
 

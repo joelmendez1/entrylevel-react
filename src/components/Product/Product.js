@@ -1,6 +1,8 @@
 import React from "react";
-import './products.css';
+import './product.css';
 import {ReactComponent as CircleIcon} from '../../assets/CircleIcon.svg'
+import { connect } from 'react-redux';
+
 class Product extends React.Component {
     constructor(props) {
         super(props);
@@ -19,7 +21,7 @@ class Product extends React.Component {
 
     render() {
         const { showCircleIcon } = this.state;
-        const { name, img, stock } = this.props;
+        const { name, img, stock, currentCurrency } = this.props;
         return (
             <div
             className="product-container"
@@ -29,11 +31,19 @@ class Product extends React.Component {
                 <div className="text">
                 {showCircleIcon && <CircleIcon className="circle-icon" />}
                     <h3>{name}</h3>
-                    <p>$precio</p>
+                    <p>${currentCurrency}</p>
                 </div>
             </div>
         )
     }
 }
 
-export { Product }
+
+const mapStateToProps = (state) => {
+    const { currencyPersistReducer } = state;
+    return {
+        currentCurrency: currencyPersistReducer.currentCurrency
+    }
+}
+
+export default connect(mapStateToProps)(Product)

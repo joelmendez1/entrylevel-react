@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    margin: 0 auto;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    transition: 0.1s ease-in-out;
+    text-transform: uppercase;
+}
+
+button:hover {
+    transform: scale(1.1);
+}

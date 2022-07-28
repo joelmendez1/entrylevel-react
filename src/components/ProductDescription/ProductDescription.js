@@ -1,6 +1,7 @@
 import React from "react";
 import './productDescription.css';
 import { connect } from 'react-redux';
+import { Button } from '../button/Button'
 
 class ProductDescription extends React.Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class ProductDescription extends React.Component {
         const urlProduct = window.location.pathname.split('/')[2];
         const allProducts = JSON.parse(sessionStorage.getItem('home')).categories[0].products;
         const productData= allProducts.find((product) => product.id === urlProduct);
-        const { name, gallery, brand, attributes, prices, description } = productData;
+        const { name, inStock, gallery, brand, attributes, prices, description } = productData;
         const { currentCurrency } = this.props;
 
         if(!productData) {
@@ -26,7 +27,7 @@ class ProductDescription extends React.Component {
                     ))}
                 </div>
                 <div className="product-description_main-img">
-                    <img  src={gallery[0]} alt="main-img"/>
+                    <img src={gallery[0]} alt="main-img"/>
                 </div>
                 <article className="product-description_description">
                     <div className="product-description_text">
@@ -53,7 +54,7 @@ class ProductDescription extends React.Component {
                             }
                         })}`}
                     </div>
-                    <button> ADD TO CART </button>
+                    <Button size="large" color="green" disabled={inStock ? false : true} action="bag">BUY</Button>
                     <p>{description}</p>
                 </article>
             </div>

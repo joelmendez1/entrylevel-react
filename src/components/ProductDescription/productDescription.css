@@ -17,7 +17,6 @@
     max-height: 100vh;
     max-width: 20%;
     overflow: scroll;
-    border: 1px solid blue;
 }
 
 .product-images-section img {
@@ -29,7 +28,6 @@
 
 .product-description_main-img {
     width: 40%;
-    border: 1px solid red;
 }
 
 .product-description_main-img img {

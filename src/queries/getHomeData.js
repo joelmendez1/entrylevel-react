@@ -38,7 +38,7 @@ const createGetProductsQuery = (query, field) => {
 const createGetAllQuery = (query) => {
     return query
         .addField('name', true)
-        .addField(new Field('products', true).addFieldList(['id', 'name', 'inStock', 'gallery', 'description', 'category', 'attributes{id, name, type, items{displayValue, value, id}}', 'prices{currency{label, symbol}, amount}']));
+        .addField(new Field('products', true).addFieldList(['id', 'name', 'inStock', 'gallery', 'description', 'category', 'attributes{id, name, type, items{displayValue, value, id}}', 'prices{currency{label, symbol}, amount}', 'brand']));
 }
 
 export { get }

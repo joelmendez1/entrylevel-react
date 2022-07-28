@@ -9,7 +9,7 @@ const saveData = (field, data) => {
 }
 
 const checkSessionData = async (field) => {
-    const getSessionStorageField = JSON.parse(sessionStorage.getItem(field));
+    const getSessionStorageField = await JSON.parse(sessionStorage.getItem(field));
     return getSessionStorageField;
 }
 

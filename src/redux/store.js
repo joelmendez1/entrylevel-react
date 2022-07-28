@@ -14,6 +14,7 @@ const currencyPersistConfig = {
   storage,
   blacklist: ['nav-key']
 };
+
 const navPersistReducer = persistReducer(navPersistConfig, navReducer);
 const currencyPersistReducer = persistReducer(currencyPersistConfig, currencyReducer)
 const rootReducer = combineReducers({navPersistReducer, currencyPersistReducer})

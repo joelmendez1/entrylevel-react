@@ -78,7 +78,7 @@ class Nav extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setURL: (url) => dispatch(setURL(url)),
+        setURL: (url) => dispatch(setURL(url))
     }
 }
 

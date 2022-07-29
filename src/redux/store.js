@@ -1,23 +1,30 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { navReducer } from './nav/navReducer';
 import { currencyReducer } from "./currency/currencyReducer";
+import { productsReducer } from "./products/productReducer";
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from "redux-persist/lib/storage";
 
 const navPersistConfig = {
     key: 'nav-key',
     storage,
-    blacklist: ['currency-key']
+    blacklist: ['currency-key', 'products-key']
 };
 const currencyPersistConfig = {
   key: 'currency-key',
   storage,
-  blacklist: ['nav-key']
+  blacklist: ['nav-key', 'products-key']
 };
+const productPersistConfig = {
+  key: 'products-key',
+  storage,
+  blacklist: ['nav-key', 'currency-key']
+}
 
 const navPersistReducer = persistReducer(navPersistConfig, navReducer);
 const currencyPersistReducer = persistReducer(currencyPersistConfig, currencyReducer)
-const rootReducer = combineReducers({navPersistReducer, currencyPersistReducer})
+const productPersistReducer = persistReducer(productPersistConfig, productsReducer)
+const rootReducer = combineReducers({navPersistReducer, currencyPersistReducer, productPersistReducer})
 const store = configureStore({
     reducer: rootReducer,
     middleware: getDefaultMiddleware =>

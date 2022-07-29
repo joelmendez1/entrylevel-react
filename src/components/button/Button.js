@@ -1,5 +1,7 @@
 import React from "react";
 import './button.css'
+import { connect } from 'react-redux';
+import { setProduct } from '../../redux/products/productActions'
 
 class Button extends React.Component {
     constructor(props) {
@@ -7,14 +9,13 @@ class Button extends React.Component {
         this.getStyle = this.getStyle.bind(this);
         this.getSize = this.getSize.bind(this);
         this.getColor = this.getColor.bind(this);
-        this.getAction = this.getAction.bind(this);
     }
 
     render() {
-        const { size, color, disabled, action } = this.props;
+        const { size, color, disabled, action, productData,  setProduct, purchasedProducts } = this.props;
 
         return (
-            <button style={this.getStyle(size, color)} disabled={disabled} onClick={() => this.getAction(action)}>
+            <button style={this.getStyle(size, color)} disabled={disabled} onClick={() => setProduct(action , productData)}>
                 {this.props.children}
             </button>
         )
@@ -82,25 +83,20 @@ class Button extends React.Component {
                 return;
         }
     }
+}
 
-    getAction = (type) => {
-        type.toLowerCase();
+const mapStateToProps = (state) => {
+    const { productPersistReducer } = state;
 
-        switch(type) {
-            case 'add':
-                console.log('comprar')
-                break
-            case 'remove':
-                console.log('remover')
-                break
-            case 'bag':
-                console.log('ver compra')
-                break
-            default:
-                console.log('invalid option')
-                break
-        }
+    return {
+        purchasedProducts: productPersistReducer.purchasedProducts
     }
 }
 
-export { Button }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setProduct:(action, product) => dispatch(setProduct(action, product))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Button)

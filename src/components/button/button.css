@@ -8,10 +8,23 @@ button {
     text-align: center;
     cursor: pointer;
     border: none;
-    transition: 0.1s ease-in-out;
     text-transform: uppercase;
 }
 
 button:hover {
-    transform: scale(1.1);
+    animation-name: buttonAnimation;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes buttonAnimation {
+    0% {
+        transform: scale(0.9);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

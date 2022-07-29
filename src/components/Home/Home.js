@@ -39,11 +39,7 @@ class Home extends React.Component {
                             const categoryName = element.name !== 'all' ? element.name : 'home';
                             if(categoryName === currentURL) {
                                 return element.products.map((product, index) => (
-                                    <Product
-                                    key={index}
-                                    name={product.name}
-                                    img={product.gallery[0]}
-                                    stock={product.inStock}/>
+                                    <Product key={index} {...product}/>
                                 ))
                             }
                             return

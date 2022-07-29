@@ -47,7 +47,6 @@ class Nav extends React.Component {
     render() {
         const { categories } = this.state;
         const { setURL } = this.props
-
         return (
             <nav>
                 <ul className="navigator">
@@ -77,17 +76,10 @@ class Nav extends React.Component {
     };
 }
 
-const mapStateToProps = (state) => {
-    const { navPersistReducer } = state
-    return {
-        currentURL: navPersistReducer.currentURL
-    }
-}
-
 const mapDispatchToProps = (dispatch) => {
     return {
-        setURL: (url) => dispatch(setURL(url)),
+        setURL: (url) => dispatch(setURL(url))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Nav)
+export default connect(null, mapDispatchToProps)(Nav)

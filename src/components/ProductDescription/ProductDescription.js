@@ -1,19 +1,20 @@
 import React from "react";
-import './productDescription.css';
-import { connect } from 'react-redux';
-import  Button  from '../button/Button';
-import { ADD_TO_CART } from '../../redux/products/productReducer';
+import "./productDescription.css";
+import { connect } from "react-redux";
+import  Button  from "../button/Button";
+import { createCustomClass, large, green } from "../button/buttonUtils";
+import { ADD_TO_CART } from "../../redux/products/productReducer";
 
 class ProductDescription extends React.Component {
     render() {
-        const urlProduct = window.location.pathname.split('/')[2];
-        const allProducts = JSON.parse(sessionStorage.getItem('home')).categories[0].products;
+        const urlProduct = window.location.pathname.split("/")[2];
+        const allProducts = JSON.parse(sessionStorage.getItem("home")).categories[0].products;
         const productData = allProducts.find((product) => product.id === urlProduct);
         const { name, inStock, gallery, brand, attributes, prices, description } = productData;
         const { currentCurrency } = this.props;
 
         if(!productData) {
-            return 'Error'
+            return "Error"
         }
 
         return (
@@ -51,7 +52,7 @@ class ProductDescription extends React.Component {
                             }
                         })}`}
                     </div>
-                    <Button size="large" color="green" disabled={inStock ? false : true} action={ADD_TO_CART} productData={{...productData, count: 1}}>ADD TO CART</Button>
+                    <Button customClassName={createCustomClass(large, green)} disabled={inStock ? false : true} action={ADD_TO_CART} productData={{...productData, count: 1}}>ADD TO CART</Button>
                     <p>{description}</p>
                 </article>
             </div>

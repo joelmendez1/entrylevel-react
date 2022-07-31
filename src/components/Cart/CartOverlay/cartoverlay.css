@@ -1,0 +1,9 @@
+.cart_overlay {
+    width: 25%;
+    height: auto;
+    border: 1px solid black;
+}
+
+.cart_overlay-actions {
+    display: flex;
+}

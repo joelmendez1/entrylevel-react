@@ -1,9 +1,9 @@
 import React from "react";
-import './home.css';
-import { get } from '../../queries/getHomeData';
-import  Product  from '../Product/Product';
-import { checkSessionData } from '../../utils/sessionStorage';
-import { connect } from 'react-redux';
+import "./home.css";
+import { get } from "../../queries/getHomeData";
+import  Product  from "../Product/Product";
+import { checkSessionData } from "../../utils/sessionStorage";
+import { connect } from "react-redux";
 
 class Home extends React.Component {
     constructor(props) {
@@ -14,14 +14,14 @@ class Home extends React.Component {
     };
 
     componentDidMount() {
-            (JSON.parse(sessionStorage.getItem('home')) ? checkSessionData('home') : get('home'))
+            (JSON.parse(sessionStorage.getItem("home")) ? checkSessionData("home") : get("home"))
             .then(res => {
                     this.setState({
                         products: res.categories
                     })
             })
             .catch(error => {
-                console.error('An error has ocurred: ', error);
+                console.error("An error has ocurred: ", error);
             })
     }
 
@@ -36,7 +36,7 @@ class Home extends React.Component {
                 <section className="home-products">
                     {
                         products.map(element => {
-                            const categoryName = element.name !== 'all' ? element.name : 'home';
+                            const categoryName = element.name !== "all" ? element.name : "home";
                             if(categoryName === currentURL) {
                                 return element.products.map((product, index) => (
                                     <Product key={`product-${product.name}-${index}`} {...product}/>
@@ -51,8 +51,7 @@ class Home extends React.Component {
     };
 }
 
-const mapStateToProps = (state) => {
-    const { navPersistReducer } = state;
+const mapStateToProps = ({ navPersistReducer }) => {
     return {
         currentURL: navPersistReducer.currentURL
     }

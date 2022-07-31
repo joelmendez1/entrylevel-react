@@ -4,7 +4,8 @@ const DECREMENT = 'decrement';
 
 const initialState = {
     purchasedProducts: [],
-    totalProducts: 0
+    totalProducts: 0,
+    productsTotalCost: 0
 }
 
 const incrementor = (arr, action) => {
@@ -15,6 +16,21 @@ const incrementor = (arr, action) => {
         }
     }
     return false;
+}
+
+const getTotalCost = (products, state, action) => {
+    let total = 0;
+
+    products.forEach(product => {
+            product.prices.forEach(price => {
+                if(action.product.currentCurrency === price.currency.label) {
+                    total += (product.count * price.amount);
+                }
+            })
+    })
+    state.productsTotalCost = total;
+
+    return state.productsTotalCost;
 }
 
 const productsReducer = (state = initialState, action) => {
@@ -32,7 +48,8 @@ const productsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 purchasedProducts: products,
-                totalProducts: state.totalProducts + 1
+                totalProducts: state.totalProducts + 1,
+                productsTotalCost: getTotalCost(products, state, action)
             }
         case INCREMENT:
             incrementor(products, action);
@@ -40,7 +57,8 @@ const productsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 purchasedProducts: products,
-                totalProducts: state.totalProducts + 1
+                totalProducts: state.totalProducts + 1,
+                productsTotalCost: getTotalCost(products, state, action)
             }
         case DECREMENT:
             for(let i = 0; i < products.length; i++) {
@@ -54,7 +72,8 @@ const productsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 purchasedProducts: products,
-                totalProducts: state.totalProducts - 1
+                totalProducts: state.totalProducts - 1,
+                productsTotalCost: getTotalCost(products, state, action)
             }
         default: 
             return state;

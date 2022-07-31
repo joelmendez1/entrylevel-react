@@ -18,7 +18,7 @@ class App extends React.Component {
         <Route path='/clothes' element={<Home />}></Route>
         <Route path='/tech' element={<Home />}></Route>
         <Route path='/product/:product' element={<ProductDescription />}></Route>
-        <Route path='/cart' element={<CartOverlay />}></Route>
+        <Route path='/cart' element={<CartPage />}></Route>
         <Route
             path="*"
             element={

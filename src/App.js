@@ -2,8 +2,9 @@ import React from "react";
 import './app.css';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import  Home  from './components/Home/Home';
-import Nav from './components/Nav/Nav'
-import ProductDescription  from './components/ProductDescription/ProductDescription'
+import Nav from './components/Nav/Nav';
+import ProductDescription  from './components/ProductDescription/ProductDescription';
+import Cart from "./components/Cart/Cart";
 
 class App extends React.Component {
   render() {
@@ -11,11 +12,12 @@ class App extends React.Component {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/" element={<Home to="/home" />} />
-        <Route path='/home' element={<Home to="/"/>}></Route>
+        <Route path='/' element={<Home to='/home' />} />
+        <Route path='/home' element={<Home to='/'/>}></Route>
         <Route path='/clothes' element={<Home />}></Route>
         <Route path='/tech' element={<Home />}></Route>
         <Route path='/product/:product' element={<ProductDescription />}></Route>
+        <Route path='/cart' element={<Cart />}></Route>
         <Route
             path="*"
             element={

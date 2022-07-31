@@ -5,7 +5,7 @@ import { get } from '../../queries/getHomeData';
 import { checkSessionData } from '../../utils/sessionStorage';
 import Brand from '../../assets/Group.svg';
 import  Currency  from '../svgComponents/Currency';
-import { Cart } from '../svgComponents/Cart';
+import { CartIcon } from '../svgComponents/CartIcon';
 import { connect } from 'react-redux';
 import { setURL } from '../../redux/nav/navActions';
 
@@ -69,7 +69,9 @@ class Nav extends React.Component {
                 <img src={Brand} alt="logo" />
                 <div className="actions">
                     <Currency />
-                    <Cart />
+                    <Link to="/cart">
+                        <CartIcon />
+                    </Link>
                 </div>
             </nav>
         )

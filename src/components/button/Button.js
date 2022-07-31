@@ -12,11 +12,11 @@ class Button extends React.Component {
     }
 
     render() {
-        const { size, color, disabled, action, productData,  setProduct, purchasedProducts } = this.props;
+        const { size = "medium", color = "green", disabled = false, action, productData,  setProduct } = this.props;
 
         return (
             <button style={this.getStyle(size, color)} disabled={disabled} onClick={() => setProduct(action , productData)}>
-                {this.props.children}
+                {this.props.children || 'Default Button'}
             </button>
         )
     }

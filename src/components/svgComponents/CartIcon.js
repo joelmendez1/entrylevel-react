@@ -1,8 +1,8 @@
 import React from "react";
-import './cart.css'
-import {ReactComponent as CartIcon} from '../../assets/Vector.svg'
+import './cartIcon.css';
+import { ReactComponent as CartSvg } from '../../assets/Vector.svg';
 
-class Cart extends React.Component {
+class CartIcon extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,11 +15,11 @@ class Cart extends React.Component {
 
         return(
             <div className="container-cart">
-                <CartIcon />
+                <CartSvg />
                 {isEmpty && <sup> 3 </sup>}
             </div>
         )
     }
 }
 
-export { Cart }
+export { CartIcon }

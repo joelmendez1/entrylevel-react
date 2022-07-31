@@ -1,24 +1,14 @@
 import React from "react";
-import './cart.css';
+import "./cart.css";
 import Button from "../button/Button";
+import { createCustomClass, small, white } from "../button/buttonUtils";
 import { connect } from "react-redux";
-import { setProduct } from '../../redux/products/productActions';
-import { INCREMENT, DECREMENT } from '../../redux/products/productReducer';
+import { setProduct } from "../../redux/products/productActions";
+import { INCREMENT, DECREMENT } from "../../redux/products/productReducer";
 
 class Cart extends React.Component {
     render() {
         const { purchasedProducts, currentCurrency } = this.props;
-        let total = 0;
-        let productQuantity = 0;
-
-        purchasedProducts.forEach(product => {
-            productQuantity += product.count;
-            product.prices.forEach(price => {
-                if(currentCurrency === price.currency.label) {
-                    total += price.amount * product.count;
-                }
-            })
-        })
 
         return (
             <section className="cart_section">
@@ -49,19 +39,14 @@ class Cart extends React.Component {
                                     </div>
                                 </div>
                                 <div className="cart_products-actions">
-                                    <Button size="small" color="white" action={INCREMENT} productData={product}>+</Button>
+                                    <Button customClassName={createCustomClass(small, white)} action={INCREMENT} productData={product}>+</Button>
                                     {product.count}
-                                    <Button size="small" color="white" action={DECREMENT} productData={product}>-</Button>
+                                    <Button customClassName={createCustomClass(small, white)} action={DECREMENT} productData={product}>-</Button>
                                 </div>
                             </div>
                         )
                     }
                 })}
-                <div>
-                    <p>Tax 21%: </p><strong>{`$${(total + (total * 0.21)).toFixed(2)}`}</strong>
-                    <p>Quantity: </p><strong>{productQuantity}</strong>
-                    <p>Total: </p><strong>${total.toFixed(2)}</strong>
-                </div>
             </section>
         )
     }

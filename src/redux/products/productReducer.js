@@ -1,5 +1,10 @@
+const ADD_TO_CART = 'addToCart';
+const INCREMENT = 'increment';
+const DECREMENT = 'decrement';
+
 const initialState = {
-    purchasedProducts: []
+    purchasedProducts: [],
+    totalProducts: 0
 }
 
 const incrementor = (arr, action) => {
@@ -16,7 +21,7 @@ const productsReducer = (state = initialState, action) => {
     let products = JSON.parse(JSON.stringify(state.purchasedProducts));
 
     switch(action.type) {
-        case 'add': 
+        case ADD_TO_CART:
             let isOnTheList = false;
             isOnTheList = incrementor(products, action);
 
@@ -26,16 +31,18 @@ const productsReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                purchasedProducts: products
+                purchasedProducts: products,
+                totalProducts: state.totalProducts + 1
             }
-        case 'increment':
+        case INCREMENT:
             incrementor(products, action);
 
             return {
                 ...state,
-                purchasedProducts: products
+                purchasedProducts: products,
+                totalProducts: state.totalProducts + 1
             }
-        case 'decrement':
+        case DECREMENT:
             for(let i = 0; i < products.length; i++) {
                 const product = products[i];
                 if(product.id === action.product.id) {
@@ -46,11 +53,12 @@ const productsReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                purchasedProducts: products
+                purchasedProducts: products,
+                totalProducts: state.totalProducts - 1
             }
         default: 
             return state;
     }
 }
 
-export { productsReducer }
+export { productsReducer, ADD_TO_CART, INCREMENT, DECREMENT };

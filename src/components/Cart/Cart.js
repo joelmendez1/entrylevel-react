@@ -3,12 +3,9 @@ import './cart.css';
 import Button from "../button/Button";
 import { connect } from "react-redux";
 import { setProduct } from '../../redux/products/productActions';
+import { INCREMENT, DECREMENT } from '../../redux/products/productReducer';
 
 class Cart extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const { purchasedProducts, currentCurrency } = this.props;
         let total = 0;
@@ -23,8 +20,8 @@ class Cart extends React.Component {
             })
         })
 
-        return(
-            <section>
+        return (
+            <section className="cart_section">
                 <h1>CART</h1>
                 { purchasedProducts && purchasedProducts.map(product => {
                     if(product.count !== 0) {
@@ -52,9 +49,9 @@ class Cart extends React.Component {
                                     </div>
                                 </div>
                                 <div className="cart_products-actions">
-                                    <Button size="small" color="white" action="increment" productData={product}>+</Button>
+                                    <Button size="small" color="white" action={INCREMENT} productData={product}>+</Button>
                                     {product.count}
-                                    <Button size="small" color="white" action="decrement" productData={product}>-</Button>
+                                    <Button size="small" color="white" action={DECREMENT} productData={product}>-</Button>
                                 </div>
                             </div>
                         )

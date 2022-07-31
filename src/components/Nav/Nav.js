@@ -5,7 +5,7 @@ import { get } from '../../queries/getHomeData';
 import { checkSessionData } from '../../utils/sessionStorage';
 import Brand from '../../assets/Group.svg';
 import  Currency  from '../svgComponents/Currency';
-import { CartIcon } from '../svgComponents/CartIcon';
+import CartIcon from '../svgComponents/CartIcon';
 import { connect } from 'react-redux';
 import { setURL } from '../../redux/nav/navActions';
 
@@ -46,7 +46,7 @@ class Nav extends React.Component {
 
     render() {
         const { categories } = this.state;
-        const { setURL } = this.props
+        const { setURL } = this.props;
         return (
             <nav>
                 <ul className="navigator">

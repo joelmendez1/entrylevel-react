@@ -1,8 +1,10 @@
 import React from "react";
 import './product.css';
-import {ReactComponent as CircleIcon} from '../../assets/CircleIcon.svg'
+import {ReactComponent as CircleIcon} from '../../assets/CircleIcon.svg';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
+import Button from '../button/Button';
+import { ADD_TO_CART } from '../../redux/products/productReducer';
 
 class Product extends React.Component {
     constructor(props) {
@@ -34,7 +36,7 @@ class Product extends React.Component {
                     <img className={`product-${name}-stock-${inStock ? 'onstock' : 'offstock'}`} src={gallery[0]} alt={name} />
                 </Link>
                 <ul className="text">
-                {showCircleIcon && <CircleIcon className="circle-icon" />}
+                {showCircleIcon && <Button customClassName="circle-icon" greenCart={true} action={ADD_TO_CART} productData={{...this.props, count: 1}}><CircleIcon className="circle-icon" /></Button>}
                     <li><h3>{name}</h3></li>
                     <li><p>${currentCurrency}</p></li>
                 </ul>

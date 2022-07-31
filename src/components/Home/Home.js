@@ -30,16 +30,16 @@ class Home extends React.Component {
         const { currentURL } = this.props
         return (
             <main>
-                 <div className="category">
-                        CATEGORY NAME
+                 <div className="home-category">
+                    CATEGORY NAME
                 </div>
-                <section>
+                <section className="home-products">
                     {
                         products.map(element => {
                             const categoryName = element.name !== 'all' ? element.name : 'home';
                             if(categoryName === currentURL) {
                                 return element.products.map((product, index) => (
-                                    <Product key={index} {...product}/>
+                                    <Product key={`product-${product.name}-${index}`} {...product}/>
                                 ))
                             }
                             return

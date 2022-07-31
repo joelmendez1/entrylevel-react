@@ -1,25 +1,29 @@
 import React from "react";
 import './cartIcon.css';
 import { ReactComponent as CartSvg } from '../../assets/Vector.svg';
+import { connect } from 'react-redux';
 
 class CartIcon extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isEmpty: true
-        }
     }
 
     render() {
-        const { isEmpty } = this.state;
+        const { totalProducts } = this.props;
 
         return(
             <div className="container-cart">
                 <CartSvg />
-                {isEmpty && <sup> 3 </sup>}
+                {(totalProducts > 0) && <sup>{totalProducts}</sup>}
             </div>
         )
     }
 }
 
-export { CartIcon }
+const mapStateToProps = ({productPersistReducer}) => {
+    return {
+        totalProducts: productPersistReducer.totalProducts
+    }
+}
+
+export default connect(mapStateToProps)(CartIcon)

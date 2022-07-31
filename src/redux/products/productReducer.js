@@ -1,36 +1,64 @@
+const ADD_TO_CART = 'addToCart';
+const INCREMENT = 'increment';
+const DECREMENT = 'decrement';
+
 const initialState = {
-    purchasedProducts: []
+    purchasedProducts: [],
+    totalProducts: 0
+}
+
+const incrementor = (arr, action) => {
+    for(let i = 0; i < arr.length; i++) {
+        if(arr[i].id === action.product.id) {
+            arr[i].count += 1;
+            return true;
+        }
+    }
+    return false;
 }
 
 const productsReducer = (state = initialState, action) => {
+    let products = JSON.parse(JSON.stringify(state.purchasedProducts));
+
     switch(action.type) {
-        case 'add': 
-            const addProduct = state.purchasedProducts.concat(action.product);
-            return {
-                ...state,
-                purchasedProducts: addProduct
+        case ADD_TO_CART:
+            let isOnTheList = false;
+            isOnTheList = incrementor(products, action);
+
+            if(!isOnTheList) {
+                products = state.purchasedProducts.concat(action.product);
             }
-        case 'remove':        
-            const totalProducts = state.purchasedProducts
-            let items = [...totalProducts];
-            
-            totalProducts.forEach(product => {
-                if(product.name === action.product.name) {
-                    const item = totalProducts.indexOf(product)
-                    items = [
-                        ...totalProducts.slice(0, item),
-                        ...totalProducts.slice(item + 1)
-                    ]
-                }
-            })
 
             return {
                 ...state,
-                purchasedProducts: items
-            }  
+                purchasedProducts: products,
+                totalProducts: state.totalProducts + 1
+            }
+        case INCREMENT:
+            incrementor(products, action);
+
+            return {
+                ...state,
+                purchasedProducts: products,
+                totalProducts: state.totalProducts + 1
+            }
+        case DECREMENT:
+            for(let i = 0; i < products.length; i++) {
+                const product = products[i];
+                if(product.id === action.product.id) {
+                    product.count -= 1;
+                    break;
+                }
+            }
+
+            return {
+                ...state,
+                purchasedProducts: products,
+                totalProducts: state.totalProducts - 1
+            }
         default: 
-            return state
+            return state;
     }
 }
 
-export { productsReducer }
+export { productsReducer, ADD_TO_CART, INCREMENT, DECREMENT };

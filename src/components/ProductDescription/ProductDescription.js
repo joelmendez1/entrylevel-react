@@ -2,17 +2,14 @@ import React from "react";
 import './productDescription.css';
 import { connect } from 'react-redux';
 import  Button  from '../button/Button';
+import { ADD_TO_CART } from '../../redux/products/productReducer';
 
 class ProductDescription extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const urlProduct = window.location.pathname.split('/')[2];
         const allProducts = JSON.parse(sessionStorage.getItem('home')).categories[0].products;
-        const productData= allProducts.find((product) => product.id === urlProduct);
-        const { id, name, inStock, gallery, brand, attributes, prices, description } = productData;
+        const productData = allProducts.find((product) => product.id === urlProduct);
+        const { name, inStock, gallery, brand, attributes, prices, description } = productData;
         const { currentCurrency } = this.props;
 
         if(!productData) {
@@ -54,7 +51,7 @@ class ProductDescription extends React.Component {
                             }
                         })}`}
                     </div>
-                    <Button size="large" color="green" disabled={inStock ? false : true} action="add" productData={productData}>BUY</Button>
+                    <Button size="large" color="green" disabled={inStock ? false : true} action={ADD_TO_CART} productData={{...productData, count: 1}}>ADD TO CART</Button>
                     <p>{description}</p>
                 </article>
             </div>

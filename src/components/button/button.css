@@ -28,3 +28,40 @@ button:hover {
         transform: scale(1);
     }
 }
+
+/*AFFAIR*/
+
+.large{
+    width: 15rem;
+    height: 3rem;
+    color: #ffffff;
+    font-size: medium;
+}
+
+.medium {
+    width: 9rem;
+    height: 2.5rem;
+    font-size: small;
+}
+
+.small {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: small;
+}
+
+.green{
+    background: #5ECE7B;
+    color: #FFFFFF;
+}
+
+.white {
+    background: #FFFFFF;
+    color: #000000;
+    border: 1px solid #000000;
+};
+
+.gray {
+    background: #a2a6ab;
+    color: #000000
+}

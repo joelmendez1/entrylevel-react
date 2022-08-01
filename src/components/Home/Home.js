@@ -31,7 +31,7 @@ class Home extends React.Component {
         return (
             <main>
                  <div className="home-category">
-                    CATEGORY NAME
+                    <h2>CATEGORY NAME</h2>
                 </div>
                 <section className="home-products">
                     {

@@ -11,6 +11,16 @@ main {
     flex-direction: column;
     justify-content: space-around;
     align-items:center;
+    background: rgba(57, 55, 72, 0.22)
+}
+
+.home-category {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 50px;
+    width: 100%;
+    height: 5rem;
 }
 
 .category {
@@ -24,7 +34,7 @@ main {
     font-size: large;
 }
 
-main section {
+.home-products {
     display: flex;
     justify-content: space-between;
     align-items: center;

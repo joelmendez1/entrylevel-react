@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.product-container {
+.product_container  {
     max-width: 300px;
     height: 350px;
     display: flex;
@@ -14,9 +14,23 @@
     border: 1px solid black;
 }
 
-.product-container img {
+.out-of-stock {
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+}
+
+.out-of-stock::after {
+    content: "OUT OF STOCK";
+    position: absolute;
+    text-align: center;
+    font-size:x-large;
+    font-weight: 600;
+}
+
+.product_container img {
     width: 300px;
     height: 270px;
+    mix-blend-mode: multiply;
 }
 
 .text {

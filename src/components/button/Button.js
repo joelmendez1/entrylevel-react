@@ -5,12 +5,8 @@ import { connect } from "react-redux";
 import { setProduct } from "../../redux/products/productActions";
 
 class Button extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
-        const { customClassName, disabled = false, action, productData,  setProduct } = this.props;
+        const { customClassName, disabled = false, action = "", productData,  setProduct } = this.props;
 
         return (
             <button className={customClassName ? customClassName : createCustomClass(large, green)} disabled={disabled} onClick={() => setProduct(action , productData)}>

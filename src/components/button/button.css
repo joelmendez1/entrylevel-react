@@ -59,9 +59,10 @@ button:hover {
     background: #FFFFFF;
     color: #000000;
     border: 1px solid #000000;
-};
+}
 
 .gray {
-    background: #a2a6ab;
-    color: #000000
+    background: #686868;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 2px black;
 }

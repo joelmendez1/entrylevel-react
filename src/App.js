@@ -5,7 +5,6 @@ import  Home  from './components/Home/Home';
 import Nav from './components/Nav/Nav';
 import ProductDescription  from './components/ProductDescription/ProductDescription';
 import CartPage from "./components/Cart/CartPage/CartPage";
-import CartOverlay from "./components/Cart/CartOverlay/CartOverlay";
 
 class App extends React.Component {
   render() {

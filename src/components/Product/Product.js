@@ -24,11 +24,11 @@ class Product extends React.Component {
 
     render() {
         const { showCircleIcon } = this.state;
-        const { id, name, gallery, inStock,  currentCurrency } = this.props;
+        const { id, name, gallery, inStock, prices, currentCurrency } = this.props;
 
         return (
             <div
-            className="product-container"
+            className={`product_container ${inStock ? "available-stock" : "out-of-stock"}`}
             onMouseEnter = {this.showCircleIcon}
             onMouseLeave = {this.showCircleIcon}
             >
@@ -36,9 +36,18 @@ class Product extends React.Component {
                     <img className={`product-${name}-stock-${inStock ? 'onstock' : 'offstock'}`} src={gallery[0]} alt={name} />
                 </Link>
                 <ul className="text">
-                {showCircleIcon && <Button customClassName="circle-icon" disabled={!inStock} action={ADD_TO_CART} productData={{...this.props, count: 1}}><CircleIcon className="circle-icon" /></Button>}
-                    <li><h3>{name}</h3></li>
-                    <li><p>${currentCurrency}</p></li>
+                    {(showCircleIcon && inStock)
+                        &&  <Button customClassName="circle-icon" disabled={!inStock} action={ADD_TO_CART} productData={{...this.props, count: 1}}>
+                                <CircleIcon className="circle-icon" />
+                             </Button>}
+                    <p>{name}</p>
+                    {prices.map((price, index) => {
+                        if(price.currency.label === currentCurrency) {
+                            return (
+                                <p key={`price-${price.currency.label}-${index}`}><strong>${price.amount}</strong></p>
+                            )
+                        }
+                    })}
                 </ul>
             </div>
         )

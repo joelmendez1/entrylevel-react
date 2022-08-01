@@ -12,7 +12,6 @@ class Cart extends React.Component {
 
         return (
             <section className="cart_section">
-                <h1>CART</h1>
                 { purchasedProducts && purchasedProducts.map(product => {
                     if(product.count !== 0) {
                         return (

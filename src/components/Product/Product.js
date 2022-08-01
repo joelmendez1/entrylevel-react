@@ -36,7 +36,7 @@ class Product extends React.Component {
                     <img className={`product-${name}-stock-${inStock ? 'onstock' : 'offstock'}`} src={gallery[0]} alt={name} />
                 </Link>
                 <ul className="text">
-                {showCircleIcon && <Button customClassName="circle-icon" greenCart={true} action={ADD_TO_CART} productData={{...this.props, count: 1}}><CircleIcon className="circle-icon" /></Button>}
+                {showCircleIcon && <Button customClassName="circle-icon" disabled={!inStock} action={ADD_TO_CART} productData={{...this.props, count: 1}}><CircleIcon className="circle-icon" /></Button>}
                     <li><h3>{name}</h3></li>
                     <li><p>${currentCurrency}</p></li>
                 </ul>

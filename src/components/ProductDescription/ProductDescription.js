@@ -7,11 +7,11 @@ import { ADD_TO_CART } from "../../redux/products/productReducer";
 
 class ProductDescription extends React.Component {
     render() {
+        const { currentCurrency } = this.props;
         const urlProduct = window.location.pathname.split("/")[2];
         const allProducts = JSON.parse(sessionStorage.getItem("home")).categories[0].products;
-        const productData = allProducts.find((product) => product.id === urlProduct);
+        const productData = {...allProducts.find((product) => product.id === urlProduct), currentCurrency};
         const { name, inStock, gallery, brand, attributes, prices, description } = productData;
-        const { currentCurrency } = this.props;
 
         if(!productData) {
             return "Error"

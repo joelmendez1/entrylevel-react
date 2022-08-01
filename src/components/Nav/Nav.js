@@ -69,9 +69,7 @@ class Nav extends React.Component {
                 <img src={Brand} alt="logo" />
                 <div className="actions">
                     <Currency />
-                    <Link to="/cart">
-                        <CartIcon />
-                    </Link>
+                    <CartIcon />
                 </div>
             </nav>
         )

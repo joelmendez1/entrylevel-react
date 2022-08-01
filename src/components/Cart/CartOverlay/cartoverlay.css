@@ -1,9 +1,14 @@
 .cart_overlay {
-    width: 25%;
+    padding: 1rem;
+    position: absolute;
+    width: 20%;
     height: auto;
-    border: 1px solid black;
+    top: 80px;
+    right: 50px;
+    background-color: #FFFFFF;
 }
 
 .cart_overlay-actions {
     display: flex;
+    justify-content: space-between;
 }

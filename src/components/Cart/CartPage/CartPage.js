@@ -3,23 +3,22 @@ import Cart from "../Cart";
 import { connect} from "react-redux";
 import Button from "../../button/Button";
 import { createCustomClass, medium, green } from "../../button/buttonUtils";
+import { updateCostCurrency } from "../../../utils/utils";
 
 class CartPage extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
-        const { totalProducts, productsTotalCost } = this.props;
+        const { totalProducts,  purchasedProducts, currentCurrency } = this.props;
+        const { taxesCost, totalWithTaxes } = updateCostCurrency(purchasedProducts, currentCurrency);
 
         return (
             (totalProducts > 0
                 ?   <div className="cart_page">
+                    <h1>CART</h1>
                         <Cart />
                         <div className="cart_page-statistics">
-                            <p>Tax 21%: </p><strong>{`$${(productsTotalCost + (productsTotalCost * 0.21)).toFixed(2)}`}</strong>
+                            <p>Tax 21%: </p><strong>{`$${taxesCost}`}</strong>
                             <p>Quantity: </p><strong>{totalProducts}</strong>
-                            <p>Total: </p><strong>${productsTotalCost.toFixed(2)}</strong>
+                            <p>Total: </p><strong>${totalWithTaxes}</strong>
                         </div>
                         <Button customClassName={createCustomClass(medium, green)}>ORDER</Button>
                     </div>
@@ -29,10 +28,11 @@ class CartPage extends React.Component {
     }
 }
 
-const mapStateToProps = ({ productPersistReducer }) => {
+const mapStateToProps = ({ currencyPersistReducer, productPersistReducer }) => {
     return {
         totalProducts: productPersistReducer.totalProducts,
-        productsTotalCost: productPersistReducer.productsTotalCost
+        currentCurrency: currencyPersistReducer.currentCurrency,
+        purchasedProducts: productPersistReducer.purchasedProducts
     }
 }
 

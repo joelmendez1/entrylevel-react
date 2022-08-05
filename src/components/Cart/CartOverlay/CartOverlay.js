@@ -1,8 +1,8 @@
 import React from "react";
 import "./cartoverlay.css"
 import Cart from "../Cart";
-import Button from "../../button/Button";
-import { createCustomClass, medium, green, white } from "../../button/buttonUtils";
+import Button from "../../Button/Button";
+import { createCustomClass, medium, green, white } from "../../Button/buttonUtils";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { updateCostCurrency } from "../../../utils/utils";

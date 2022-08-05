@@ -1,7 +1,7 @@
 import React from "react";
 import "./cart.css";
-import Button from "../button/Button";
-import { createCustomClass, small, white } from "../button/buttonUtils";
+import Button from "../Button/Button";
+import { createCustomClass, small, white } from "../Button/buttonUtils";
 import { connect } from "react-redux";
 import { setProduct } from "../../redux/products/productActions";
 import { INCREMENT, DECREMENT } from "../../redux/products/productReducer";

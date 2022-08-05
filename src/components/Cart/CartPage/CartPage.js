@@ -1,8 +1,9 @@
 import React from "react";
+import "./cartpage.css"
 import Cart from "../Cart";
 import { connect} from "react-redux";
-import Button from "../../button/Button";
-import { createCustomClass, medium, green } from "../../button/buttonUtils";
+import Button from "../../Button/Button";
+import { createCustomClass, medium, green } from "../../Button/buttonUtils";
 import { updateCostCurrency } from "../../../utils/utils";
 
 class CartPage extends React.Component {
@@ -13,7 +14,7 @@ class CartPage extends React.Component {
         return (
             (totalProducts > 0
                 ?   <div className="cart_page">
-                    <h1>CART</h1>
+                        <h1 className="cart_page-title">CART</h1>
                         <Cart />
                         <div className="cart_page-statistics">
                             <p>Tax 21%: </p><strong>{`$${taxesCost}`}</strong>

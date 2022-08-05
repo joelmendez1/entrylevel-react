@@ -1,13 +1,21 @@
 import React from "react";
 import "./productDescription.css";
 import { connect } from "react-redux";
-import  Button  from "../button/Button";
-import { createCustomClass, large, green, white, gray } from "../button/buttonUtils";
+import  Button  from "../Button/Button";
+import { createCustomClass, large, green, gray } from "../Button/buttonUtils";
 import { ADD_TO_CART } from "../../redux/products/productReducer";
 
 class ProductDescription extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedImg: ''
+        }
+    }
+
     render() {
         const { currentCurrency } = this.props;
+        const { selectedImg } = this.state;
         const urlProduct = window.location.pathname.split("/")[2];
         const allProducts = JSON.parse(sessionStorage.getItem("home")).categories[0].products;
         const productData = {...allProducts.find((product) => product.id === urlProduct), currentCurrency};
@@ -22,38 +30,51 @@ class ProductDescription extends React.Component {
             <div className="product-description_container">
                 <div className="product-images-section">
                     {gallery.map((img, index) => (
-                        <img key={index} src={img} alt={`img-${img}`}></img>
+                        <img onClick={() => this.setState({selectedImg: img})} key={index} src={img} alt={`img-${img}`}></img>
                     ))}
                 </div>
                 <div className="product-description_main-img">
-                    <img src={gallery[0]} alt="main-img"/>
+                    <img src={ selectedImg ? selectedImg : gallery[0]} alt="main-img"/>
                 </div>
                 <article className="product-description_description">
                     <div className="product-description_text">
                         <h1>{brand}</h1>
                         <p>{name}</p>
                     </div >
-                    <div className="product-description_attribute">
-                        {attributes.map(attribute => (
-                            <div key={attribute.id} className="product-description_">
-                                <h2>{attribute.name}</h2>
-                                <div>
-                                    {attribute.items.map(item => (
-                                        <p key={item.id}>{item.displayValue}</p>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
                     <div className="product-description_price">
-                        <h2>Price:</h2>
-                        {`${prices.map(price => {
+                        {prices.map(price => {
                             if(price.currency.label === currentCurrency) {
-                                return `${price.currency.symbol} ${price.amount}`
+                                return <p><strong>{`${price.currency.symbol} ${price.amount}`}</strong></p>
                             }
-                        })}`}
+                        })}
                     </div>
-                    <Button customClassName={createCustomClass(large, buttonColor)} disabled={inStock ? false : true} action={ADD_TO_CART} productData={{...productData, count: 1}}>{inStock ? "ADD TO CART" : "OUT OF STOCK"}</Button>
+                    <form className="product-description_attribute">
+                        {attributes.map(attribute => {
+                            <label>{attribute.id}</label>
+                            if(attribute.type === "swatch") {
+                                return (
+                                    attribute.items.map(item => (
+                                        <input type="radio" value={item.displayValue} />
+                                    ))
+                                )   
+                            } else {
+                                return (
+                                    <div>
+                                        <label>{attribute.id}</label>
+                                        {attribute.items.map(item => (
+                                            <option>{item.value}</option>
+                                        ))}
+                                    </div>
+                                )
+                            }
+                        })}
+                    </form>
+                    <Button
+                    customClassName={createCustomClass(large, buttonColor)}
+                    disabled={inStock ? false : true} action={ADD_TO_CART}
+                    productData={{...productData, count: 1}}>
+                        {inStock ? "ADD TO CART" : "OUT OF STOCK"}
+                    </Button>
                     <p>{description}</p>
                 </article>
             </div>

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import  Button  from "../Button/Button";
 import { createCustomClass, large, green, gray } from "../Button/buttonUtils";
 import { ADD_TO_CART } from "../../redux/products/productReducer";
+import parse from 'html-react-parser';
 
 class ProductDescription extends React.Component {
     constructor(props) {
@@ -75,7 +76,7 @@ class ProductDescription extends React.Component {
                     productData={{...productData, count: 1}}>
                         {inStock ? "ADD TO CART" : "OUT OF STOCK"}
                     </Button>
-                    <p>{description}</p>
+                    <p>{parse(description)}</p>
                 </article>
             </div>
         )

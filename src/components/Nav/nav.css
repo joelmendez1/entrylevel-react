@@ -16,8 +16,8 @@ nav {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    padding: 0 50px;
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
     height: 5rem;
 }
 

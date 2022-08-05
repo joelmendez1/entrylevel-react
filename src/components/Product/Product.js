@@ -3,7 +3,7 @@ import './product.css';
 import {ReactComponent as CircleIcon} from '../../assets/CircleIcon.svg';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import Button from '../button/Button';
+import Button from '../Button/Button';
 import { ADD_TO_CART } from '../../redux/products/productReducer';
 
 class Product extends React.Component {
@@ -32,14 +32,16 @@ class Product extends React.Component {
             onMouseEnter = {this.showCircleIcon}
             onMouseLeave = {this.showCircleIcon}
             >
-                <Link to={`/product/${id}`}>
-                    <img className={`product-${name}-stock-${inStock ? 'onstock' : 'offstock'}`} src={gallery[0]} alt={name} />
-                </Link>
-                <ul className="text">
+                <div className="product-add-view">
+                    <Link to={`/product/${id}`}>
+                        <img className={`product-${name}-stock-${inStock ? 'onstock' : 'offstock'}`} src={gallery[0]} alt={name} />
+                    </Link>
                     {(showCircleIcon && inStock)
-                        &&  <Button customClassName="circle-icon" disabled={!inStock} action={ADD_TO_CART} productData={{...this.props, count: 1}}>
-                                <CircleIcon className="circle-icon" />
-                             </Button>}
+                            &&  <Button customClassName="circle-icon" disabled={!inStock} action={ADD_TO_CART} productData={{...this.props, count: 1}}>
+                                    <CircleIcon className="circle-icon" />
+                                </Button>}
+                </div>
+                <ul className="text">
                     <p>{name}</p>
                     {prices.map((price, index) => {
                         if(price.currency.label === currentCurrency) {

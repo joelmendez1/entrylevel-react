@@ -80,7 +80,7 @@ class ProductDescription extends React.Component {
                         })}
                     </div>
                     <div className="product-description_attribute">
-                        {attributes.map(attribute => <Select type={attribute.type} attribute={attribute} selectedProducts={selectedProducts} onChange={this.onChangeSelectedAttributes}/>)}
+                        {attributes.map(attribute => <Select type={attribute.type} attribute={attribute} selectedProducts={selectedProducts} onChange={this.onChangeSelectedAttributes} />)}
                     </div>
                     <Button
                     customClassName = {createCustomClass(large, buttonColor)}

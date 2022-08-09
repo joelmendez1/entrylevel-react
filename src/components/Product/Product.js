@@ -10,7 +10,8 @@ class Product extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showCircleIcon: false
+            showCircleIcon: false,
+            selectedProducts: {}
         };
         this.showCircleIcon = this.showCircleIcon.bind(this);
     };
@@ -21,8 +22,24 @@ class Product extends React.Component {
         }))
     }
 
+    componentDidMount() {
+        const defaultAttributes = this.props.attributes
+            .map(attribute => {
+                return {
+                    [attribute.name]: attribute.items[0].value
+                }
+            })
+            .reduce((acc, currentEl) => {
+                return {...acc, ...currentEl, selected: true}
+            }, {})
+
+        this.setState({
+            selectedProducts: defaultAttributes
+        })
+    }
+
     render() {
-        const { showCircleIcon } = this.state;
+        const { showCircleIcon, selectedProducts } = this.state;
         const { id, name, gallery, inStock, prices, currentCurrency } = this.props;
 
         return (
@@ -36,7 +53,11 @@ class Product extends React.Component {
                         <img className={`product-${name}-stock-${inStock ? "onstock" : "offstock"}`} src={gallery[0]} alt={name} />
                     </Link>
                     {(showCircleIcon && inStock)
-                            &&  <Button customClassName="circle-icon" disabled={!inStock} action={ADD_TO_CART} productData={{...this.props, count: 1}}>
+                            &&  <Button
+                                 customClassName="circle-icon"
+                                 disabled={!inStock}
+                                 action={ADD_TO_CART}
+                                 productData={{...this.props, selectedAttributes: selectedProducts, count: 1}}>
                                     <CircleIcon className="circle-icon" />
                                 </Button>}
                 </div>

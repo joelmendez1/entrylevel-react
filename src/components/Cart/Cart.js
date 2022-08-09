@@ -33,7 +33,7 @@ class Cart extends React.Component {
 
     render() {
         const { purchasedProducts, currentCurrency } = this.props;
-        const { selectedAttributes } = purchasedProducts;
+        const { selectedAttributes } = this.state;
 
         return (
             <section className="cart_section">

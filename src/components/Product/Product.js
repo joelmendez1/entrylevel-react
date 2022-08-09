@@ -1,10 +1,10 @@
 import React from "react";
-import './product.css';
-import {ReactComponent as CircleIcon} from '../../assets/CircleIcon.svg';
-import { Link } from 'react-router-dom';
+import "./product.css";
+import {ReactComponent as CircleIcon} from "../../assets/CircleIcon.svg";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Button from '../Button/Button';
-import { ADD_TO_CART } from '../../redux/products/productReducer';
+import Button from "../Button/Button";
+import { ADD_TO_CART } from "../../redux/products/productReducer";
 
 class Product extends React.Component {
     constructor(props) {
@@ -12,11 +12,10 @@ class Product extends React.Component {
         this.state = {
             showCircleIcon: false
         };
-
         this.showCircleIcon = this.showCircleIcon.bind(this);
     };
 
-    showCircleIcon = () => {
+    showCircleIcon() {
         this.setState(prevState => ({
             showCircleIcon: !prevState.showCircleIcon
         }))
@@ -34,7 +33,7 @@ class Product extends React.Component {
             >
                 <div className="product-add-view">
                     <Link to={`/product/${id}`}>
-                        <img className={`product-${name}-stock-${inStock ? 'onstock' : 'offstock'}`} src={gallery[0]} alt={name} />
+                        <img className={`product-${name}-stock-${inStock ? "onstock" : "offstock"}`} src={gallery[0]} alt={name} />
                     </Link>
                     {(showCircleIcon && inStock)
                             &&  <Button customClassName="circle-icon" disabled={!inStock} action={ADD_TO_CART} productData={{...this.props, count: 1}}>
@@ -56,8 +55,7 @@ class Product extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { currencyPersistReducer } = state;
+const mapStateToProps = ({ currencyPersistReducer }) => {
     return {
         currentCurrency: currencyPersistReducer.currentCurrency
     }

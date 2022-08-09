@@ -7,11 +7,22 @@ const initialState = {
     totalProducts: 0
 }
 
+const arrayCompare = (arr1, arr2) => {
+    return arr1.join() === arr2.join();
+}
+
 const incrementor = (arr, action) => {
+    const currentProductAttributesKeys = Object.keys(action.product.selectedAttributes);
+
     for(let i = 0; i < arr.length; i++) {
-        if(arr[i].id === action.product.id) {
-            arr[i].count += 1;
-            return true;
+        const product = arr[i]
+        if(product.name === action.product.name) {
+            if(arrayCompare(currentProductAttributesKeys, Object.keys(product.selectedAttributes))) {
+                if(arrayCompare(Object.values(action.product.selectedAttributes), Object.values(product.selectedAttributes))) {
+                    product.count += 1
+                    return true
+                }
+            }
         }
     }
     return false;

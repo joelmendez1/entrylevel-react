@@ -30,7 +30,8 @@ class Home extends React.Component {
 
     render() {
         const { products, loading } = this.state;
-        const { currentURL } = this.props
+        const { currentURL } = this.props;
+
         return (
             <main className="home">
                 {

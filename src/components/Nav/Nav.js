@@ -1,13 +1,13 @@
 import React from "react";
-import './nav.css';
-import { Link } from 'react-router-dom';
-import { get } from '../../queries/getHomeData';
-import { checkSessionData } from '../../utils/sessionStorage';
-import Brand from '../../assets/Group.svg';
-import  Currency  from '../svgComponents/Currency';
-import CartIcon from '../svgComponents/CartIcon';
-import { connect } from 'react-redux';
-import { setURL } from '../../redux/nav/navActions';
+import "./nav.css";
+import { Link } from "react-router-dom";
+import { get } from "../../queries/getHomeData";
+import { checkSessionData } from "../../utils/sessionStorage";
+import Brand from "../../assets/Group.svg";
+import  Currency  from "../svgComponents/Currency";
+import CartIcon from "../svgComponents/CartIcon";
+import { connect } from "react-redux";
+import { setURL } from "../../redux/nav/navActions";
 
 class Nav extends React.Component {
     constructor(props) {
@@ -15,32 +15,31 @@ class Nav extends React.Component {
         this.state = {
             categories: []
         }
-
         this.selectedItem = this.selectedItem.bind(this);
     };
 
-    selectedItem = (e, categoryName) => {
+    selectedItem(e, categoryName) {
         const allItems = e.target.parentNode.parentNode.childNodes;
 
         allItems.forEach(li => {
             if(li.textContent !== categoryName) {
-                li.classList.remove('hovered');
+                li.classList.remove("hovered");
             } else {
-                li.classList.add('hovered');
+                li.classList.add("hovered");
             }
         })
 
     }
 
     componentDidMount() {
-        (JSON.parse(sessionStorage.getItem('name')) ? checkSessionData('name') : get('name'))
+        (JSON.parse(sessionStorage.getItem("name")) ? checkSessionData("name") : get("name"))
         .then(res => {
             this.setState({
                 categories: res.categories
             })
         })
         .catch(error => {
-            console.error('An error has ocurred: ', error);
+            console.error("An error has ocurred: ", error);
         })
     }
 
@@ -52,7 +51,7 @@ class Nav extends React.Component {
                 <ul className="navigator">
                     {
                         categories.map((category, index) => {
-                            const categoryName = category.name !== 'all' ? category.name : 'home';
+                            const categoryName = category.name !== "all" ? category.name : "home";
                             return (
                                 <li key={index}>
                                     <Link to={categoryName} onClick={(e) => {

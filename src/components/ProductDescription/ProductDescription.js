@@ -4,19 +4,49 @@ import { connect } from "react-redux";
 import  Button  from "../Button/Button";
 import { createCustomClass, large, green, gray } from "../Button/buttonUtils";
 import { ADD_TO_CART } from "../../redux/products/productReducer";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
+import { Select } from "../Select/Select";
 
 class ProductDescription extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedImg: ''
+            selectedImg: "",
+            selectedProducts: {}
         }
+        this.onChangeSelectedAttributes = this.onChangeSelectedAttributes.bind(this);
+    }
+
+    onChangeSelectedAttributes(selectedAttribute) {
+        this.setState({
+            selectedProducts: selectedAttribute
+        })
+    }
+
+    componentDidMount() {
+        const { currentCurrency } = this.props;
+        const urlProduct = window.location.pathname.split("/")[2];
+        const allProducts = JSON.parse(sessionStorage.getItem("home")).categories[0].products;
+        const productData = {...allProducts.find((product) => product.id === urlProduct), currentCurrency};
+
+        const defaultAttributes = productData.attributes
+            .map(attribute => {
+                return {
+                    [attribute.name]: attribute.items[0].value
+                }
+            })
+            .reduce((acc, currentEl) => {
+                return {...acc, ...currentEl, selected: true}
+            }, {})
+
+        this.setState({
+            selectedProducts: defaultAttributes
+        })
     }
 
     render() {
         const { currentCurrency } = this.props;
-        const { selectedImg } = this.state;
+        const { selectedImg, selectedProducts } = this.state;
         const urlProduct = window.location.pathname.split("/")[2];
         const allProducts = JSON.parse(sessionStorage.getItem("home")).categories[0].products;
         const productData = {...allProducts.find((product) => product.id === urlProduct), currentCurrency};
@@ -49,42 +79,23 @@ class ProductDescription extends React.Component {
                             }
                         })}
                     </div>
-                    <form className="product-description_attribute">
-                        {attributes.map(attribute => {
-                            <label>{attribute.id}</label>
-                            if(attribute.type === "swatch") {
-                                return (
-                                    attribute.items.map(item => (
-                                        <input type="radio" value={item.displayValue} />
-                                    ))
-                                )   
-                            } else {
-                                return (
-                                    <div>
-                                        <label>{attribute.id}</label>
-                                        {attribute.items.map(item => (
-                                            <option>{item.value}</option>
-                                        ))}
-                                    </div>
-                                )
-                            }
-                        })}
-                    </form>
+                    <div className="product-description_attribute">
+                        {attributes.map(attribute => <Select type={attribute.type} attribute={attribute} selectedProducts={selectedProducts} onChange={this.onChangeSelectedAttributes}/>)}
+                    </div>
                     <Button
-                    customClassName={createCustomClass(large, buttonColor)}
-                    disabled={inStock ? false : true} action={ADD_TO_CART}
-                    productData={{...productData, count: 1}}>
+                    customClassName = {createCustomClass(large, buttonColor)}
+                    disabled = {inStock ? false : true} action={ADD_TO_CART}
+                    productData = {Object.entries(selectedProducts).length > 0 ? {...productData, selectedAttributes: selectedProducts, count: 1} : null}>
                         {inStock ? "ADD TO CART" : "OUT OF STOCK"}
                     </Button>
-                    <p>{parse(description)}</p>
+                    {parse(description)}
                 </article>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    const { currencyPersistReducer } = state;
+const mapStateToProps = ({ currencyPersistReducer }) => {
     return {
         currentCurrency: currencyPersistReducer.currentCurrency
     }

@@ -3,7 +3,7 @@ import  ReactDOM  from "react-dom";
 import "./cartIcon.css";
 import { ReactComponent as CartSvg } from "../../assets/Vector.svg";
 import { connect } from "react-redux";
-import  CartOverlay  from "../Cart/CartOverlay/CartOverlay";
+import CartOverlay from "../Cart/CartOverlay/CartOverlay";
 
 class CartIcon extends React.Component {
     constructor(props) {
@@ -11,10 +11,10 @@ class CartIcon extends React.Component {
         this.state = {
             showCartOverlay: false
         }
-        this.handleClick = this.handleClick.bind(this);
+        this.handleOnClick = this.handleOnClick.bind(this);
     }
 
-    handleClick = () => {
+    handleOnClick() {
         this.setState((prevState) =>({
             showCartOverlay: !prevState.showCartOverlay
         }))
@@ -25,7 +25,7 @@ class CartIcon extends React.Component {
         const { showCartOverlay } = this.state;
 
         return(
-            <div className="container-cart" onClick={() => this.handleClick()} >
+            <div className="container-cart" onClick={() => this.handleOnClick()} >
                 <CartSvg />
                 {(totalProducts > 0) && <sup>{totalProducts}</sup>}
                 {showCartOverlay && ReactDOM.createPortal(<CartOverlay />, document.getElementById("portal"))}
@@ -34,7 +34,7 @@ class CartIcon extends React.Component {
     }
 }
 
-const mapStateToProps = ({productPersistReducer}) => {
+const mapStateToProps = ({ productPersistReducer }) => {
     return {
         totalProducts: productPersistReducer.totalProducts
     }

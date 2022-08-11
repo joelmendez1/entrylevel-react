@@ -32,11 +32,11 @@ class Cart extends React.Component {
     }
 
     render() {
-        const { purchasedProducts, currentCurrency } = this.props;
+        const { purchasedProducts, currentCurrency, onClick } = this.props;
         const { selectedAttributes } = this.state;
 
         return (
-            <section className="cart_section">
+            <section className="cart_section" onClick={onClick}>
                 { purchasedProducts && purchasedProducts.map(product => {
                     if(product.count !== 0) {
                         return (

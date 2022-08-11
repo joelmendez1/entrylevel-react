@@ -6,14 +6,14 @@ import { setProduct } from "../../redux/products/productActions";
 
 class Button extends React.Component {
 
-    handleOnClick = () => {
+    handleOnClick() {
         const { onClick, action = "", productData, setProduct } = this.props;
         onClick && onClick();
         setProduct(action, productData);
     }
 
     render() {
-        const { customClassName, disabled = false, action = "", productData,  setProduct } = this.props;
+        const { customClassName, disabled = false} = this.props;
 
         return (
             <button className={customClassName ? customClassName : createCustomClass(large, green)} disabled={disabled} onClick={this.handleOnClick.bind(this)}>
@@ -23,9 +23,7 @@ class Button extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { productPersistReducer } = state;
-
+const mapStateToProps = ({ productPersistReducer }) => {
     return {
         purchasedProducts: productPersistReducer.purchasedProducts
     }

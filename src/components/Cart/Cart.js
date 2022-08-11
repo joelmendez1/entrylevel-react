@@ -5,10 +5,35 @@ import { createCustomClass, small, white } from "../Button/buttonUtils";
 import { connect } from "react-redux";
 import { setProduct } from "../../redux/products/productActions";
 import { INCREMENT, DECREMENT } from "../../redux/products/productReducer";
+import { Select } from "../Select/Select";
 
 class Cart extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedAttributes: {}
+        }
+        this.onChangeSelectedAttributes = this.onChangeSelectedAttributes.bind(this);
+    }
+
+    onChangeSelectedAttributes(selectedAttributes) {
+        this.setState({
+            selectedAttributes
+        })
+    }
+
+    componentDidMount() {
+        const { purchasedProducts } = this.props;
+        const { selectedAttributes } = purchasedProducts;
+
+        this.setState({
+            selectedAttributes
+        })
+    }
+
     render() {
         const { purchasedProducts, currentCurrency } = this.props;
+        const { selectedAttributes } = this.state;
 
         return (
             <section className="cart_section">
@@ -25,16 +50,7 @@ class Cart extends React.Component {
                                         }
                                     })}
                                     <div>
-                                        {product.attributes.map((attribute, index) =>{
-                                            return (
-                                                <div key={`${product.id}-attribute-${index}`}>
-                                                    <h2>{attribute.name}</h2>
-                                                    {attribute.items.map((item, index) => (
-                                                        <span key={`${product.id}-attribute-item-${index}`}>{item.displayValue}</span>
-                                                    ))}
-                                                </div>
-                                            )
-                                        })}
+                                        {product.attributes.map((attribute, index) => <Select key={`select-${attribute.value}-${index}`} type={attribute.type} attribute={attribute} selectedProducts={selectedAttributes} onChange={this.onChangeSelectedAttributes}/>)}
                                     </div>
                                 </div>
                                 <div className="cart_products-actions">
@@ -51,9 +67,7 @@ class Cart extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { currencyPersistReducer, productPersistReducer } = state;
-
+const mapStateToProps = ({ currencyPersistReducer, productPersistReducer } ) => {
     return {
         currentCurrency: currencyPersistReducer.currentCurrency,
         purchasedProducts: productPersistReducer.purchasedProducts
@@ -62,7 +76,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setProduct:(action, product) => dispatch(setProduct(action, product))
+        setProduct: (action, product) => dispatch(setProduct(action, product))
     }
 }
 

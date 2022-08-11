@@ -1,5 +1,5 @@
 import React from "react";
-import "./cartpage.css"
+import "./cartpage.css";
 import Cart from "../Cart";
 import { connect} from "react-redux";
 import Button from "../../Button/Button";

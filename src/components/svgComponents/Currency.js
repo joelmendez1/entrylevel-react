@@ -1,9 +1,9 @@
 import React from "react";
 import "./currency.css";
-import {ReactComponent as CurrencySign} from "../../assets/$.svg"
-import {ReactComponent as Caret} from "../../assets/vector2.svg"
+import {ReactComponent as CurrencySign} from "../../assets/$.svg";
+import {ReactComponent as Caret} from "../../assets/vector2.svg";
 import { checkSessionData } from "../../utils/sessionStorage";
-import { getCurrenciesData } from "../../queries/getCurrenciesData"
+import { getCurrenciesData } from "../../queries/getCurrenciesData";
 import { connect } from "react-redux";
 import { setCurrency } from "../../redux/currency/currencyActions";
 
@@ -15,18 +15,17 @@ class Currency extends React.Component {
             currencies: [],
             loading: true
         }
-
-        this.handleClick = this.handleClick.bind(this);
+        this.handleOnClick = this.handleOnClick.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
-    handleClick = () => {
+    handleOnClick() {
         this.setState((prevState) =>({
             caretActivated: !prevState.caretActivated
         }))
     }
 
-    handleClickOutside = (e) => {
+    handleClickOutside(e) {
         if(e.target.className !== "container") {
             this.setState({
                 caretActivated: false
@@ -53,7 +52,7 @@ class Currency extends React.Component {
         const { setCurrency, currentCurrency } = this.props;
 
         return (
-            <div className="container" onClick={this.handleClick}>
+            <div className="container" onClick={this.handleOnClick}>
                 <div>
                     <CurrencySign className="currency-icon"/>
                     <Caret className={caretActivated ? "caret-activated" : "caret"} />
@@ -75,8 +74,7 @@ class Currency extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { currencyPersistReducer } = state
+const mapStateToProps = ({ currencyPersistReducer }) => {
     return {
         currentCurrency: currencyPersistReducer.currentCurrency
     }

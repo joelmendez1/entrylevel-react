@@ -36,7 +36,7 @@ class ProductDescription extends React.Component {
                 }
             })
             .reduce((acc, currentEl) => {
-                return {...acc, ...currentEl, selected: true}
+                return {...acc, ...currentEl}
             }, {})
 
         this.setState({

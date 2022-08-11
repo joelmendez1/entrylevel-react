@@ -56,9 +56,12 @@ const productsReducer = (state = initialState, action) => {
         case DECREMENT:
             for(let i = 0; i < products.length; i++) {
                 const product = products[i];
-                if(product.id === action.product.id) {
+
+                if(product.id === action.product.id && product.count >= 1) {
                     product.count -= 1;
-                    break;
+                }
+                if(product.count === 0) {
+                   products = products.filter((item) => item.count > 0)
                 }
             }
 

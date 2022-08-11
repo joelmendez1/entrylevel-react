@@ -50,7 +50,7 @@ class Cart extends React.Component {
                                         }
                                     })}
                                     <div>
-                                        {product.attributes.map((attribute, index) => <Select type={attribute.type} attribute={attribute} selectedProducts={selectedAttributes} onChange={this.onChangeSelectedAttributes}/>)}
+                                        {product.attributes.map((attribute, index) => <Select key={`select-${attribute.value}-${index}`} type={attribute.type} attribute={attribute} selectedProducts={selectedAttributes} onChange={this.onChangeSelectedAttributes}/>)}
                                     </div>
                                 </div>
                                 <div className="cart_products-actions">

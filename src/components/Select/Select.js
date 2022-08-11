@@ -9,12 +9,12 @@ class Select extends React.Component {
                 <label>{attribute.id}</label>
                 {attribute.items.map(item => {
                     if(type === "swatch") {
-                        return(
-                            <input onClick={() => {onChange && onChange({...selectedProducts, [attribute.name]: item.value, selected: true})}} type="radio" value={item.displayValue} />
+                        return (
+                            <input onClick={() => {onChange && onChange({...selectedProducts, [attribute.name]: item.value})}} type="radio" value={item.displayValue} />
                         )
                     } else {
                         return (
-                            <option onClick={() => {onChange && onChange({...selectedProducts, [attribute.name]: item.value, selected: true})}} value={item.displayValue}>
+                            <option onClick={() => {onChange && onChange({...selectedProducts, [attribute.name]: item.value})}} value={item.displayValue}>
                                 {item.value}
                             </option>
                         )

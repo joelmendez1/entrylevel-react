@@ -1,13 +1,18 @@
-import React from "react";
-import  ReactDOM  from "react-dom";
 import "./cartIcon.css";
-import { ReactComponent as CartSvg } from "../../assets/Vector.svg";
+import React from "react";
+import Cart from "../Cart/Cart";
+import Modal from "../Modal/Modal";
+import Button from "../Button/Button";
 import { connect } from "react-redux";
-import CartOverlay from "../Cart/CartOverlay/CartOverlay";
+import { Link } from "react-router-dom";
+import { updateCostCurrency } from "../../utils/utils";
+import { ReactComponent as CartSvg } from "../../assets/Vector.svg";
+import { createCustomClass, medium, green, white } from "../Button/buttonUtils";
 
 class CartIcon extends React.Component {
     constructor(props) {
         super(props);
+        this.myRef = React.createRef();
         this.state = {
             showCartOverlay: false
         }
@@ -20,23 +25,50 @@ class CartIcon extends React.Component {
         }))
     }
 
-    render() {
-        const { totalProducts } = this.props;
-        const { showCartOverlay } = this.state;
+    componentDidMount() {
+        const checkIfClickedOutside = (e) => {
+            if(this.myRef.current && !this.myRef.current.contains(e.target)) {
+                this.setState({
+                    showCartOverlay: false
+                })
+            }
+        }
 
-        return(
-            <div className="container-cart" onClick={() => this.handleOnClick()} >
+        document.addEventListener("click", checkIfClickedOutside);
+    }
+
+    render() {
+        const { totalProducts, currentCurrency, purchasedProducts } = this.props;
+        const { showCartOverlay } = this.state;
+        const { totalWithTaxes } = updateCostCurrency(purchasedProducts, currentCurrency);
+
+        return (
+            <div className="container-cart" ref={this.myRef} onClick={() => this.handleOnClick(true)} >
                 <CartSvg />
                 {(totalProducts > 0) && <sup>{totalProducts}</sup>}
-                {showCartOverlay && ReactDOM.createPortal(<CartOverlay />, document.getElementById("portal"))}
+                <Modal open={showCartOverlay} onClose={() => this.handleOnClick(false)}>
+                    <div className="cart_overlay">
+                        <p>My Bag {totalProducts} items</p>
+                        <Cart onClick={(e) => e.stopPropagation()}/>
+                        <p>Total: </p><span><strong>${totalWithTaxes}</strong></span>
+                        <div className="cart_overlay-actions">
+                            <Link to="/cart">
+                                <Button customClassName={createCustomClass(medium, white)}>VIEW BAG</Button>
+                            </Link>
+                            <Button customClassName={createCustomClass(medium, green)}>CHECK OUT</Button>
+                        </div>
+                    </div>
+                </Modal>
             </div>
         )
     }
 }
 
-const mapStateToProps = ({ productPersistReducer }) => {
+const mapStateToProps = ({currencyPersistReducer, productPersistReducer }) => {
     return {
-        totalProducts: productPersistReducer.totalProducts
+        totalProducts: productPersistReducer.totalProducts,
+        currentCurrency: currencyPersistReducer.currentCurrency,
+        purchasedProducts: productPersistReducer.purchasedProducts
     }
 }
 

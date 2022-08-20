@@ -28,6 +28,6 @@
 
 .cart-products_img {
     max-width: 10rem;
-   width: 100%;
-   object-fit: contain;
+    width: 100%;
+    object-fit: contain;
 }

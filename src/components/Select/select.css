@@ -1,0 +1,34 @@
+.select {
+    display: flex;
+    flex-direction: column;
+    width: 10rem;
+}
+
+.select_attributes {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: small;
+    width: 100%;
+}
+
+.select_swatch {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.select_swatch:not(:first-child){
+    margin-left: 0.3rem;
+}
+
+.select_non-swatch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    width: 3rem;
+    height: 2rem;
+    margin: 0 0.5rem 0 0;
+    padding: 0.5rem;
+    font-size: small;
+}

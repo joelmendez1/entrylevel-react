@@ -48,9 +48,12 @@ class CartIcon extends React.Component {
                 {(totalProducts > 0) && <sup>{totalProducts}</sup>}
                 <Modal open={showCartOverlay} onClose={() => this.handleOnClick(false)}>
                     <div className="cart_overlay">
-                        <p>My Bag {totalProducts} items</p>
+                        <p><strong> My Bag </strong> {totalProducts} items</p>
                         <Cart onClick={(e) => e.stopPropagation()}/>
-                        <p>Total: </p><span><strong>${totalWithTaxes}</strong></span>
+                        <div className="cart_total">
+                            <p>Total: </p>
+                            <p><strong>${totalWithTaxes}</strong></p>
+                        </div>
                         <div className="cart_overlay-actions">
                             <Link to="/cart">
                                 <Button customClassName={createCustomClass(medium, white)}>VIEW BAG</Button>

@@ -72,15 +72,16 @@ class ProductDescription extends React.Component {
                         <h1>{brand}</h1>
                         <p>{name}</p>
                     </div >
+                    <div className="product-description_attribute">
+                        {attributes.map(attribute => <Select type={attribute.type} attribute={attribute} selectedProducts={selectedProducts} onChange={this.onChangeSelectedAttributes} />)}
+                    </div>
                     <div className="product-description_price">
+                        <p><strong>PRICE: </strong></p>
                         {prices.map(price => {
                             if(price.currency.label === currentCurrency) {
                                 return <p><strong>{`${price.currency.symbol} ${price.amount}`}</strong></p>
                             }
                         })}
-                    </div>
-                    <div className="product-description_attribute">
-                        {attributes.map(attribute => <Select type={attribute.type} attribute={attribute} selectedProducts={selectedProducts} onChange={this.onChangeSelectedAttributes} />)}
                     </div>
                     <Button
                     customClassName = {createCustomClass(large, buttonColor)}
@@ -88,7 +89,9 @@ class ProductDescription extends React.Component {
                     productData = {Object.entries(selectedProducts).length > 0 ? {...productData, selectedAttributes: selectedProducts, count: 1} : null}>
                         {inStock ? "ADD TO CART" : "OUT OF STOCK"}
                     </Button>
-                    {parse(description)}
+                    <div className="product-description_info">
+                        {parse(description)}
+                    </div>
                 </article>
             </div>
         )

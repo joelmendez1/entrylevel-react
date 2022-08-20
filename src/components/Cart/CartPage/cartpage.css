@@ -12,3 +12,13 @@
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
+
+.cart_page-statistics  {
+    display: flex;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.cart_page-statistics div {
+    margin-left: 0.5rem;
+}

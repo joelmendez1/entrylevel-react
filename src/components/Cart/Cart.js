@@ -53,11 +53,14 @@ class Cart extends React.Component {
                                         {product.attributes.map((attribute, index) => <Select key={`select-${attribute.value}-${index}`} type={attribute.type} attribute={attribute} selectedProducts={selectedAttributes} onChange={this.onChangeSelectedAttributes}/>)}
                                     </div>
                                 </div>
-                                <div className="cart_products-actions">
-                                    <Button customClassName={createCustomClass(small, white)} action={INCREMENT} productData={product}>+</Button>
-                                    {product.count}
-                                    <Button customClassName={createCustomClass(small, white)} action={DECREMENT} productData={product}>-</Button>
-                                </div>
+                                <section className="cart-products_actions-img">
+                                    <div className="cart_products-actions">
+                                        <Button customClassName={createCustomClass(small, white)} action={INCREMENT} productData={product}>+</Button>
+                                        {product.count}
+                                        <Button customClassName={createCustomClass(small, white)} action={DECREMENT} productData={product}>-</Button>
+                                    </div>
+                                    <img className="cart-products_img" src={product.gallery[0]}/>
+                                </section>
                             </div>
                         )
                     }

@@ -1,25 +1,33 @@
 import React from "react";
+import "./select.css"
 
 class Select extends React.Component {
     render() {
         const { type, attribute, selectedProducts, onChange } = this.props;
 
         return (
-            <div>
-                <label>{attribute.id}</label>
-                {attribute.items.map(item => {
-                    if(type === "swatch") {
-                        return (
-                            <input onClick={() => {onChange && onChange({...selectedProducts, [attribute.name]: item.value})}} type="radio" value={item.displayValue} />
-                        )
-                    } else {
-                        return (
-                            <option onClick={() => {onChange && onChange({...selectedProducts, [attribute.name]: item.value})}} value={item.displayValue}>
-                                {item.value}
-                            </option>
-                        )
-                    }
-                })}
+            <div className="select">
+                <label><b>{attribute.id}</b></label>
+                <div className="select_attributes">
+                    {attribute.items.map(item => {
+                        if(type === "swatch") {
+                            return (
+                                <div
+                                style={{'background': item.value}}
+                                className="select_swatch"
+                                onClick={() => {onChange && onChange({...selectedProducts, [attribute.name]: item.value})}} />
+                            )
+                        } else {
+                            return (
+                                <div
+                                className="select_non-swatch"
+                                onClick={() => {onChange && onChange({...selectedProducts, [attribute.name]: item.value})}} >
+                                    <p>{item.value}</p>
+                                </div>
+                            )
+                        }
+                    })}
+                </div>
             </div>
         )   
     }

@@ -1,0 +1,25 @@
+.select {
+    display: flex;
+    flex-direction: column;
+    width: 10rem;
+}
+
+.select_attributes {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: small;
+}
+
+.select_swatch {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.select_non-swatch {
+    border: 1px solid black;
+    max-width: 5rem;
+    min-width: 2rem;
+    margin: 0 0.5rem 0 0;
+    text-align: center;
+}

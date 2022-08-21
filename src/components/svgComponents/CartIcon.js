@@ -7,7 +7,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { updateCostCurrency } from "../../utils/utils";
 import { ReactComponent as CartSvg } from "../../assets/Vector.svg";
+import { setBackground } from "../../redux/background/backgroundActions";
 import { createCustomClass, medium, green, white } from "../Button/buttonUtils";
+
 
 class CartIcon extends React.Component {
     constructor(props) {
@@ -20,9 +22,12 @@ class CartIcon extends React.Component {
     }
 
     handleOnClick() {
-        this.setState((prevState) =>({
-            showCartOverlay: !prevState.showCartOverlay
-        }))
+        if(window.location.pathname !== "/cart") {
+            this.setState({
+                showCartOverlay: !this.state.showCartOverlay
+            })
+            this.props.setBackground(!this.state.showCartOverlay)
+        }
     }
 
     componentDidMount() {
@@ -31,6 +36,7 @@ class CartIcon extends React.Component {
                 this.setState({
                     showCartOverlay: false
                 })
+                this.props.setBackground(false)
             }
         }
 
@@ -42,11 +48,13 @@ class CartIcon extends React.Component {
         const { showCartOverlay } = this.state;
         const { totalWithTaxes } = updateCostCurrency(purchasedProducts, currentCurrency);
 
+        console.log(window.location.pathname)
+
         return (
-            <div className="container-cart" ref={this.myRef} onClick={() => this.handleOnClick(true)} >
+            <div className={`container-cart ${window.location.pathname === "/cart" ? "in-cart" : ""}`} ref={this.myRef} onClick={() => this.handleOnClick()} >
                 <CartSvg />
                 {(totalProducts > 0) && <sup>{totalProducts}</sup>}
-                <Modal open={showCartOverlay} onClose={() => this.handleOnClick(false)}>
+                <Modal open={showCartOverlay} onClose={() => this.handleOnClick()}>
                     <div className="cart_overlay">
                         <p><strong> My Bag </strong> {totalProducts} items</p>
                         <Cart onClick={(e) => e.stopPropagation()}/>
@@ -67,12 +75,19 @@ class CartIcon extends React.Component {
     }
 }
 
-const mapStateToProps = ({currencyPersistReducer, productPersistReducer }) => {
+const mapStateToProps = ({currencyPersistReducer, productPersistReducer, backgroundReducer }) => {
     return {
         totalProducts: productPersistReducer.totalProducts,
         currentCurrency: currencyPersistReducer.currentCurrency,
-        purchasedProducts: productPersistReducer.purchasedProducts
+        purchasedProducts: productPersistReducer.purchasedProducts,
+        currentBackground: backgroundReducer.currentBackground
     }
 }
 
-export default connect(mapStateToProps)(CartIcon)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setBackground: (background) => dispatch(setBackground(background)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon)

@@ -59,9 +59,7 @@ class Currency extends React.Component {
                 </div>
                 <ul className={caretActivated ? "currency-container-activated" : "currency-container"}>
                     {currencies.map((currency, index) => (
-                        <li
-                        key={index}
-                        onClick={() => {
+                        <li key={index} onClick={() => {
                             setCurrency(currency.label)
                         }}
                         style={currentCurrency === currency.label ? {"background": "rgba(29, 31, 34, .5)"} : null}>

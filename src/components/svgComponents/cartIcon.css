@@ -1,5 +1,10 @@
 .container-cart {
     position: relative;
+    cursor: pointer;
+}
+
+div.container-cart.in-cart {
+    cursor: default;
 }
 
 sup {

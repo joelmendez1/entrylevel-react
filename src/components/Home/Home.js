@@ -30,10 +30,10 @@ class Home extends React.Component {
 
     render() {
         const { products, loading } = this.state;
-        const { currentURL } = this.props;
+        const { currentURL, currentBackground } = this.props;
 
         return (
-            <main className="home">
+            <main className="home" style={{"background": currentBackground}}>
                 {
                     !loading
                         ?  <div className="home-products-container">
@@ -57,9 +57,10 @@ class Home extends React.Component {
     };
 }
 
-const mapStateToProps = ({ navPersistReducer }) => {
+const mapStateToProps = ({ navPersistReducer, backgroundReducer }) => {
     return {
-        currentURL: navPersistReducer.currentURL
+        currentURL: navPersistReducer.currentURL,
+        currentBackground: backgroundReducer.currentBackground
     }
 }
 

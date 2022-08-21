@@ -4,6 +4,8 @@
     width: 1.5rem;
     height: 1.5rem;
     z-index: 1;
+    background-color: #FFFFFF;
+    cursor: pointer;
 }
 
 .currency-container {
@@ -21,6 +23,7 @@
     line-height: 28px;
     top: 25px;
     left: 0;
+    background-color: #FFFFFF;
 }
 
 .currency-container-activated li {

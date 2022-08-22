@@ -1,33 +1,17 @@
 const initialState = {
-    currentCurrency: 'USD'
+    type: "setCurrency",
+    currentCurrency: {
+        label: "USD",
+        symbol: "$"
+    }
 }
 
 const currencyReducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'USD': 
+        case "setCurrency":
             return {
                 ...state,
-                currentCurrency: 'USD'
-            }
-        case 'GBP': 
-            return {
-                ...state,
-                currentCurrency: 'GBP'
-            }
-        case 'AUD': 
-            return {
-                ...state,
-                currentCurrency: 'AUD'
-            }
-        case 'JPY': 
-            return {
-                ...state,
-                currentCurrency: 'JPY'
-            }
-        case 'RUB': 
-            return {
-                ...state,
-                currentCurrency: 'RUB'
+                currentCurrency: action.currency
             }
         default: return state
     }

@@ -23,9 +23,9 @@ class CartPage extends React.Component {
                                 <p>Total: </p>
                             </div>
                             <div>
-                                <p><strong>{`$${taxesCost}`}</strong></p>
+                                <p><strong>{`${currentCurrency.symbol} ${taxesCost}`}</strong></p>
                                 <p><strong>{totalProducts}</strong></p>
-                                <p><strong>${totalWithTaxes}</strong></p>
+                                <p><strong>{`${currentCurrency.symbol} ${totalWithTaxes}`}</strong></p>
                             </div>
                         </div>
                         <Button customClassName={createCustomClass(large, green)}>ORDER</Button>

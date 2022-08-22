@@ -58,7 +58,7 @@ class CartIcon extends React.Component {
                         <Cart onClick={(e) => e.stopPropagation()}/>
                         <div className="cart_total">
                             <p>Total: </p>
-                            <p><strong>${totalWithTaxes}</strong></p>
+                            <p><strong>{`${currentCurrency.symbol} ${totalWithTaxes}`}</strong></p>
                         </div>
                         <div className="cart_overlay-actions">
                             <Link to="/cart">

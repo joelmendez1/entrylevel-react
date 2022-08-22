@@ -1,6 +1,9 @@
+const SET_CURRENCY = "setCurrency";
+
 const setCurrency = (currency) => {
     return {
-        type: currency
+        type: SET_CURRENCY,
+        currency
     }
 }
 

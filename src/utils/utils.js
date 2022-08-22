@@ -4,7 +4,7 @@ const updateCostCurrency = (purchasedProducts, currentCurrency) => {
 
     purchasedProducts.forEach(product => {
         product.prices.forEach(price => {
-            if(currentCurrency === price.currency.label) {
+            if(currentCurrency.label === price.currency.label) {
                 total += price.amount * product.count;
             }
         })

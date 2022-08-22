@@ -6,6 +6,7 @@ import { createCustomClass, large, green, gray } from "../Button/buttonUtils";
 import { ADD_TO_CART } from "../../redux/products/productReducer";
 import parse from "html-react-parser";
 import { Select } from "../Select/Select";
+import { Price } from "../Price/Price";
 
 class ProductDescription extends React.Component {
     constructor(props) {
@@ -76,12 +77,8 @@ class ProductDescription extends React.Component {
                         {attributes.map(attribute => <Select type={attribute.type} attribute={attribute} selectedProducts={selectedProducts} onChange={this.onChangeSelectedAttributes} />)}
                     </div>
                     <div className="product-description_price">
-                        <p><strong>PRICE: </strong></p>
-                        {prices.map(price => {
-                            if(price.currency.label === currentCurrency) {
-                                return <p><strong>{`${price.currency.symbol} ${price.amount}`}</strong></p>
-                            }
-                        })}
+                        <p><strong>PRICE:</strong></p>
+                        <Price prices={prices} currentCurrency={currentCurrency}/>
                     </div>
                     <Button
                     customClassName = {createCustomClass(large, buttonColor)}

@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { setProduct } from "../../redux/products/productActions";
 import { INCREMENT, DECREMENT } from "../../redux/products/productReducer";
 import { Select } from "../Select/Select";
+import { Slider } from "../Slider/Slider";
 
 class Cart extends React.Component {
     constructor(props) {
@@ -59,7 +60,7 @@ class Cart extends React.Component {
                                         {product.count}
                                         <Button customClassName={createCustomClass(small, white)} action={DECREMENT} productData={product}>-</Button>
                                     </div>
-                                    <img className="cart-products_img" src={product.gallery[0]}/>
+                                    <Slider images={product.gallery}/>
                                 </section>
                             </div>
                         )

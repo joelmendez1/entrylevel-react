@@ -48,8 +48,6 @@ class CartIcon extends React.Component {
         const { showCartOverlay } = this.state;
         const { totalWithTaxes } = updateCostCurrency(purchasedProducts, currentCurrency);
 
-        console.log(window.location.pathname)
-
         return (
             <div className={`container-cart ${window.location.pathname === "/cart" ? "in-cart" : ""}`} ref={this.myRef} onClick={() => this.handleOnClick()} >
                 <CartSvg />

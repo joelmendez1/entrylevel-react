@@ -81,8 +81,8 @@ class ProductDescription extends React.Component {
                         <Price prices={prices} currentCurrency={currentCurrency}/>
                     </div>
                     <Button
-                    customClassName = {createCustomClass(large, buttonColor)}
-                    disabled = {inStock ? false : true} action={ADD_TO_CART}
+                    customClassName = {inStock ? createCustomClass(large, buttonColor) : "disabled-button"}
+                    disabled = {!inStock} action={ADD_TO_CART}
                     productData = {{...productData, selectedAttributes: selectedProducts, count: 1}}>
                         {inStock ? "ADD TO CART" : "OUT OF STOCK"}
                     </Button>

@@ -1,6 +1,5 @@
 import React from "react";
 import "./currency.css";
-import {ReactComponent as CurrencySign} from "../../assets/$.svg";
 import {ReactComponent as Caret} from "../../assets/vector2.svg";
 import { checkSessionData } from "../../utils/sessionStorage";
 import { getCurrenciesData } from "../../queries/getCurrenciesData";
@@ -49,25 +48,34 @@ class Currency extends React.Component {
 
     render() {
         const { caretActivated, currencies } = this.state;
-        const { setCurrency, currentCurrency } = this.props;
+        const { currentCurrency } = this.props;
+
 
         return (
             <div className="container" onClick={this.handleOnClick}>
-                <div>
-                    <CurrencySign className="currency-icon"/>
+                <div className="currency_selector">
+                    <strong className="currency-icon">{currentCurrency.symbol}</strong>
                     <Caret className={caretActivated ? "caret-activated" : "caret"} />
                 </div>
-                <ul className={caretActivated ? "currency-container-activated" : "currency-container"}>
-                    {currencies.map((currency, index) => (
-                        <li key={index} onClick={() => {
-                            setCurrency(currency.label)
-                        }}
-                        style={currentCurrency === currency.label ? {"background": "rgba(29, 31, 34, .5)"} : null}>
-                            {`${currency.symbol} ${currency.label}`}
-                        </li>
-                    ))}
-                </ul>
+                {(currencies !== []) && this.renderCurrencies()}
             </div>
+        )
+    }
+
+    renderCurrencies() {
+        const { caretActivated, currencies } = this.state;
+        const { setCurrency, currentCurrency } = this.props;
+
+        return (
+            <ul className={caretActivated ? "currency-container-activated" : "currency-container"}>
+                {currencies.map((currency, index) => (
+                    <li
+                        key={index} onClick={() => setCurrency(currency)}
+                        style={currentCurrency.label === currency.label ? {"background": "rgba(29, 31, 34, .5)"} : null}>
+                            {`${currency.symbol} ${currency.label}`}
+                    </li>
+                ))}
+            </ul>
         )
     }
 }

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Button from "../Button/Button";
 import { ADD_TO_CART } from "../../redux/products/productReducer";
+import { Price } from "../Price/Price";
 
 class Product extends React.Component {
     constructor(props) {
@@ -63,13 +64,7 @@ class Product extends React.Component {
                 </div>
                 <ul className="text">
                     <p>{name}</p>
-                    {prices.map((price, index) => {
-                        if(price.currency.label === currentCurrency) {
-                            return (
-                                <p key={`price-${price.currency.label}-${index}`}><strong>${price.amount}</strong></p>
-                            )
-                        }
-                    })}
+                    <Price prices={prices} currentCurrency={currentCurrency}/>
                 </ul>
             </div>
         )

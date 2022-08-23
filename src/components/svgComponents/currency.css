@@ -1,49 +1,49 @@
 .container {
-    display: flex;
-    position: relative;
-    width: 2rem;
-    height: 1.5rem;
-    z-index: 1;
-    background-color: #FFFFFF;
-    cursor: pointer;
+  display: flex;
+  position: relative;
+  width: 2rem;
+  height: 1.5rem;
+  z-index: 1;
+  background-color: #ffffff;
+  cursor: pointer;
 }
 
 .currency-icon {
-    position: relative;
-    right: 0.3rem;
+  position: relative;
+  right: 0.3rem;
 }
 
 .currency-container {
-    display: none;
+  display: none;
 }
 
 .currency-container-activated {
-    width: 80px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: center;
-    position: absolute;
-    line-height: 28px;
-    top: 25px;
-    left: 0;
-    background-color: #FFFFFF;
+  width: 80px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: center;
+  position: absolute;
+  line-height: 28px;
+  top: 25px;
+  left: 0;
+  background-color: #ffffff;
 }
 
 .currency-container-activated li {
-    width: 100%;
+  width: 100%;
 }
 
 .caret {
-    position: absolute;
-    bottom: 0.5rem;
-    right: 0;
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0;
 }
 
 .caret-activated {
-    position: absolute;
-    bottom: 0.5rem;
-    right: 0;
-    transform: rotate(180deg);
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0;
+  transform: rotate(180deg);
 }

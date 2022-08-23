@@ -1,55 +1,56 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --primary-color: #FFFFFF;
-    --secondary-color: #1D1F22;
-    --link-color: #5ECE7B;
+  --primary-color: #ffffff;
+  --secondary-color: #1d1f22;
+  --link-color: #5ece7b;
 }
 
 nav {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    width: 90%;
-    margin: 0 auto;
-    height: 5rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  height: 5rem;
 }
 
 nav ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 13rem;
-    height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 13rem;
+  height: 100%;
 }
 
-nav ul li, a {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    text-decoration: none;
-    text-align: center;
-    color: var(--secondary-color);
-    font-weight: 400;
-    font-size: 16px;
-    height: 100%;
-    text-transform: uppercase;
+nav ul li,
+a {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-decoration: none;
+  text-align: center;
+  color: var(--secondary-color);
+  font-weight: 400;
+  font-size: 16px;
+  height: 100%;
+  text-transform: uppercase;
 }
 
 .hovered > a {
-    border-bottom: 2px solid var(--link-color);
-    color: var(--link-color);
+  border-bottom: 2px solid var(--link-color);
+  color: var(--link-color);
 }
 
 .actions {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 8rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 8rem;
 }

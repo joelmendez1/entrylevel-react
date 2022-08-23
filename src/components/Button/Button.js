@@ -5,34 +5,39 @@ import { connect } from "react-redux";
 import { setProduct } from "../../redux/products/productActions";
 
 class Button extends React.Component {
+  handleOnClick() {
+    const { onClick, action = "", productData, setProduct } = this.props;
+    onClick && onClick();
+    setProduct(action, productData);
+  }
 
-    handleOnClick() {
-        const { onClick, action = "", productData, setProduct } = this.props;
-        onClick && onClick();
-        setProduct(action, productData);
-    }
+  render() {
+    const { customClassName, disabled = false } = this.props;
 
-    render() {
-        const { customClassName, disabled = false} = this.props;
-
-        return (
-            <button className={customClassName ? customClassName : createCustomClass(large, green)} disabled={disabled} onClick={this.handleOnClick.bind(this)}>
-                {this.props.children || "Default Button"}
-            </button>
-        )
-    }
+    return (
+      <button
+        className={
+          customClassName ? customClassName : createCustomClass(large, green)
+        }
+        disabled={disabled}
+        onClick={this.handleOnClick.bind(this)}
+      >
+        {this.props.children || "Default Button"}
+      </button>
+    );
+  }
 }
 
 const mapStateToProps = ({ productPersistReducer }) => {
-    return {
-        purchasedProducts: productPersistReducer.purchasedProducts
-    }
-}
+  return {
+    purchasedProducts: productPersistReducer.purchasedProducts,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        setProduct:(action, product) => dispatch(setProduct(action, product))
-    }
-}
+  return {
+    setProduct: (action, product) => dispatch(setProduct(action, product)),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Button)
+export default connect(mapStateToProps, mapDispatchToProps)(Button);

@@ -66,3 +66,15 @@
     white-space: wrap;
     overflow-y: scroll;
 }
+
+.disabled-button {
+    cursor: default;
+    min-width: 15rem;
+    min-height: 3rem;
+    background-color: gray;
+    color: white;
+}
+
+.disabled-button:hover {
+    animation: none;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import "./productDescription.css";
 import { connect } from "react-redux";
 import  Button  from "../Button/Button";
-import { createCustomClass, large, green, gray } from "../Button/buttonUtils";
+import { createCustomClass, large, green } from "../Button/buttonUtils";
 import { ADD_TO_CART } from "../../redux/products/productReducer";
 import parse from "html-react-parser";
 import { Select } from "../Select/Select";
@@ -27,7 +27,7 @@ class ProductDescription extends React.Component {
     componentDidMount() {
         const { currentCurrency } = this.props;
         const urlProduct = window.location.pathname.split("/")[2];
-        const allProducts = JSON.parse(sessionStorage.getItem("home")).categories[0].products;
+        const allProducts = JSON.parse(sessionStorage.getItem("all")).categories[0].products;
         const productData = {...allProducts.find((product) => product.id === urlProduct), currentCurrency};
 
         const defaultAttributes = productData.attributes
@@ -49,10 +49,9 @@ class ProductDescription extends React.Component {
         const { currentCurrency } = this.props;
         const { selectedImg, selectedProducts } = this.state;
         const urlProduct = window.location.pathname.split("/")[2];
-        const allProducts = JSON.parse(sessionStorage.getItem("home")).categories[0].products;
+        const allProducts = JSON.parse(sessionStorage.getItem("all")).categories[0].products;
         const productData = {...allProducts.find((product) => product.id === urlProduct), currentCurrency};
         const { name, inStock, gallery, brand, attributes, prices, description } = productData;
-        const buttonColor = inStock ? green : gray;
 
         if(!productData) {
             return "Error"
@@ -81,9 +80,9 @@ class ProductDescription extends React.Component {
                         <Price prices={prices} currentCurrency={currentCurrency}/>
                     </div>
                     <Button
-                    customClassName = {createCustomClass(large, buttonColor)}
-                    disabled = {inStock ? false : true} action={ADD_TO_CART}
-                    productData = {Object.entries(selectedProducts).length > 0 ? {...productData, selectedAttributes: selectedProducts, count: 1} : null}>
+                    customClassName = {inStock ? createCustomClass(large, green) : "disabled-button"}
+                    disabled = {!inStock} action={ADD_TO_CART}
+                    productData = {{...productData, selectedAttributes: selectedProducts, count: 1}}>
                         {inStock ? "ADD TO CART" : "OUT OF STOCK"}
                     </Button>
                     <div className="product-description_info">

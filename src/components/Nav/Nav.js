@@ -1,7 +1,7 @@
 import React from "react";
 import "./nav.css";
 import { Link } from "react-router-dom";
-import { get } from "../../queries/getHomeData";
+import { get } from "../../queries/getAllData";
 import { checkSessionData } from "../../utils/sessionStorage";
 import Brand from "../../assets/Group.svg";
 import  Currency  from "../svgComponents/Currency";
@@ -51,7 +51,7 @@ class Nav extends React.Component {
                 <ul className="navigator">
                     {
                         categories.map((category, index) => {
-                            const categoryName = category.name !== "all" ? category.name : "home";
+                            const categoryName = category.name;
                             return (
                                 <li key={index}>
                                     <Link to={categoryName} onClick={(e) => {

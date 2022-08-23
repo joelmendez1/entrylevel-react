@@ -83,7 +83,7 @@ class ProductDescription extends React.Component {
                     <Button
                     customClassName = {createCustomClass(large, buttonColor)}
                     disabled = {inStock ? false : true} action={ADD_TO_CART}
-                    productData = {Object.entries(selectedProducts).length > 0 ? {...productData, selectedAttributes: selectedProducts, count: 1} : null}>
+                    productData = {{...productData, selectedAttributes: selectedProducts, count: 1}}>
                         {inStock ? "ADD TO CART" : "OUT OF STOCK"}
                     </Button>
                     <div className="product-description_info">

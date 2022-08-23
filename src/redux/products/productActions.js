@@ -1,7 +1,12 @@
+import { SET_PRODUCT } from "../actions-creator";
+
 const setProduct = (action, product) => {
     return {
-        type: action,
-        product
+        type: SET_PRODUCT,
+        payload: {
+            action,
+            product
+        }
     }
 }
 

@@ -1,23 +1,16 @@
+import { SET_URL } from "../actions-creator";
+
 const initialState = {
+    type: SET_URL,
     currentURL: 'home'
 }
 
 const navReducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'home': 
+        case SET_URL:
             return {
                 ...state,
-                currentURL: 'home'
-            }
-        case 'clothes': 
-            return {
-                ...state,
-                currentURL: 'clothes'
-            }
-        case 'tech': 
-            return {
-                ...state,
-                currentURL: 'tech'
+                currentURL: action.payload
             }
         default: return state
     }

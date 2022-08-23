@@ -1,5 +1,6 @@
+import { SET_CURRENCY } from "../actions-creator";
+
 const initialState = {
-    type: "setCurrency",
     currentCurrency: {
         label: "USD",
         symbol: "$"
@@ -8,10 +9,10 @@ const initialState = {
 
 const currencyReducer = (state = initialState, action) => {
     switch(action.type) {
-        case "setCurrency":
+        case SET_CURRENCY:
             return {
                 ...state,
-                currentCurrency: action.currency
+                currentCurrency: action.payload
             }
         default: return state
     }

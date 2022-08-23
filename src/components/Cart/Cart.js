@@ -3,7 +3,6 @@ import "./cart.css";
 import Button from "../Button/Button";
 import { createCustomClass, small, white } from "../Button/buttonUtils";
 import { connect } from "react-redux";
-import { setProduct } from "../../redux/products/productActions";
 import { INCREMENT, DECREMENT } from "../../redux/products/productReducer";
 import { Select } from "../Select/Select";
 import { Slider } from "../Slider/Slider";
@@ -75,11 +74,6 @@ const mapStateToProps = ({ currencyPersistReducer, productPersistReducer } ) => 
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setProduct: (action, product) => dispatch(setProduct(action, product))
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default connect(mapStateToProps)(Cart)
 

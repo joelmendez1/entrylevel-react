@@ -20,4 +20,17 @@ const updateCostCurrency = (purchasedProducts, currentCurrency) => {
     };
 }
 
-export { updateCostCurrency }
+const arrayCompare = (arr1, arr2) => {
+    return arr1.join() === arr2.join();
+}
+
+const objectCompare = (obj1, obj2) => {
+    if(arrayCompare(Object.keys(obj1), Object.keys(obj2))) {
+        if(arrayCompare(Object.values(obj1), Object.values(obj2))) {
+            return true;
+        }
+    }
+    return false;
+}
+
+export { updateCostCurrency, arrayCompare, objectCompare }

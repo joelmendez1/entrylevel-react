@@ -73,7 +73,7 @@ class CartIcon extends React.Component {
     }
 }
 
-const mapStateToProps = ({currencyPersistReducer, productPersistReducer, backgroundReducer }) => {
+const mapStateToProps = ({ currencyPersistReducer, productPersistReducer, backgroundReducer }) => {
     return {
         totalProducts: productPersistReducer.totalProducts,
         currentCurrency: currencyPersistReducer.currentCurrency,

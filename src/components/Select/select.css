@@ -33,6 +33,11 @@
   font-size: small;
 }
 
-.item-selected {
-  border: 1px solid red;
+.item-swatch {
+  border: 1px solid #5ece7b;
+}
+
+.item-non-swatch {
+  background-color: #000000;
+  color: #ffffff;
 }

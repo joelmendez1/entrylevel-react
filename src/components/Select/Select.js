@@ -18,17 +18,16 @@ class Select extends React.Component {
 
     return (
       <div className="select_attributes">
-        {attribute.items.map((item, index) => {
+        {attribute.items.map((item) => {
           if (type === "swatch") {
             return (
               <div
-                key={`select_attributes-${item.value}-${index}`}
+                key={`select_attributes-${item.id}-${attribute.id}`}
                 style={{
                   background: item.value === "#FFFFFF" ? "#c4bebe" : item.value,
                 }}
                 className={`select_swatch ${
-                  Object.values(selectedProducts).includes(item.value) &&
-                  "item-selected"
+                  selectedProducts[attribute.id] === item.value && "item-swatch"
                 }`}
                 onClick={() => {
                   onChange &&
@@ -42,10 +41,10 @@ class Select extends React.Component {
           } else {
             return (
               <div
-                key={`select_attributes-${item.value}-${index}`}
+                key={`select_attributes-${item.id}-${attribute.id}`}
                 className={`select_non-swatch ${
-                  Object.values(selectedProducts).includes(item.value) &&
-                  "item-selected"
+                  selectedProducts[attribute.id] === item.value &&
+                  "item-non-swatch"
                 }`}
                 onClick={() => {
                   onChange &&

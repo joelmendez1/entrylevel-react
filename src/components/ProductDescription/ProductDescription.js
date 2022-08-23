@@ -2,7 +2,7 @@ import React from "react";
 import "./productDescription.css";
 import { connect } from "react-redux";
 import  Button  from "../Button/Button";
-import { createCustomClass, large, green, gray } from "../Button/buttonUtils";
+import { createCustomClass, large, green } from "../Button/buttonUtils";
 import { ADD_TO_CART } from "../../redux/products/productReducer";
 import parse from "html-react-parser";
 import { Select } from "../Select/Select";
@@ -52,7 +52,6 @@ class ProductDescription extends React.Component {
         const allProducts = JSON.parse(sessionStorage.getItem("all")).categories[0].products;
         const productData = {...allProducts.find((product) => product.id === urlProduct), currentCurrency};
         const { name, inStock, gallery, brand, attributes, prices, description } = productData;
-        const buttonColor = inStock ? green : gray;
 
         if(!productData) {
             return "Error"
@@ -81,7 +80,7 @@ class ProductDescription extends React.Component {
                         <Price prices={prices} currentCurrency={currentCurrency}/>
                     </div>
                     <Button
-                    customClassName = {inStock ? createCustomClass(large, buttonColor) : "disabled-button"}
+                    customClassName = {inStock ? createCustomClass(large, green) : "disabled-button"}
                     disabled = {!inStock} action={ADD_TO_CART}
                     productData = {{...productData, selectedAttributes: selectedProducts, count: 1}}>
                         {inStock ? "ADD TO CART" : "OUT OF STOCK"}

@@ -31,13 +31,14 @@ class Home extends React.Component {
     render() {
         const { products, loading } = this.state;
         const { currentURL, currentBackground } = this.props;
+        const categoryName = window.location.pathname.slice(1);
 
         return (
             <main className="home" style={{"background": currentBackground}}>
                 {
                     !loading
                         ?  <div className="home-products-container">
-                                <h1 className="home-title">CATEGORY NAME</h1>
+                                <h1 className="home-title">{categoryName}</h1>
                                 <section className="home-products">
                                     {products.map(element => {
                                         const categoryName = element.name !== "all" ? element.name : "home";

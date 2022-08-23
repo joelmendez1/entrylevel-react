@@ -9,6 +9,10 @@ main {
     background: #FFFFFF;
 }
 
+.home-title {
+    text-transform: uppercase;
+}
+
 .home-products-container {
     width: 100%;
     display: flex;

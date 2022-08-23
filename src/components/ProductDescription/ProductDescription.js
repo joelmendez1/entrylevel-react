@@ -27,7 +27,7 @@ class ProductDescription extends React.Component {
     componentDidMount() {
         const { currentCurrency } = this.props;
         const urlProduct = window.location.pathname.split("/")[2];
-        const allProducts = JSON.parse(sessionStorage.getItem("home")).categories[0].products;
+        const allProducts = JSON.parse(sessionStorage.getItem("all")).categories[0].products;
         const productData = {...allProducts.find((product) => product.id === urlProduct), currentCurrency};
 
         const defaultAttributes = productData.attributes
@@ -49,7 +49,7 @@ class ProductDescription extends React.Component {
         const { currentCurrency } = this.props;
         const { selectedImg, selectedProducts } = this.state;
         const urlProduct = window.location.pathname.split("/")[2];
-        const allProducts = JSON.parse(sessionStorage.getItem("home")).categories[0].products;
+        const allProducts = JSON.parse(sessionStorage.getItem("all")).categories[0].products;
         const productData = {...allProducts.find((product) => product.id === urlProduct), currentCurrency};
         const { name, inStock, gallery, brand, attributes, prices, description } = productData;
         const buttonColor = inStock ? green : gray;

@@ -9,17 +9,17 @@ main {
     background: #FFFFFF;
 }
 
-.home-title {
+.all-title {
     text-transform: uppercase;
 }
 
-.home-products-container {
+.all-products-container {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.home-title{
+.all-title{
     width: 90%;
     margin: 0 auto;
     display: flex;
@@ -40,7 +40,7 @@ main {
     font-size: large;
 }
 
-.home-products {
+.all-products {
     width: 90%;
     margin: 0 auto;
     display: grid;

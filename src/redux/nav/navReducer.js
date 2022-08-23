@@ -2,7 +2,7 @@ import { SET_URL } from "../actions-creator";
 
 const initialState = {
     type: SET_URL,
-    currentURL: 'home'
+    currentURL: 'all'
 }
 
 const navReducer = (state = initialState, action) => {

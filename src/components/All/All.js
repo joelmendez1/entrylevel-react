@@ -1,12 +1,12 @@
 import React from "react";
-import "./home.css";
-import { get } from "../../queries/getHomeData";
+import "./all.css";
+import { get } from "../../queries/getAllData";
 import  Product  from "../Product/Product";
 import { checkSessionData } from "../../utils/sessionStorage";
 import { connect } from "react-redux";
 import { Loader } from "../Loader/Loader";
 
-class Home extends React.Component {
+class All extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,7 +16,7 @@ class Home extends React.Component {
     };
 
     componentDidMount() {
-            (JSON.parse(sessionStorage.getItem("home")) ? checkSessionData("home") : get("home"))
+            (JSON.parse(sessionStorage.getItem("all")) ? checkSessionData("all") : get("all"))
             .then(res => {
                     this.setState({
                         products: res.categories,
@@ -31,17 +31,17 @@ class Home extends React.Component {
     render() {
         const { products, loading } = this.state;
         const { currentURL, currentBackground } = this.props;
-        const categoryName = window.location.pathname.slice(1);
+        const categoryName = window.location.pathname.slice(1) || "WELCOME";
 
         return (
-            <main className="home" style={{"background": currentBackground}}>
+            <main className="all" style={{"background": currentBackground}}>
                 {
                     !loading
-                        ?  <div className="home-products-container">
-                                <h1 className="home-title">{categoryName}</h1>
-                                <section className="home-products">
+                        ?  <div className="all-products-container">
+                                <h1 className="all-title">{categoryName}</h1>
+                                <section className="all-products">
                                     {products.map(element => {
-                                        const categoryName = element.name !== "all" ? element.name : "home";
+                                        const categoryName = element.name !== "all" ? element.name : "all";
                                         if(categoryName === currentURL) {
                                             return element.products.map((product, index) => (
                                                 <Product key={`product-${product.name}-${index}`} {...product}/>
@@ -65,4 +65,4 @@ const mapStateToProps = ({ navPersistReducer, backgroundReducer }) => {
     }
 }
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(All)

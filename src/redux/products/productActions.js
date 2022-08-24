@@ -1,4 +1,4 @@
-import { SET_PRODUCT } from "../actions-creator";
+import { SET_PRODUCT, RESET_CART } from "../actions-creator";
 
 const setProduct = (action, product) => {
   return {
@@ -10,4 +10,10 @@ const setProduct = (action, product) => {
   };
 };
 
-export { setProduct };
+const resetCart = () => {
+  return {
+    type: RESET_CART,
+  };
+};
+
+export { setProduct, resetCart };

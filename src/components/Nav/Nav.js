@@ -14,20 +14,8 @@ class Nav extends React.Component {
     super(props);
     this.state = {
       categories: [],
+      pathName: "",
     };
-    this.selectedItem = this.selectedItem.bind(this);
-  }
-
-  selectedItem(e, categoryName) {
-    const allItems = e.target.parentNode.parentNode.childNodes;
-
-    allItems.forEach((li) => {
-      if (li.textContent !== categoryName) {
-        li.classList.remove("hovered");
-      } else {
-        li.classList.add("hovered");
-      }
-    });
   }
 
   componentDidMount() {
@@ -48,18 +36,25 @@ class Nav extends React.Component {
   render() {
     const { categories } = this.state;
     const { setURL } = this.props;
+
     return (
       <nav>
         <ul className="navigator">
           {categories.map((category, index) => {
             const categoryName = category.name;
             return (
-              <li key={index}>
+              <li
+                key={index}
+                className={
+                  categoryName === window.location.pathname.slice(1)
+                    ? "hovered"
+                    : ""
+                }
+              >
                 <Link
                   to={categoryName}
-                  onClick={(e) => {
+                  onClick={() => {
                     setURL(categoryName);
-                    this.selectedItem(e, categoryName);
                     this.setState({
                       pathName: categoryName,
                     });

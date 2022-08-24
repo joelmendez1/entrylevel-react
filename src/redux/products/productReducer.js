@@ -1,4 +1,4 @@
-import { SET_PRODUCT } from "../actions-creator";
+import { SET_PRODUCT, RESET_CART } from "../actions-creator";
 import { objectCompare } from "../../utils/utils";
 
 const ADD_TO_CART = "addToCart";
@@ -10,6 +10,7 @@ const initialState = {
   type: SET_PRODUCT,
   purchasedProducts: [],
   totalProducts: 0,
+  order: false,
 };
 
 const hasProductBeenAdded = (arr, action) => {
@@ -86,10 +87,16 @@ const productsReducer = (state = initialState, action) => {
             ...state,
             purchasedProducts: [],
             totalProducts: 0,
+            order: true,
           };
         default:
           return state;
       }
+    case RESET_CART:
+      return {
+        ...state,
+        order: false,
+      };
     default:
       return state;
   }

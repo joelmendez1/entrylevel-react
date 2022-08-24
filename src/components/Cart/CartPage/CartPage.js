@@ -5,23 +5,31 @@ import { connect } from "react-redux";
 import Button from "../../Button/Button";
 import { createCustomClass, large, green } from "../../Button/buttonUtils";
 import { updateCostCurrency } from "../../../utils/utils";
-import { setProduct } from "../../../redux/products/productActions";
+import { setProduct, resetCart } from "../../../redux/products/productActions";
 import { BUY } from "../../../redux/products/productReducer";
 
 class CartPage extends React.Component {
+  handleBuy() {
+    const { resetCart } = this.props;
+
+    setTimeout(function () {
+      window.location.replace("/all");
+      resetCart();
+    }, 3000);
+  }
   render() {
-    const { totalProducts } = this.props;
-    const isBought = true;
+    const { totalProducts, order } = this.props;
 
     return (
       <div className="cart_page">
         <h1 className="cart_page-title">CART</h1>
         {totalProducts > 0 ? (
           this.renderPurchasedProducts()
-        ) : isBought ? (
-          <h1 className="cart_page-alternative-title">
-            Thanks for your purchasing!
-          </h1>
+        ) : order ? (
+          <div className="cart_page-alternative-title">
+            <h1>Thanks for your purchasing!</h1>
+            <span>You'll be redirected in 3 seconds</span>
+          </div>
         ) : (
           <h1 className="cart_page-alternative-title">
             Your cart is empty, go back to do some shopping!
@@ -62,8 +70,8 @@ class CartPage extends React.Component {
         </div>
         <Button
           action={BUY}
-          productData={[]}
           customClassName={createCustomClass(large, green)}
+          onClick={this.handleBuy.bind(this)}
         >
           ORDER
         </Button>
@@ -77,12 +85,14 @@ const mapStateToProps = ({ currencyPersistReducer, productPersistReducer }) => {
     totalProducts: productPersistReducer.totalProducts,
     currentCurrency: currencyPersistReducer.currentCurrency,
     purchasedProducts: productPersistReducer.purchasedProducts,
+    order: productPersistReducer.order,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setProduct: (action, product) => dispatch(setProduct(action, product)),
+    resetCart: () => dispatch(resetCart()),
   };
 };
 

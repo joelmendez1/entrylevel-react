@@ -2,10 +2,11 @@
   padding: 1rem;
   position: absolute;
   width: 25%;
-  height: auto;
+  max-height: 70%;
   top: 5rem;
   right: 5%;
   background-color: #ffffff;
+  overflow: scroll;
 }
 
 .cart_overlay-actions {

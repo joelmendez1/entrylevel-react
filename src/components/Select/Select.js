@@ -1,12 +1,14 @@
-import React from "react";
-import "./select.css";
+import React from 'react';
+import './select.css';
 
 class Select extends React.Component {
   render() {
     return (
       <div className="select">
         <p>
-          <strong>{this.props.attribute.name}:</strong>
+          <strong className="select_attribute-title">
+            {this.props.attribute.name}:
+          </strong>
         </p>
         {this.renderSelector()}
       </div>
@@ -14,20 +16,23 @@ class Select extends React.Component {
   }
 
   renderSelector() {
-    const { type, attribute, selectedProducts, onChange } = this.props;
+    const { type, attribute, selectedProducts, onChange } =
+      this.props;
 
     return (
       <div className="select_attributes">
         {attribute.items.map((item) => {
-          if (type === "swatch") {
+          if (type === 'swatch') {
             return (
               <div
                 key={`select_attributes-${item.id}-${attribute.id}`}
                 style={{
-                  background: item.value === "#FFFFFF" ? "#c4bebe" : item.value,
+                  background:
+                    item.value === '#FFFFFF' ? '#c4bebe' : item.value,
                 }}
                 className={`select_swatch ${
-                  selectedProducts[attribute.id] === item.value && "item-swatch"
+                  selectedProducts[attribute.id] === item.value &&
+                  'item-swatch'
                 }`}
                 onClick={() => {
                   onChange &&
@@ -44,7 +49,7 @@ class Select extends React.Component {
                 key={`select_attributes-${item.id}-${attribute.id}`}
                 className={`select_non-swatch ${
                   selectedProducts[attribute.id] === item.value &&
-                  "item-non-swatch"
+                  'item-non-swatch'
                 }`}
                 onClick={() => {
                   onChange &&

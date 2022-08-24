@@ -1,14 +1,19 @@
-import React from "react";
-import "./cartpage.css";
-import Cart from "../Cart";
-import { connect } from "react-redux";
-import Button from "../../Button/Button";
-import { createCustomClass, large, green } from "../../Button/buttonUtils";
-import { updateCostCurrency } from "../../../utils/utils";
+import React from 'react';
+import './cartpage.css';
+import Cart from '../Cart';
+import { connect } from 'react-redux';
+import Button from '../../Button/Button';
+import {
+  createCustomClass,
+  large,
+  green,
+} from '../../Button/buttonUtils';
+import { updateCostCurrency } from '../../../utils/utils';
 
 class CartPage extends React.Component {
   render() {
-    const { totalProducts, purchasedProducts, currentCurrency } = this.props;
+    const { totalProducts, purchasedProducts, currentCurrency } =
+      this.props;
     const { taxesCost, totalWithTaxes } = updateCostCurrency(
       purchasedProducts,
       currentCurrency
@@ -36,7 +41,9 @@ class CartPage extends React.Component {
             </p>
           </div>
         </div>
-        <Button customClassName={createCustomClass(large, green)}>ORDER</Button>
+        <Button customClassName={createCustomClass(large, green)}>
+          ORDER
+        </Button>
       </div>
     ) : (
       <h1>Aun no tienes items en tu carrito</h1>
@@ -44,7 +51,10 @@ class CartPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ currencyPersistReducer, productPersistReducer }) => {
+const mapStateToProps = ({
+  currencyPersistReducer,
+  productPersistReducer,
+}) => {
   return {
     totalProducts: productPersistReducer.totalProducts,
     currentCurrency: currencyPersistReducer.currentCurrency,

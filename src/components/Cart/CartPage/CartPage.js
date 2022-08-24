@@ -21,17 +21,17 @@ class CartPage extends React.Component {
     const { totalProducts, order } = this.props;
 
     return (
-      <div className="cart_page">
-        <h1 className="cart_page-title">CART</h1>
+      <div className="cart-page">
+        <h1 className="cart-page_title">CART</h1>
         {totalProducts > 0 ? (
           this.renderPurchasedProducts()
         ) : order ? (
-          <div className="cart_page-alternative-title">
+          <div className="cart-page_alternative-title">
             <h1>Thanks for your purchasing!</h1>
             <span>You'll be redirected in 3 seconds</span>
           </div>
         ) : (
-          <h1 className="cart_page-alternative-title">
+          <h1 className="cart-page_alternative-title">
             Your cart is empty, go back to do some shopping!
           </h1>
         )}
@@ -48,9 +48,9 @@ class CartPage extends React.Component {
     );
 
     return (
-      <div>
+      <div className="cart-page_container">
         <Cart />
-        <div className="cart_page-statistics">
+        <div className="cart-page_statistics">
           <div>
             <p>Tax 21%: </p>
             <p>Quantity: </p>

@@ -1,6 +1,6 @@
 @import "../main.css";
 
-.container-cart {
+.cart-icon {
   position: relative;
   cursor: pointer;
 }
@@ -26,7 +26,7 @@ sup {
   user-select: none;
 }
 
-.cart_total {
+.cart-icon_total {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -35,7 +35,7 @@ sup {
   padding-bottom: 1rem;
 }
 
-.cart_overlay {
+.cart-icon_overlay {
   padding: 1rem;
   position: absolute;
   width: 25%;
@@ -46,7 +46,7 @@ sup {
   overflow: scroll;
 }
 
-.cart_overlay-actions {
+.cart-icon_overlay-actions {
   display: flex;
   justify-content: space-between;
 }

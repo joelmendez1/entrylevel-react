@@ -44,7 +44,7 @@ a {
   color: var(--main-color);
 }
 
-.actions {
+.nav_actions {
   display: flex;
   justify-content: space-around;
   align-items: center;

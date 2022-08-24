@@ -51,10 +51,10 @@ class Product extends React.Component {
         onMouseEnter={this.showCircleIcon}
         onMouseLeave={this.showCircleIcon}
       >
-        <div className="product-add-view">
+        <div className="product_add-view">
           <Link to={`/product/${id}`}>
             <img
-              className={`product-${name}-stock-${
+              className={`product_${name}-stock-${
                 inStock ? "onstock" : "offstock"
               }`}
               src={gallery[0]}
@@ -63,7 +63,7 @@ class Product extends React.Component {
           </Link>
           {showCircleIcon && inStock && (
             <Button
-              customClassName="circle-icon"
+              customClassName="product_circle-icon"
               disabled={!inStock}
               action={ADD_TO_CART}
               productData={{
@@ -72,11 +72,11 @@ class Product extends React.Component {
                 count: 1,
               }}
             >
-              <CircleIcon className="circle-icon" />
+              <CircleIcon className="product_circle-icon" />
             </Button>
           )}
         </div>
-        <ul className="text">
+        <ul className="product_text">
           <p>{name}</p>
           <Price prices={prices} currentCurrency={currentCurrency} />
         </ul>

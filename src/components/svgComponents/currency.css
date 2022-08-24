@@ -1,6 +1,6 @@
 @import "../main.css";
 
-.container {
+.currency {
   display: flex;
   position: relative;
   width: 2rem;
@@ -10,16 +10,16 @@
   cursor: pointer;
 }
 
-.currency-icon {
+.currency_icon {
   position: relative;
   right: 0.3rem;
 }
 
-.currency-container {
+.currency_container {
   display: none;
 }
 
-.currency-container-activated {
+.currency_container-activated {
   width: 80px;
   height: auto;
   display: flex;
@@ -33,7 +33,7 @@
   background-color: var(--white);
 }
 
-.currency-container-activated li {
+.currency_container-activated li {
   width: 100%;
 }
 

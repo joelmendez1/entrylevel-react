@@ -52,7 +52,7 @@ class CartIcon extends React.Component {
 
     return (
       <div
-        className={`container-cart ${
+        className={`cart-icon ${
           window.location.pathname === "/cart" ? "in-cart" : ""
         }`}
         ref={this.myRef}
@@ -61,18 +61,18 @@ class CartIcon extends React.Component {
         <CartSvg />
         {totalProducts > 0 && <sup>{totalProducts}</sup>}
         <Modal open={showCartOverlay} onClose={() => this.handleOnClick()}>
-          <div className="cart_overlay">
+          <div className="cart-icon_overlay">
             <p>
               <strong> My Bag </strong> {totalProducts} items
             </p>
             <Cart onClick={(e) => e.stopPropagation()} />
-            <div className="cart_total">
+            <div className="cart-icon_total">
               <p>Total: </p>
               <p>
                 <strong>{`${currentCurrency.symbol} ${totalWithTaxes}`}</strong>
               </p>
             </div>
-            <div className="cart_overlay-actions">
+            <div className="cart-icon_overlay-actions">
               <Link to="/cart">
                 <Button customClassName={createCustomClass(medium, white)}>
                   VIEW BAG

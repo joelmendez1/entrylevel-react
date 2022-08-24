@@ -1,3 +1,5 @@
+@import "../main.css";
+
 .select {
   display: flex;
   flex-direction: column;
@@ -30,7 +32,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid var(--black);
   width: 3rem;
   height: 2rem;
   margin: 0 0.5rem 0 0;
@@ -39,10 +41,10 @@
 }
 
 .item-swatch {
-  border: 1px solid #5ece7b;
+  border: 1px solid var(--main-color);
 }
 
 .item-non-swatch {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--black);
+  color: var(--white);
 }

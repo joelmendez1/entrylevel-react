@@ -1,10 +1,12 @@
+@import "../main.css";
+
 .container {
   display: flex;
   position: relative;
   width: 2rem;
   height: 1.5rem;
   z-index: 1;
-  background-color: #ffffff;
+  background-color: var(--white);
   cursor: pointer;
 }
 
@@ -28,7 +30,7 @@
   line-height: 28px;
   top: 25px;
   left: 0;
-  background-color: #ffffff;
+  background-color: var(--white);
 }
 
 .currency-container-activated li {

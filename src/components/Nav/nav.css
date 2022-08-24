@@ -1,13 +1,9 @@
+@import "../main.css";
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-:root {
-  --primary-color: #ffffff;
-  --secondary-color: #1d1f22;
-  --link-color: #5ece7b;
 }
 
 nav {
@@ -36,7 +32,7 @@ a {
   align-items: center;
   text-decoration: none;
   text-align: center;
-  color: var(--secondary-color);
+  color: var(--black);
   font-weight: 400;
   font-size: 16px;
   height: 100%;
@@ -44,8 +40,8 @@ a {
 }
 
 .hovered > a {
-  border-bottom: 2px solid var(--link-color);
-  color: var(--link-color);
+  border-bottom: 2px solid var(--main-color);
+  color: var(--main-color);
 }
 
 .actions {

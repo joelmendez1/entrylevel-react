@@ -1,3 +1,5 @@
+@import "../main.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -71,8 +73,8 @@
   cursor: default;
   min-width: 15rem;
   min-height: 3rem;
-  background-color: gray;
-  color: white;
+  background-color: var(--gray);
+  color: var(--white);
 }
 
 .disabled-button:hover {

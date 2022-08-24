@@ -1,3 +1,5 @@
+@import "../main.css";
+
 .cart_section {
   display: flex;
   flex-direction: column;
@@ -37,9 +39,9 @@
 }
 
 .cart_products.cart_page {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid var(--main-border-color);
 }
 
 .cart_products.cart_page:nth-child(1) {
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid var(--main-border-color);
 }

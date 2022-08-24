@@ -1,3 +1,5 @@
+@import "../main.css";
+
 .container-cart {
   position: relative;
   cursor: pointer;
@@ -15,8 +17,8 @@ sup {
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #ffffff;
-  background-color: #000000;
+  color: var(--white);
+  background-color: var(--black);
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -40,7 +42,7 @@ sup {
   max-height: 70%;
   top: 5rem;
   right: 5%;
-  background-color: #ffffff;
+  background-color: var(--white);
   overflow: scroll;
 }
 

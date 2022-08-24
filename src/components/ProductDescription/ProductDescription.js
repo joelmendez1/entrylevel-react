@@ -1,22 +1,18 @@
-import React from 'react';
-import './productDescription.css';
-import { connect } from 'react-redux';
-import Button from '../Button/Button';
-import {
-  createCustomClass,
-  large,
-  green,
-} from '../Button/buttonUtils';
-import { ADD_TO_CART } from '../../redux/products/productReducer';
-import parse from 'html-react-parser';
-import { Select } from '../Select/Select';
-import { Price } from '../Price/Price';
+import React from "react";
+import "./productDescription.css";
+import { connect } from "react-redux";
+import Button from "../Button/Button";
+import { createCustomClass, large, green } from "../Button/buttonUtils";
+import { ADD_TO_CART } from "../../redux/products/productReducer";
+import parse from "html-react-parser";
+import { Select } from "../Select/Select";
+import { Price } from "../Price/Price";
 
 class ProductDescription extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedImg: '',
+      selectedImg: "",
       selectedProducts: {},
     };
     this.onChangeSelectedAttributes =
@@ -31,9 +27,9 @@ class ProductDescription extends React.Component {
 
   componentDidMount() {
     const { currentCurrency } = this.props;
-    const urlProduct = window.location.pathname.split('/')[2];
-    const allProducts = JSON.parse(sessionStorage.getItem('all'))
-      .categories[0].products;
+    const urlProduct = window.location.pathname.split("/")[2];
+    const allProducts = JSON.parse(sessionStorage.getItem("all")).categories[0]
+      .products;
     const productData = {
       ...allProducts.find((product) => product.id === urlProduct),
       currentCurrency,
@@ -57,25 +53,18 @@ class ProductDescription extends React.Component {
   render() {
     const { currentCurrency, currentBackground } = this.props;
     const { selectedImg, selectedProducts } = this.state;
-    const urlProduct = window.location.pathname.split('/')[2];
-    const allProducts = JSON.parse(sessionStorage.getItem('all'))
-      .categories[0].products;
+    const urlProduct = window.location.pathname.split("/")[2];
+    const allProducts = JSON.parse(sessionStorage.getItem("all")).categories[0]
+      .products;
     const productData = {
       ...allProducts.find((product) => product.id === urlProduct),
       currentCurrency,
     };
-    const {
-      name,
-      inStock,
-      gallery,
-      brand,
-      attributes,
-      prices,
-      description,
-    } = productData;
+    const { name, inStock, gallery, brand, attributes, prices, description } =
+      productData;
 
     if (!productData) {
-      return 'Error';
+      return "Error";
     }
 
     return (
@@ -94,10 +83,7 @@ class ProductDescription extends React.Component {
           ))}
         </div>
         <div className="product-description_main-img">
-          <img
-            src={selectedImg ? selectedImg : gallery[0]}
-            alt="main-img"
-          />
+          <img src={selectedImg ? selectedImg : gallery[0]} alt="main-img" />
         </div>
         <article className="product-description_description">
           <div className="product-description_text">
@@ -119,16 +105,11 @@ class ProductDescription extends React.Component {
             <p>
               <strong>PRICE:</strong>
             </p>
-            <Price
-              prices={prices}
-              currentCurrency={currentCurrency}
-            />
+            <Price prices={prices} currentCurrency={currentCurrency} />
           </div>
           <Button
             customClassName={
-              inStock
-                ? createCustomClass(large, green)
-                : 'disabled-button'
+              inStock ? createCustomClass(large, green) : "disabled-button"
             }
             disabled={!inStock}
             action={ADD_TO_CART}
@@ -138,21 +119,16 @@ class ProductDescription extends React.Component {
               count: 1,
             }}
           >
-            {inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
+            {inStock ? "ADD TO CART" : "OUT OF STOCK"}
           </Button>
-          <div className="product-description_info">
-            {parse(description)}
-          </div>
+          <div className="product-description_info">{parse(description)}</div>
         </article>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({
-  currencyPersistReducer,
-  backgroundReducer,
-}) => {
+const mapStateToProps = ({ currencyPersistReducer, backgroundReducer }) => {
   return {
     currentCurrency: currencyPersistReducer.currentCurrency,
     currentBackground: backgroundReducer.currentBackground,

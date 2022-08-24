@@ -13,6 +13,13 @@
   padding-bottom: 2rem;
 }
 
+.cart_page-alternative-title {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+}
+
 .cart_page-statistics {
   display: flex;
   padding-bottom: 1rem;

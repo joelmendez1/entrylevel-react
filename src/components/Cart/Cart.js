@@ -42,7 +42,12 @@ class Cart extends React.Component {
           purchasedProducts.map((product) => {
             if (product.count !== 0) {
               return (
-                <div key={product.id} className="cart_products">
+                <div
+                  key={product.id}
+                  className={`cart_products ${
+                    window.location.pathname === "/cart" && "cart_page"
+                  }`}
+                >
                   <div className="cart_products-description">
                     <h1>{product.brand}</h1>
                     <p>{product.name}</p>

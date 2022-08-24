@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./modal.css";
 
 class Modal extends React.Component {
   render() {
-    const { open, onClose } = this.props;
+    const { open, onClose, customClass } = this.props;
 
     if (!open) return null;
 

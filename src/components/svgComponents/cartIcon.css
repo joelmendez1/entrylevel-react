@@ -15,8 +15,8 @@ sup {
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: white;
-  background-color: black;
+  color: #ffffff;
+  background-color: #000000;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -31,4 +31,20 @@ sup {
   align-items: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.cart_overlay {
+  padding: 1rem;
+  position: absolute;
+  width: 25%;
+  max-height: 70%;
+  top: 5rem;
+  right: 5%;
+  background-color: #ffffff;
+  overflow: scroll;
+}
+
+.cart_overlay-actions {
+  display: flex;
+  justify-content: space-between;
 }

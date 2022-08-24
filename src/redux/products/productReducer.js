@@ -1,17 +1,19 @@
-import { SET_PRODUCT } from "../actions-creator";
+import { SET_PRODUCT, RESET_CART } from "../actions-creator";
 import { objectCompare } from "../../utils/utils";
 
 const ADD_TO_CART = "addToCart";
 const INCREMENT = "increment";
 const DECREMENT = "decrement";
+const BUY = "buy";
 
 const initialState = {
   type: SET_PRODUCT,
   purchasedProducts: [],
   totalProducts: 0,
+  order: false,
 };
 
-const incrementor = (arr, action) => {
+const hasProductBeenAdded = (arr, action) => {
   const currentProductAttributes = action.payload.product.selectedAttributes;
 
   for (let i = 0; i < arr.length; i++) {
@@ -33,7 +35,7 @@ const productsReducer = (state = initialState, action) => {
     case SET_PRODUCT:
       switch (action.payload.action) {
         case ADD_TO_CART:
-          let isOnTheList = incrementor(products, action);
+          let isOnTheList = hasProductBeenAdded(products, action);
 
           if (!isOnTheList) {
             products = state.purchasedProducts.concat(action.payload.product);
@@ -45,7 +47,7 @@ const productsReducer = (state = initialState, action) => {
             totalProducts: state.totalProducts + 1,
           };
         case INCREMENT:
-          incrementor(products, action);
+          hasProductBeenAdded(products, action);
 
           return {
             ...state,
@@ -75,18 +77,29 @@ const productsReducer = (state = initialState, action) => {
               }
             }
           }
-
           return {
             ...state,
             purchasedProducts: products,
             totalProducts: state.totalProducts - 1,
           };
+        case BUY:
+          return {
+            ...state,
+            purchasedProducts: [],
+            totalProducts: 0,
+            order: true,
+          };
         default:
           return state;
       }
+    case RESET_CART:
+      return {
+        ...state,
+        order: false,
+      };
     default:
       return state;
   }
 };
 
-export { productsReducer, ADD_TO_CART, INCREMENT, DECREMENT };
+export { productsReducer, ADD_TO_CART, INCREMENT, DECREMENT, BUY };

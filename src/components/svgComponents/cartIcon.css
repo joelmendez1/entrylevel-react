@@ -32,3 +32,19 @@ sup {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+
+.cart_overlay {
+  padding: 1rem;
+  position: absolute;
+  width: 25%;
+  max-height: 70%;
+  top: 5rem;
+  right: 5%;
+  background-color: #ffffff;
+  overflow: scroll;
+}
+
+.cart_overlay-actions {
+  display: flex;
+  justify-content: space-between;
+}

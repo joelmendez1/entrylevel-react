@@ -1,10 +1,10 @@
-import React from 'react';
-import './all.css';
-import { get } from '../../queries/getAllData';
-import Product from '../Product/Product';
-import { checkSessionData } from '../../utils/sessionStorage';
-import { connect } from 'react-redux';
-import { Loader } from '../Loader/Loader';
+import React from "react";
+import "./all.css";
+import { get } from "../../queries/getAllData";
+import Product from "../Product/Product";
+import { checkSessionData } from "../../utils/sessionStorage";
+import { connect } from "react-redux";
+import { Loader } from "../Loader/Loader";
 
 class All extends React.Component {
   constructor(props) {
@@ -16,9 +16,9 @@ class All extends React.Component {
   }
 
   componentDidMount() {
-    (JSON.parse(sessionStorage.getItem('all'))
-      ? checkSessionData('all')
-      : get('all')
+    (JSON.parse(sessionStorage.getItem("all"))
+      ? checkSessionData("all")
+      : get("all")
     )
       .then((res) => {
         this.setState({
@@ -27,15 +27,14 @@ class All extends React.Component {
         });
       })
       .catch((error) => {
-        console.error('An error has ocurred: ', error);
+        console.error("An error has ocurred: ", error);
       });
   }
 
   render() {
     const { products, loading } = this.state;
     const { currentURL, currentBackground } = this.props;
-    const categoryName =
-      window.location.pathname.slice(1) || 'WELCOME';
+    const categoryName = window.location.pathname.slice(1) || "WELCOME";
 
     return (
       <main className="all" style={{ background: currentBackground }}>
@@ -65,10 +64,7 @@ class All extends React.Component {
   }
 }
 
-const mapStateToProps = ({
-  navPersistReducer,
-  backgroundReducer,
-}) => {
+const mapStateToProps = ({ navPersistReducer, backgroundReducer }) => {
   return {
     currentURL: navPersistReducer.currentURL,
     currentBackground: backgroundReducer.currentBackground,

@@ -50,7 +50,7 @@ class Slider extends React.Component {
 
     return (
       <div className="slider-container">
-        <img className="slider-product" src={currentImg}></img>
+        <img className="slider-product" src={currentImg} alt="product-img" />
         {window.location.pathname === "/cart" && productLength > 1 && (
           <div className="slider_actions">
             <LeftSliderIcon onClick={() => this.handleOnClick("previous")} />

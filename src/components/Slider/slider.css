@@ -1,9 +1,9 @@
-.slider-container {
+.slider_container {
   display: flex;
   position: relative;
 }
 
-.slider-product {
+.slider_product {
   position: relative;
   width: 100px;
   height: auto;

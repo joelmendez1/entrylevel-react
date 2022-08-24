@@ -54,9 +54,9 @@ class Currency extends React.Component {
     const { currentCurrency } = this.props;
 
     return (
-      <div className="container" onClick={this.handleOnClick}>
+      <div className="currency" onClick={this.handleOnClick}>
         <div className="currency_selector">
-          <strong className="currency-icon">{currentCurrency.symbol}</strong>
+          <strong className="currency_icon">{currentCurrency.symbol}</strong>
           <Caret className={caretActivated ? "caret-activated" : "caret"} />
         </div>
         {currencies !== [] && this.renderCurrencies()}
@@ -71,7 +71,7 @@ class Currency extends React.Component {
     return (
       <ul
         className={
-          caretActivated ? "currency-container-activated" : "currency-container"
+          caretActivated ? "currency_container-activated" : "currency_container"
         }
       >
         {currencies.map((currency, index) => (

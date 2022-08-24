@@ -24,7 +24,7 @@
     opacity 0.3s, -webkit-transform 0.3s, -webkit-box-shadow 0.3s;
 }
 
-.product-add-view {
+.product_add-view {
   position: relative;
 }
 
@@ -48,7 +48,7 @@
   mix-blend-mode: multiply;
 }
 
-.text {
+.product_text {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -59,7 +59,7 @@
   padding-top: 1.5rem;
 }
 
-.circle-icon {
+.product_circle-icon {
   position: absolute;
   cursor: pointer;
   bottom: -1.2rem;

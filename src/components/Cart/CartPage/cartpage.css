@@ -3,29 +3,29 @@
   padding: 0;
 }
 
-.cart_page {
+.cart-page {
   width: 90%;
   margin: 0 auto;
 }
 
-.cart_page-title {
+.cart-page_title {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
-.cart_page-alternative-title {
+.cart-page_alternative-title {
   margin: auto;
   width: 50%;
   padding: 10px;
   text-align: center;
 }
 
-.cart_page-statistics {
+.cart-page_statistics {
   display: flex;
   padding-bottom: 1rem;
   padding-top: 1rem;
 }
 
-.cart_page-statistics div {
+.cart-page_statistics div {
   margin-left: 0.5rem;
 }

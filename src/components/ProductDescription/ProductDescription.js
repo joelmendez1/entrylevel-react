@@ -72,7 +72,7 @@ class ProductDescription extends React.Component {
         className="product-description_container"
         style={{ background: currentBackground }}
       >
-        <div className="product-images-section">
+        <div className="product-description_images-section">
           {gallery.map((img, index) => (
             <img
               onClick={() => this.setState({ selectedImg: img })}

@@ -39,7 +39,7 @@ class Nav extends React.Component {
 
     return (
       <nav>
-        <ul className="navigator">
+        <ul>
           {categories.map((category, index) => {
             const categoryName = category.name;
             return (
@@ -67,7 +67,7 @@ class Nav extends React.Component {
           })}
         </ul>
         <img src={Brand} alt="logo" />
-        <div className="actions">
+        <div className="nav_actions">
           <Currency />
           <CartIcon />
         </div>

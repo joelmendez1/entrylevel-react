@@ -1,34 +1,34 @@
 .container-cart {
-    position: relative;
-    cursor: pointer;
+  position: relative;
+  cursor: pointer;
 }
 
 div.container-cart.in-cart {
-    cursor: default;
+  cursor: default;
 }
 
 sup {
-    position: absolute;
-    bottom: 12px;
-    left: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-    background-color: black;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    font-weight: 900;
-    user-select: none;
+  position: absolute;
+  bottom: 12px;
+  left: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  background-color: black;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-weight: 900;
+  user-select: none;
 }
 
 .cart_total {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }

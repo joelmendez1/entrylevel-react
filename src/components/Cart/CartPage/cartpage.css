@@ -1,24 +1,24 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .cart_page {
-    width: 90%;
-    margin: 0 auto;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .cart_page-title {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
-.cart_page-statistics  {
-    display: flex;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
+.cart_page-statistics {
+  display: flex;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
 
 .cart_page-statistics div {
-    margin-left: 0.5rem;
+  margin-left: 0.5rem;
 }

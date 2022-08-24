@@ -1,7 +1,7 @@
 //CUSTOMCLASS FUNCTION
 const createCustomClass = (size, color) => {
-    return `${size} ${color}`;
-}
+  return `${size} ${color}`;
+};
 // SIZES CLASSES
 const large = "large";
 const medium = "medium";
@@ -11,12 +11,4 @@ const green = "green";
 const white = "white";
 const gray = "gray";
 
-export {
-    createCustomClass,
-    large,
-    medium,
-    small,
-    green,
-    white,
-    gray
-}
+export { createCustomClass, large, medium, small, green, white, gray };

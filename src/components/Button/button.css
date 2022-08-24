@@ -1,71 +1,71 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 button {
-    text-align: center;
-    cursor: pointer;
-    border: none;
-    text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
 }
 
 button:hover {
-    filter: brightness(0.85);
+  filter: brightness(0.85);
 }
 
 button:active {
-    animation-name: buttonAnimation;
-    animation-duration: 5s;
-    animation-timing-function: ease-in-out;
-  }
+  animation-name: buttonAnimation;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+}
 
 @keyframes buttonAnimation {
-    0% {
-        transform: scale(0.8);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /*AFFAIR*/
 
-.large{
-    min-width: 15rem;
-    min-height: 3rem;
-    color: #ffffff;
-    font-size: medium;
+.large {
+  min-width: 15rem;
+  min-height: 3rem;
+  color: #ffffff;
+  font-size: medium;
 }
 
 .medium {
-    min-width: 9rem;
-    min-height: 2.5rem;
-    font-size: small;
+  min-width: 9rem;
+  min-height: 2.5rem;
+  font-size: small;
 }
 
 .small {
-    min-width: 1.5rem;
-    min-height: 1.5rem;
-    font-size: small;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  font-size: small;
 }
 
-.green{
-    background: #5ECE7B;
-    color: #FFFFFF;
+.green {
+  background: #5ece7b;
+  color: #ffffff;
 }
 
 .white {
-    background: #FFFFFF;
-    color: #000000;
-    border: 1px solid #000000;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
 }
 
 .gray {
-    background: #686868;
-    color: #FFFFFF;
-    text-shadow: 1px 1px 2px black;
+  background: #686868;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px black;
 }

@@ -1,50 +1,50 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 main {
-    min-height: 100vh;
-    background: #FFFFFF;
+  min-height: 100vh;
+  background: #ffffff;
 }
 
 .all-title {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .all-products-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.all-title{
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 5rem;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+.all-title {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 5rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 .category {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: 6rem;
-    text-align: center;
-    font-size: large;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 6rem;
+  text-align: center;
+  font-size: large;
 }
 
 .all-products {
-    width: 90%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 1fr;
-    gap: 3rem;
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 3rem;
 }

@@ -1,16 +1,18 @@
 const saveData = (field, data) => {
-    const getSessionStorageField = JSON.parse(sessionStorage.getItem(field));
+  const getSessionStorageField = JSON.parse(sessionStorage.getItem(field));
 
-    if(!getSessionStorageField) {
-        sessionStorage.setItem(field, JSON.stringify(data));
-    }
+  if (!getSessionStorageField) {
+    sessionStorage.setItem(field, JSON.stringify(data));
+  }
 
-    return getSessionStorageField;
-}
+  return getSessionStorageField;
+};
 
 const checkSessionData = async (field) => {
-    const getSessionStorageField = await JSON.parse(sessionStorage.getItem(field));
-    return getSessionStorageField;
-}
+  const getSessionStorageField = await JSON.parse(
+    sessionStorage.getItem(field)
+  );
+  return getSessionStorageField;
+};
 
-export { saveData, checkSessionData }
+export { saveData, checkSessionData };

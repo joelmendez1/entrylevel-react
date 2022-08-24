@@ -1,14 +1,15 @@
 .cart_overlay {
-    padding: 1rem;
-    position: absolute;
-    width: 25%;
-    height: auto;
-    top: 5rem;
-    right: 5%;
-    background-color: #FFFFFF;
+  padding: 1rem;
+  position: absolute;
+  width: 25%;
+  max-height: 70%;
+  top: 5rem;
+  right: 5%;
+  background-color: #ffffff;
+  overflow: scroll;
 }
 
 .cart_overlay-actions {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }

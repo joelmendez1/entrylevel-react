@@ -1,103 +1,162 @@
-import React from "react";
-import "./productDescription.css";
-import { connect } from "react-redux";
-import  Button  from "../Button/Button";
-import { createCustomClass, large, green } from "../Button/buttonUtils";
-import { ADD_TO_CART } from "../../redux/products/productReducer";
-import parse from "html-react-parser";
-import { Select } from "../Select/Select";
-import { Price } from "../Price/Price";
+import React from 'react';
+import './productDescription.css';
+import { connect } from 'react-redux';
+import Button from '../Button/Button';
+import {
+  createCustomClass,
+  large,
+  green,
+} from '../Button/buttonUtils';
+import { ADD_TO_CART } from '../../redux/products/productReducer';
+import parse from 'html-react-parser';
+import { Select } from '../Select/Select';
+import { Price } from '../Price/Price';
 
 class ProductDescription extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedImg: "",
-            selectedProducts: {}
-        }
-        this.onChangeSelectedAttributes = this.onChangeSelectedAttributes.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedImg: '',
+      selectedProducts: {},
+    };
+    this.onChangeSelectedAttributes =
+      this.onChangeSelectedAttributes.bind(this);
+  }
+
+  onChangeSelectedAttributes(selectedAttribute) {
+    this.setState({
+      selectedProducts: selectedAttribute,
+    });
+  }
+
+  componentDidMount() {
+    const { currentCurrency } = this.props;
+    const urlProduct = window.location.pathname.split('/')[2];
+    const allProducts = JSON.parse(sessionStorage.getItem('all'))
+      .categories[0].products;
+    const productData = {
+      ...allProducts.find((product) => product.id === urlProduct),
+      currentCurrency,
+    };
+
+    const defaultAttributes = productData.attributes
+      .map((attribute) => {
+        return {
+          [attribute.name]: attribute.items[0].value,
+        };
+      })
+      .reduce((acc, currentEl) => {
+        return { ...acc, ...currentEl };
+      }, {});
+
+    this.setState({
+      selectedProducts: defaultAttributes,
+    });
+  }
+
+  render() {
+    const { currentCurrency, currentBackground } = this.props;
+    const { selectedImg, selectedProducts } = this.state;
+    const urlProduct = window.location.pathname.split('/')[2];
+    const allProducts = JSON.parse(sessionStorage.getItem('all'))
+      .categories[0].products;
+    const productData = {
+      ...allProducts.find((product) => product.id === urlProduct),
+      currentCurrency,
+    };
+    const {
+      name,
+      inStock,
+      gallery,
+      brand,
+      attributes,
+      prices,
+      description,
+    } = productData;
+
+    if (!productData) {
+      return 'Error';
     }
 
-    onChangeSelectedAttributes(selectedAttribute) {
-        this.setState({
-            selectedProducts: selectedAttribute
-        })
-    }
-
-    componentDidMount() {
-        const { currentCurrency } = this.props;
-        const urlProduct = window.location.pathname.split("/")[2];
-        const allProducts = JSON.parse(sessionStorage.getItem("all")).categories[0].products;
-        const productData = {...allProducts.find((product) => product.id === urlProduct), currentCurrency};
-
-        const defaultAttributes = productData.attributes
-            .map(attribute => {
-                return {
-                    [attribute.name]: attribute.items[0].value
-                }
-            })
-            .reduce((acc, currentEl) => {
-                return {...acc, ...currentEl}
-            }, {})
-
-        this.setState({
-            selectedProducts: defaultAttributes
-        })
-    }
-
-    render() {
-        const { currentCurrency } = this.props;
-        const { selectedImg, selectedProducts } = this.state;
-        const urlProduct = window.location.pathname.split("/")[2];
-        const allProducts = JSON.parse(sessionStorage.getItem("all")).categories[0].products;
-        const productData = {...allProducts.find((product) => product.id === urlProduct), currentCurrency};
-        const { name, inStock, gallery, brand, attributes, prices, description } = productData;
-
-        if(!productData) {
-            return "Error"
-        }
-
-        return (
-            <div className="product-description_container">
-                <div className="product-images-section">
-                    {gallery.map((img, index) => (
-                        <img onClick={() => this.setState({selectedImg: img})} key={index} src={img} alt={`img-${img}`}></img>
-                    ))}
-                </div>
-                <div className="product-description_main-img">
-                    <img src={ selectedImg ? selectedImg : gallery[0]} alt="main-img"/>
-                </div>
-                <article className="product-description_description">
-                    <div className="product-description_text">
-                        <h1>{brand}</h1>
-                        <p>{name}</p>
-                    </div >
-                    <div className="product-description_attribute">
-                        {attributes.map(attribute => <Select type={attribute.type} attribute={attribute} selectedProducts={selectedProducts} onChange={this.onChangeSelectedAttributes} />)}
-                    </div>
-                    <div className="product-description_price">
-                        <p><strong>PRICE:</strong></p>
-                        <Price prices={prices} currentCurrency={currentCurrency}/>
-                    </div>
-                    <Button
-                    customClassName = {inStock ? createCustomClass(large, green) : "disabled-button"}
-                    disabled = {!inStock} action={ADD_TO_CART}
-                    productData = {{...productData, selectedAttributes: selectedProducts, count: 1}}>
-                        {inStock ? "ADD TO CART" : "OUT OF STOCK"}
-                    </Button>
-                    <div className="product-description_info">
-                        {parse(description)}
-                    </div>
-                </article>
-            </div>
-        )
-    }
+    return (
+      <div
+        className="product-description_container"
+        style={{ background: currentBackground }}
+      >
+        <div className="product-images-section">
+          {gallery.map((img, index) => (
+            <img
+              onClick={() => this.setState({ selectedImg: img })}
+              key={index}
+              src={img}
+              alt={`img-${img}`}
+            ></img>
+          ))}
+        </div>
+        <div className="product-description_main-img">
+          <img
+            src={selectedImg ? selectedImg : gallery[0]}
+            alt="main-img"
+          />
+        </div>
+        <article className="product-description_description">
+          <div className="product-description_text">
+            <h1>{brand}</h1>
+            <p>{name}</p>
+          </div>
+          <div className="product-description_attribute">
+            {attributes.map((attribute, index) => (
+              <Select
+                key={`select-${attribute.id}-${index}`}
+                type={attribute.type}
+                attribute={attribute}
+                selectedProducts={selectedProducts}
+                onChange={this.onChangeSelectedAttributes}
+              />
+            ))}
+          </div>
+          <div className="product-description_price">
+            <p>
+              <strong>PRICE:</strong>
+            </p>
+            <Price
+              prices={prices}
+              currentCurrency={currentCurrency}
+            />
+          </div>
+          <Button
+            customClassName={
+              inStock
+                ? createCustomClass(large, green)
+                : 'disabled-button'
+            }
+            disabled={!inStock}
+            action={ADD_TO_CART}
+            productData={{
+              ...productData,
+              selectedAttributes: selectedProducts,
+              count: 1,
+            }}
+          >
+            {inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
+          </Button>
+          <div className="product-description_info">
+            {parse(description)}
+          </div>
+        </article>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = ({ currencyPersistReducer }) => {
-    return {
-        currentCurrency: currencyPersistReducer.currentCurrency
-    }
-}
+const mapStateToProps = ({
+  currencyPersistReducer,
+  backgroundReducer,
+}) => {
+  return {
+    currentCurrency: currencyPersistReducer.currentCurrency,
+    currentBackground: backgroundReducer.currentBackground,
+  };
+};
 
-export default connect(mapStateToProps)(ProductDescription)
+export default connect(mapStateToProps)(ProductDescription);

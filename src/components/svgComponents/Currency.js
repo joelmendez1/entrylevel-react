@@ -25,7 +25,7 @@ class Currency extends React.Component {
   }
 
   handleClickOutside(e) {
-    if (e.target.className !== "container") {
+    if (e.target.className !== "currency") {
       this.setState({
         caretActivated: false,
       });

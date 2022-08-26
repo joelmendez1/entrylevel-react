@@ -63,7 +63,8 @@ class CartIcon extends React.Component {
         <Modal open={showCartOverlay} onClose={() => this.handleOnClick()}>
           <div className="cart-icon_overlay">
             <p>
-              <strong> My Bag </strong> {totalProducts} items
+              <strong> My Bag </strong>{" "}
+              {`${totalProducts} ${totalProducts > 1 ? "items" : "item"}`}
             </p>
             <Cart onClick={(e) => e.stopPropagation()} />
             <div className="cart-icon_total">

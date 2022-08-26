@@ -21,12 +21,10 @@ class CartIcon extends React.Component {
   }
 
   handleOnClick() {
-    if (window.location.pathname !== "/cart") {
-      this.setState({
-        showCartOverlay: !this.state.showCartOverlay,
-      });
-      this.props.setBackground(!this.state.showCartOverlay);
-    }
+    this.setState({
+      showCartOverlay: !this.state.showCartOverlay,
+    });
+    this.props.setBackground(!this.state.showCartOverlay);
   }
 
   componentDidMount() {

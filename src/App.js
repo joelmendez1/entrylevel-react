@@ -53,6 +53,7 @@ class App extends React.Component {
                 element={<All />}
               ></Route>
             ))}
+            <Route path="/" element={<All />}></Route>
             <Route
               path="/product/:product"
               element={<ProductDescription />}

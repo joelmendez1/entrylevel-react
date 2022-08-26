@@ -9,8 +9,7 @@
 .product-description_container {
   display: flex;
   justify-content: space-between;
-  width: 100vw;
-  max-height: calc(100vh - 5rem);
+  height: calc(100vh - 5rem);
   overflow: hidden;
   line-height: 2rem;
 }
@@ -20,6 +19,7 @@
   flex-direction: column;
   max-height: 100vh;
   overflow: scroll;
+  mix-blend-mode: multiply;
 }
 
 .product-description_images-section img {
@@ -37,6 +37,7 @@
   align-items: center;
   width: 40%;
   max-height: 100vh;
+  mix-blend-mode: multiply;
 }
 
 .product-description_main-img img {

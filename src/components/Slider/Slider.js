@@ -2,6 +2,7 @@ import React from "react";
 import "./slider.css";
 import { ReactComponent as RightSliderIcon } from "../../assets/right-slider-button.svg";
 import { ReactComponent as LeftSliderIcon } from "../../assets/left-slider-button.svg";
+import { getPathname } from "../../utils/utils";
 
 class Slider extends React.Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class Slider extends React.Component {
     const { images } = this.props;
 
     this.setState({
-      currentImg: images[0],
+      currentImg: Array.isArray(images) ? images[0] : images,
     });
   }
 
@@ -51,7 +52,7 @@ class Slider extends React.Component {
     return (
       <div className="slider_container">
         <img className="slider_product" src={currentImg} alt="product-img" />
-        {window.location.pathname === "/cart" && productLength > 1 && (
+        {getPathname("cart") && productLength > 1 && (
           <div className="slider_actions">
             <LeftSliderIcon onClick={() => this.handleOnClick("previous")} />
             <RightSliderIcon onClick={() => this.handleOnClick("next")} />

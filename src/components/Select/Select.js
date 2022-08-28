@@ -16,7 +16,7 @@ class Select extends React.Component {
   }
 
   renderSelector() {
-    const { type, attribute, selectedProducts, onChange } = this.props;
+    const { type, attribute, selectedProduct, onChange } = this.props;
 
     return (
       <div className="select_attributes">
@@ -29,12 +29,12 @@ class Select extends React.Component {
                   background: item.value === "#FFFFFF" ? "#c4bebe" : item.value,
                 }}
                 className={`select_swatch ${
-                  selectedProducts[attribute.id] === item.value && "item-swatch"
+                  selectedProduct[attribute.id] === item.value && "item-swatch"
                 }`}
                 onClick={() => {
                   onChange &&
                     onChange({
-                      ...selectedProducts,
+                      ...selectedProduct,
                       [attribute.name]: item.value,
                     });
                 }}
@@ -45,13 +45,13 @@ class Select extends React.Component {
               <div
                 key={`select_attributes-${item.id}-${attribute.id}`}
                 className={`select_non-swatch ${
-                  selectedProducts[attribute.id] === item.value &&
+                  selectedProduct[attribute.id] === item.value &&
                   "item-non-swatch"
                 }`}
                 onClick={() => {
                   onChange &&
                     onChange({
-                      ...selectedProducts,
+                      ...selectedProduct,
                       [attribute.name]: item.value,
                     });
                 }}

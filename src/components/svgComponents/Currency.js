@@ -1,7 +1,6 @@
 import React from "react";
 import "./currency.css";
 import { ReactComponent as Caret } from "../../assets/vector2.svg";
-import { checkSessionData } from "../../utils/sessionStorage";
 import { getCurrenciesData } from "../../queries/getCurrenciesData";
 import { connect } from "react-redux";
 import { setCurrency } from "../../redux/currency/currencyActions";
@@ -33,10 +32,7 @@ class Currency extends React.Component {
   }
 
   componentDidMount() {
-    (JSON.parse(sessionStorage.getItem("currencies"))
-      ? checkSessionData("currencies")
-      : getCurrenciesData("currencies")
-    )
+    getCurrenciesData("currencies")
       .then((res) => {
         this.setState({
           currencies: res.currencies,

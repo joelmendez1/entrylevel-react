@@ -5,7 +5,6 @@ import All from "./components/All/All";
 import Nav from "./components/Nav/Nav";
 import ProductDescription from "./components/ProductDescription/ProductDescription";
 import CartPage from "./components/Cart/CartPage/CartPage";
-import { checkSessionData } from "./utils/sessionStorage";
 import { getCategoriesName } from "./queries/getCategoriesName";
 import { Loader } from "./components/Loader/Loader";
 
@@ -19,10 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    (JSON.parse(sessionStorage.getItem("categories"))
-      ? checkSessionData("categories")
-      : getCategoriesName("categories")
-    )
+    getCategoriesName("categories")
       .then((res) => {
         this.setState({
           categories: res.categories,

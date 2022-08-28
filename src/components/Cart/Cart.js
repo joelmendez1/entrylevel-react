@@ -88,7 +88,7 @@ class Cart extends React.Component {
                         -
                       </Button>
                     </div>
-                    <Slider images={product.gallery} />
+                    <Slider imageId={product.id} />
                   </section>
                 </div>
               );

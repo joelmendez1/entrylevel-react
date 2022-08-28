@@ -3,32 +3,34 @@ import "./slider.css";
 import { ReactComponent as RightSliderIcon } from "../../assets/right-slider-button.svg";
 import { ReactComponent as LeftSliderIcon } from "../../assets/left-slider-button.svg";
 import { getPathname } from "../../utils/utils";
+import { getAllImages } from "../../queries/getAllData";
 
 class Slider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      allImg: [],
       currentImg: "",
     };
     this.handleOnClick = this.handleOnClick.bind(this);
   }
 
   handleOnClick(action) {
-    const { images } = this.props;
-    const productLength = images.length;
-    const productIndex = images.indexOf(this.state.currentImg);
+    const { allImg } = this.state;
+    const productLength = allImg.length;
+    const productIndex = allImg.indexOf(this.state.currentImg);
 
     switch (action) {
       case "next":
         this.setState({
           currentImg:
-            images[productIndex < productLength - 1 ? productIndex + 1 : 0],
+            allImg[productIndex < productLength - 1 ? productIndex + 1 : 0],
         });
         break;
       case "previous":
         this.setState({
           currentImg:
-            images[productIndex < 1 ? productLength - 1 : productIndex - 1],
+            allImg[productIndex < 1 ? productLength - 1 : productIndex - 1],
         });
         break;
       default:
@@ -37,17 +39,20 @@ class Slider extends React.Component {
   }
 
   componentDidMount() {
-    const { images } = this.props;
+    const { imageId } = this.props;
 
-    this.setState({
-      currentImg: Array.isArray(images) ? images[0] : images,
+    getAllImages(imageId).then((res) => {
+      this.setState({
+        allImg: res.product.gallery,
+        currentImg: res.product.gallery[0],
+      });
     });
   }
 
   render() {
     const { currentImg } = this.state;
-    const { images } = this.props;
-    const productLength = images.length;
+    const { imageId } = this.props;
+    const productLength = imageId.length;
 
     return (
       <div className="slider_container">

@@ -2,8 +2,6 @@ import { client, Field, Query } from "@tilework/opus";
 
 client.setEndpoint("http://localhost:4000/graphql");
 
-//categories, category, currencies
-
 const get = async (field) => {
   let query = new Query("categories", true);
 
@@ -82,6 +80,7 @@ const getProduct = async (product) => {
     .addFieldList([
       "id",
       "name",
+      "brand",
       "inStock",
       "gallery",
       "description",
@@ -98,12 +97,13 @@ const getProduct = async (product) => {
 export default getProduct;
 
 const createGetAllQuery = async () => {
-  const firstQuery = new Query("categories", true)
+  const query = new Query("categories", true)
     .addField("name", true)
     .addField(
       new Field("products", true).addFieldList([
         "id",
         "name",
+        "brand",
         "attributes{id, name, type, items{displayValue, value, id}}",
         "inStock",
         "prices{currency{label, symbol}, amount}",
@@ -114,9 +114,19 @@ const createGetAllQuery = async () => {
         .addField("gallery")
         .addCalculatedField("gallery", (result) => result.gallery[0])
     );
-  const firstQueryResponse = await client.post(firstQuery);
+  const response = await client.post(query);
 
-  return firstQueryResponse;
+  return response;
 };
 
-export { get, createGetAllQuery };
+const getAllImages = async (imgId) => {
+  const query = new Query("product", true)
+    .addArgument("id", "String!", imgId)
+    .addFieldList(["gallery"]);
+
+  const response = await client.post(query);
+
+  return response;
+};
+
+export { get, createGetAllQuery, getAllImages };

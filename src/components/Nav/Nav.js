@@ -2,12 +2,13 @@ import React from "react";
 import "./nav.css";
 import { Link } from "react-router-dom";
 import { get } from "../../queries/getAllData";
-import { checkSessionData } from "../../utils/sessionStorage";
 import Brand from "../../assets/Group.svg";
 import Currency from "../svgComponents/Currency";
 import CartIcon from "../svgComponents/CartIcon";
 import { connect } from "react-redux";
 import { setURL } from "../../redux/nav/navActions";
+import { getPathname } from "../../utils/utils";
+import { getCategoriesName } from "../../queries/getCategoriesName";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -19,10 +20,7 @@ class Nav extends React.Component {
   }
 
   componentDidMount() {
-    (JSON.parse(sessionStorage.getItem("name"))
-      ? checkSessionData("name")
-      : get("name")
-    )
+    getCategoriesName()
       .then((res) => {
         this.setState({
           categories: res.categories,
@@ -45,11 +43,7 @@ class Nav extends React.Component {
             return (
               <li
                 key={index}
-                className={
-                  categoryName === window.location.pathname.slice(1)
-                    ? "hovered"
-                    : ""
-                }
+                className={getPathname(categoryName) ? "hovered" : ""}
               >
                 <Link
                   to={categoryName}

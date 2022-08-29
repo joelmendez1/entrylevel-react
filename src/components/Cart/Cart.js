@@ -7,6 +7,7 @@ import { INCREMENT, DECREMENT } from "../../redux/products/productReducer";
 import { Select } from "../Select/Select";
 import { Slider } from "../Slider/Slider";
 import { Price } from "../Price/Price";
+import { getPathname } from "../../utils/utils";
 
 class Cart extends React.Component {
   constructor(props) {
@@ -45,7 +46,7 @@ class Cart extends React.Component {
                 <div
                   key={product.id}
                   className={`cart_products ${
-                    window.location.pathname === "/cart" && "cart_page"
+                    getPathname("cart") && "cart_page"
                   }`}
                 >
                   <div className="cart_products-description">
@@ -56,15 +57,17 @@ class Cart extends React.Component {
                       currentCurrency={currentCurrency}
                     />
                     <div>
-                      {product.attributes.map((attribute, index) => (
-                        <Select
-                          key={`select-${attribute.value}-${index}`}
-                          type={attribute.type}
-                          attribute={attribute}
-                          selectedProducts={product.selectedAttributes}
-                          onChange={this.onChangeSelectedAttributes}
-                        />
-                      ))}
+                      {product.attributes.map((attribute, index) => {
+                        return (
+                          <Select
+                            key={`select-${attribute.value}-${index}`}
+                            type={attribute.type}
+                            attribute={attribute}
+                            selectedProduct={product.selectedAttributes}
+                            onChange={this.onChangeSelectedAttributes}
+                          />
+                        );
+                      })}
                     </div>
                   </div>
                   <section className="cart-products_actions-img">
@@ -85,7 +88,7 @@ class Cart extends React.Component {
                         -
                       </Button>
                     </div>
-                    <Slider images={product.gallery} />
+                    <Slider imageId={product.id} />
                   </section>
                 </div>
               );

@@ -57,7 +57,7 @@ class Product extends React.Component {
               className={`product_${name}-stock-${
                 inStock ? "onstock" : "offstock"
               }`}
-              src={gallery[0]}
+              src={gallery}
               alt={name}
             />
           </Link>

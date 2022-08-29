@@ -5,7 +5,7 @@ import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { updateCostCurrency } from "../../utils/utils";
+import { getPathname, updateCostCurrency } from "../../utils/utils";
 import { ReactComponent as CartSvg } from "../../assets/Vector.svg";
 import { setBackground } from "../../redux/background/backgroundActions";
 import { createCustomClass, medium, green, white } from "../Button/buttonUtils";
@@ -50,9 +50,7 @@ class CartIcon extends React.Component {
 
     return (
       <div
-        className={`cart-icon ${
-          window.location.pathname === "/cart" ? "in-cart" : ""
-        }`}
+        className={`cart-icon ${getPathname("cart") ? "in-cart" : ""}`}
         ref={this.myRef}
         onClick={() => this.handleOnClick()}
       >

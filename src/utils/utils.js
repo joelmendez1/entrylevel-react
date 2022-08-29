@@ -30,7 +30,14 @@ const objectCompare = (obj1, obj2) => {
       return true;
     }
   }
+
   return false;
 };
 
-export { updateCostCurrency, arrayCompare, objectCompare };
+const getPathname = (pathname) => {
+  const pathName = window.location.pathname.slice(1);
+
+  return pathname ? pathName === pathname : pathName;
+};
+
+export { updateCostCurrency, arrayCompare, objectCompare, getPathname };

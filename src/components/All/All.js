@@ -1,10 +1,10 @@
 import React from "react";
 import "./all.css";
-import { get } from "../../queries/getAllData";
+import { createGetAllQuery } from "../../queries/getAllData";
 import Product from "../Product/Product";
-import { checkSessionData } from "../../utils/sessionStorage";
 import { connect } from "react-redux";
 import { Loader } from "../Loader/Loader";
+import { getPathname } from "../../utils/utils";
 
 class All extends React.Component {
   constructor(props) {
@@ -16,44 +16,57 @@ class All extends React.Component {
   }
 
   componentDidMount() {
-    (JSON.parse(sessionStorage.getItem("all"))
-      ? checkSessionData("all")
-      : get("all")
-    )
+    createGetAllQuery(getPathname())
       .then((res) => {
         this.setState({
-          products: res.categories,
-          loading: false,
+          products: res.products,
         });
       })
       .catch((error) => {
         console.error("An error has ocurred: ", error);
+      })
+      .finally(() => {
+        this.setState({
+          loading: false,
+        });
       });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentURL !== this.props.currentURL) {
+      createGetAllQuery(getPathname())
+        .then((res) => {
+          this.setState({
+            products: res.products,
+          });
+        })
+        .catch((error) => {
+          console.error("An error has ocurred: ", error);
+        })
+        .finally(() => {
+          this.setState({
+            loading: false,
+          });
+        });
+    }
   }
 
   render() {
     const { products, loading } = this.state;
-    const { currentURL, currentBackground } = this.props;
-    const categoryName = window.location.pathname.slice(1) || "WELCOME";
+    const { currentBackground } = this.props;
 
     return (
       <main className="all" style={{ background: currentBackground }}>
         {!loading ? (
           <div className="all-products-container">
-            <h1 className="all-title">{categoryName}</h1>
+            <h1 className="all-title">{getPathname() || "WELCOME"}</h1>
             <section className="all-products">
-              {products.map((element) => {
-                const categoryName = element.name;
-                if (categoryName === currentURL) {
-                  return element.products.map((product, index) => (
-                    <Product
-                      key={`product-${product.name}-${index}`}
-                      {...product}
-                    />
-                  ));
-                }
-                return;
-              })}
+              {products.map((product, index) => (
+                <Product
+                  key={`product-${product.name}-${index}`}
+                  {...product}
+                />
+              ))}
             </section>
           </div>
         ) : (

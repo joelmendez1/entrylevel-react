@@ -40,11 +40,11 @@ class Cart extends React.Component {
     return (
       <section className="cart_section" onClick={onClick}>
         {purchasedProducts &&
-          purchasedProducts.map((product) => {
+          purchasedProducts.map((product, index) => {
             if (product.count !== 0) {
               return (
                 <div
-                  key={product.id}
+                  key={`cart_products-${product.name}-${index}`}
                   className={`cart_products ${
                     getPathname("cart") && "cart_page"
                   }`}

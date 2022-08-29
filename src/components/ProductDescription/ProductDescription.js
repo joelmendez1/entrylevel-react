@@ -7,7 +7,7 @@ import { ADD_TO_CART } from "../../redux/products/productReducer";
 import parse from "html-react-parser";
 import { Select } from "../Select/Select";
 import { Price } from "../Price/Price";
-import getProduct from "../../queries/getAllData";
+import { getProduct } from "../../queries/getAllData";
 import { Loader } from "../Loader/Loader";
 
 class ProductDescription extends React.Component {
@@ -147,25 +147,3 @@ const mapStateToProps = ({ currencyPersistReducer, backgroundReducer }) => {
 };
 
 export default connect(mapStateToProps)(ProductDescription);
-
-{
-  /* <div
-className="product-description_images-section"
-style={{ background: currentBackground }}
->
-{this.state.loading ? (
-  <Loader />
-) : (
-  <div>
-    {gallery.map((img, index) => (
-      <img
-        onClick={() => this.setState({ selectedImg: img })}
-        key={index}
-        src={img}
-        alt={`img-${img}`}
-      ></img>
-    ))}
-  </div>
-)}
-</div> */
-}

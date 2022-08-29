@@ -18,7 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    getCategoriesName("categories")
+    getCategoriesName()
       .then((res) => {
         this.setState({
           categories: res.categories,
@@ -59,7 +59,7 @@ class App extends React.Component {
               path="*"
               element={
                 <div>
-                  <h2>404 Page not found</h2>
+                  <h1>404 Page not found</h1>
                 </div>
               }
             />

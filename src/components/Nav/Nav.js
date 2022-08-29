@@ -8,6 +8,7 @@ import CartIcon from "../svgComponents/CartIcon";
 import { connect } from "react-redux";
 import { setURL } from "../../redux/nav/navActions";
 import { getPathname } from "../../utils/utils";
+import { getCategoriesName } from "../../queries/getCategoriesName";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class Nav extends React.Component {
   }
 
   componentDidMount() {
-    get("name")
+    getCategoriesName()
       .then((res) => {
         this.setState({
           categories: res.categories,

@@ -16,35 +16,37 @@ class All extends React.Component {
   }
 
   componentDidMount() {
-    createGetAllQuery()
+    createGetAllQuery(getPathname())
       .then((res) => {
-        const data = res.categories.filter(
-          (category) => category.name === (getPathname() || "all") && category
-        );
         this.setState({
-          products: data[0].products,
-          loading: false,
+          products: res.products,
         });
       })
       .catch((error) => {
         console.error("An error has ocurred: ", error);
+      })
+      .finally(() => {
+        this.setState({
+          loading: false,
+        });
       });
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.currentURL !== this.props.currentURL) {
-      createGetAllQuery()
+      createGetAllQuery(getPathname())
         .then((res) => {
-          const data = res.categories.filter(
-            (category) => category.name === getPathname() && category
-          );
           this.setState({
-            products: data[0].products,
-            loading: false,
+            products: res.products,
           });
         })
         .catch((error) => {
           console.error("An error has ocurred: ", error);
+        })
+        .finally(() => {
+          this.setState({
+            loading: false,
+          });
         });
     }
   }

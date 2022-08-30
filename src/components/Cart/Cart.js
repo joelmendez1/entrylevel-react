@@ -61,6 +61,7 @@ class Cart extends React.Component {
                         return (
                           <Select
                             key={`select-${attribute.value}-${index}`}
+                            productId={product.id}
                             type={attribute.type}
                             attribute={attribute}
                             selectedProduct={product.selectedAttributes}

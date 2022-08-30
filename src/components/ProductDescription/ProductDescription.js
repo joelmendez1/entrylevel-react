@@ -64,8 +64,16 @@ class ProductDescription extends React.Component {
     const { currentCurrency, currentBackground } = this.props;
     const { selectedProduct, selectedImg, loading, selectedAttributes } =
       this.state;
-    const { name, gallery, brand, attributes, prices, inStock, description } =
-      selectedProduct;
+    const {
+      name,
+      id,
+      gallery,
+      brand,
+      attributes,
+      prices,
+      inStock,
+      description,
+    } = selectedProduct;
 
     return (
       <div>
@@ -99,6 +107,7 @@ class ProductDescription extends React.Component {
                 {attributes.map((attribute, index) => (
                   <Select
                     key={`select-${attribute.id}-${index}`}
+                    productId={id}
                     type={attribute.type}
                     attribute={attribute}
                     selectedProduct={selectedAttributes}

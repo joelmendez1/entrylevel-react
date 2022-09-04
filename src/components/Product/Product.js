@@ -24,6 +24,8 @@ class Product extends React.Component {
   }
 
   componentDidMount() {
+    const { currentCurrency } = this.props;
+
     const defaultAttributes = this.props.attributes
       .map((attribute) => {
         return {
@@ -31,7 +33,7 @@ class Product extends React.Component {
         };
       })
       .reduce((acc, currentEl) => {
-        return { ...acc, ...currentEl };
+        return { ...acc, ...currentEl, currentCurrency };
       }, {});
 
     this.setState({

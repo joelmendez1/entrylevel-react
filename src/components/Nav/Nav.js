@@ -1,7 +1,6 @@
 import React from "react";
 import "./nav.css";
 import { Link } from "react-router-dom";
-import { get } from "../../queries/getAllData";
 import Brand from "../../assets/Group.svg";
 import Currency from "../svgComponents/Currency";
 import CartIcon from "../svgComponents/CartIcon";

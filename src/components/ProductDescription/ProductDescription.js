@@ -75,6 +75,8 @@ class ProductDescription extends React.Component {
       description,
     } = selectedProduct;
 
+    console.log(description);
+
     return (
       <div>
         {!loading ? (

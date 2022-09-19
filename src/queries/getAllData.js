@@ -12,16 +12,11 @@ const createGetAllQuery = async (pathName) => {
           "name",
           "brand",
           "inStock",
+          "attributes{id, name, type, items{displayValue, value, id}}",
           "prices{currency{label, symbol}, amount}",
         ])
         .addField("gallery")
         .addCalculatedField("gallery", (result) => result.gallery[0])
-        .addField(
-          new Field("attributes", true)
-            .addFieldList(["id", "name", "type"])
-            .addField("items{displayValue, value, id}", true)
-            .addCalculatedField("items", (response) => [response.items[0]])
-        )
     )
     .addArgument("input", "CategoryInput", { title: pathName });
 
@@ -60,16 +55,4 @@ const getAllImages = async (imgId) => {
   return response;
 };
 
-const getAllAttributes = async (attributeName) => {
-  const query = new Query("product", true)
-    .addArgument("id", "String!", attributeName)
-    .addFieldList([
-      "attributes{id, name, type, items{displayValue, value, id}}",
-    ]);
-
-  const response = await client.post(query);
-
-  return response.product.attributes[0];
-};
-
-export { createGetAllQuery, getProduct, getAllImages, getAllAttributes };
+export { createGetAllQuery, getProduct, getAllImages };

@@ -29,7 +29,7 @@ class Product extends React.Component {
     const defaultAttributes = this.props.attributes
       .map((attribute) => {
         return {
-          [attribute.name]: attribute.items[0].value,
+          [attribute.id]: attribute.items[0].value,
         };
       })
       .reduce((acc, currentEl) => {

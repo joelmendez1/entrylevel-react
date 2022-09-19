@@ -45,9 +45,8 @@ class Cart extends React.Component {
               return (
                 <div
                   key={`cart_products-${product.name}-${index}`}
-                  className={`cart_products ${
-                    getPathname("cart") && "cart_page"
-                  }`}
+                  className={`cart_products ${getPathname("cart") && "cart_page"
+                    }`}
                 >
                   <div className="cart_products-description">
                     <h1>{product.brand}</h1>
@@ -57,19 +56,17 @@ class Cart extends React.Component {
                       currentCurrency={currentCurrency}
                     />
                     <div>
-                      {product.attributes.map((attribute, index) => {
-                        return (
-                          <Select
-                            key={`select-${attribute.value}-${index}`}
-                            productId={product.id}
-                            type={attribute.type}
-                            attribute={attribute}
-                            selectedProduct={product.selectedAttributes}
-                            onChange={this.onChangeSelectedAttributes}
-                          />
-                        );
-                      })}
-                    </div>
+                      {product.attributes.map((attribute, index) => (
+                        <Select
+                          key={`select-${attribute.value}-${index}`}
+                          productId={product.id}
+                          type={attribute.type}
+                          attribute={attribute}
+                          selectedProduct={product.selectedAttributes}
+                          onChange={this.onChangeSelectedAttributes}
+                        />
+                      ))}
+                    </div>f
                   </div>
                   <section className="cart-products_actions-img">
                     <div className="cart_products-actions">

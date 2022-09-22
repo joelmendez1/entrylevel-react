@@ -39,31 +39,33 @@ class App extends React.Component {
 
     return (
       <BrowserRouter>
-        <Nav />
+        <Nav categories={categories} loading={loading} />
         {!loading ? (
-          <Routes>
-            {categories.map((category) => (
+          <div style={{ padding: "10px" }}>
+            <Routes>
+              {categories.map((category) => (
+                <Route
+                  key={`route-${category.name}`}
+                  path={`/${category.name}`}
+                  element={<All />}
+                ></Route>
+              ))}
+              <Route path="/" element={<All />}></Route>
               <Route
-                key={`route-${category.name}`}
-                path={`/${category.name}`}
-                element={<All />}
+                path="/product/:product"
+                element={<ProductDescription />}
               ></Route>
-            ))}
-            <Route path="/" element={<All />}></Route>
-            <Route
-              path="/product/:product"
-              element={<ProductDescription />}
-            ></Route>
-            <Route path="/cart" element={<CartPage />}></Route>
-            <Route
-              path="*"
-              element={
-                <div>
-                  <h1>404 Page not found</h1>
-                </div>
-              }
-            />
-          </Routes>
+              <Route path="/cart" element={<CartPage />}></Route>
+              <Route
+                path="*"
+                element={
+                  <div>
+                    <h1>404 Page not found</h1>
+                  </div>
+                }
+              />
+            </Routes>
+          </div>
         ) : (
           <Loader />
         )}

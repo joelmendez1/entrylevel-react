@@ -70,6 +70,10 @@
   overflow-y: scroll;
 }
 
+.product-description_info ul {
+  list-style: inside;
+}
+
 .disabled-button {
   cursor: default;
   min-width: 15rem;

@@ -66,7 +66,7 @@ class Cart extends React.Component {
                           onChange={this.onChangeSelectedAttributes}
                         />
                       ))}
-                    </div>f
+                    </div>
                   </div>
                   <section className="cart-products_actions-img">
                     <div className="cart_products-actions">

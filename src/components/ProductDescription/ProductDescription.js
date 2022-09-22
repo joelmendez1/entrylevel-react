@@ -75,77 +75,66 @@ class ProductDescription extends React.Component {
       description,
     } = selectedProduct;
 
-    console.log(description);
-
-    return (
-      <div>
-        {!loading ? (
-          <div
-            className="product-description_container"
-            style={{ background: currentBackground }}
-          >
-            <div className="product-description_images-section">
-              {gallery.map((img, index) => (
-                <img
-                  onClick={() => this.setState({ selectedImg: img })}
-                  key={index}
-                  src={img}
-                  alt={`img-${img}`}
-                ></img>
-              ))}
-            </div>
-            <div className="product-description_main-img">
-              <img
-                src={selectedImg ? selectedImg : gallery[0]}
-                alt="main-img"
-              />
-            </div>
-            <article className="product-description_description">
-              <div className="product-description_text">
-                <h1>{brand}</h1>
-                <p>{name}</p>
-              </div>
-              <div className="product-description_attribute">
-                {attributes.map((attribute, index) => (
-                  <Select
-                    key={`select-${attribute.id}-${index}`}
-                    productId={id}
-                    type={attribute.type}
-                    attribute={attribute}
-                    selectedProduct={selectedAttributes}
-                    onChange={this.onChangeSelectedAttributes}
-                  />
-                ))}
-              </div>
-              <div className="product-description_price">
-                <p>
-                  <strong>PRICE:</strong>
-                </p>
-                <Price prices={prices} currentCurrency={currentCurrency} />
-              </div>
-              <Button
-                customClassName={
-                  inStock ? createCustomClass(large, green) : "disabled-button"
-                }
-                disabled={!inStock}
-                action={ADD_TO_CART}
-                productData={{
-                  ...selectedProduct,
-                  selectedAttributes: selectedAttributes,
-                  count: 1,
-                }}
-              >
-                {inStock ? "ADD TO CART" : "OUT OF STOCK"}
-              </Button>
-              <div className="product-description_info">
-                {parse(description)}
-              </div>
-            </article>
+    return !loading ? (
+      <div
+        className="product-description_container"
+        style={{ background: currentBackground }}
+      >
+        <div className="product-description_images-section">
+          {gallery.map((img, index) => (
+            <img
+              onClick={() => this.setState({ selectedImg: img })}
+              key={index}
+              src={img}
+              alt={`img-${img}`}
+            ></img>
+          ))}
+        </div>
+        <div className="product-description_main-img">
+          <img src={selectedImg ? selectedImg : gallery[0]} alt="main-img" />
+        </div>
+        <article className="product-description_description">
+          <div className="product-description_text">
+            <h1>{brand}</h1>
+            <p>{name}</p>
           </div>
-        ) : (
-          <Loader />
-        )}
+          <div className="product-description_attribute">
+            {attributes.map((attribute, index) => (
+              <Select
+                key={`select-${attribute.id}-${index}`}
+                productId={id}
+                type={attribute.type}
+                attribute={attribute}
+                selectedProduct={selectedAttributes}
+                onChange={this.onChangeSelectedAttributes}
+              />
+            ))}
+          </div>
+          <div className="product-description_price">
+            <p>
+              <strong>PRICE:</strong>
+            </p>
+            <Price prices={prices} currentCurrency={currentCurrency} />
+          </div>
+          <Button
+            customClassName={
+              inStock ? createCustomClass(large, green) : "disabled-button"
+            }
+            disabled={!inStock}
+            action={ADD_TO_CART}
+            productData={{
+              ...selectedProduct,
+              selectedAttributes: selectedAttributes,
+              count: 1,
+            }}
+          >
+            {inStock ? "ADD TO CART" : "OUT OF STOCK"}
+          </Button>
+          <div className="product-description_info">{parse(description)}</div>
+        </article>
       </div>
+    ) : (
+      <Loader />
     );
   }
 }

@@ -23,6 +23,7 @@ nav ul {
   align-items: center;
   width: 13rem;
   height: 100%;
+  position: relative;
 }
 
 nav ul li,

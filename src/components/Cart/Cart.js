@@ -45,8 +45,9 @@ class Cart extends React.Component {
               return (
                 <div
                   key={`cart_products-${product.name}-${index}`}
-                  className={`cart_products ${getPathname("cart") && "cart_page"
-                    }`}
+                  className={`cart_products ${
+                    getPathname("cart") && "cart_page"
+                  }`}
                 >
                   <div className="cart_products-description">
                     <h1>{product.brand}</h1>

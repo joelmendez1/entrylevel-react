@@ -39,7 +39,7 @@ class App extends React.Component {
 
     return (
       <BrowserRouter>
-        <Nav />
+        <Nav categories={categories} loading={loading} />
         {!loading ? (
           <Routes>
             {categories.map((category) => (
